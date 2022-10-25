@@ -10,7 +10,7 @@ public class Entity {
 
     public void draw(Image picture) {
         // TO-DO:
-        //   Dependent on implementation of Map class
+        //   Dependent on implementation of Map class and how the program window is created
     }
 }
 
