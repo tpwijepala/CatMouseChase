@@ -1,0 +1,6 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/.idea/*
+# CodeStream ignored files
+/../../CMPT_Projects\.idea/codestream.xml
