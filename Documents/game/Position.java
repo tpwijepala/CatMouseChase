@@ -22,4 +22,8 @@ public class Position {
     public void setY(int newY) {
         y = newY;
     }
+
+    public String toString() {
+        return "(" + x + ", " + y + ")";
+    }
 }
