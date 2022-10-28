@@ -1,0 +1,5 @@
+com\mycompany\app\Menu.class
+com\mycompany\app\Window.class
+com\mycompany\app\Game$STATE.class
+com\mycompany\app\Game.class
+com\mycompany\app\MouseInput.class
