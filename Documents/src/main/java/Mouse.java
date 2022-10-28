@@ -10,7 +10,7 @@ public class Mouse extends MovingEntity{
         pos = new Position(x, y);
     }
 
-    //  TEMPORARY:
+    /*  TEMPORARY:
     public static void main(String[] args) {
         Mouse m = new Mouse(1, 1);
 
@@ -21,6 +21,7 @@ public class Mouse extends MovingEntity{
         f.setVisible(true);
 
     }
+    */
 
     public void checkFinish() {
         //  TO-DO:
