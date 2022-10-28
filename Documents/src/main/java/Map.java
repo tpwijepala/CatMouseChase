@@ -120,6 +120,11 @@ public class Map{
         return end;
     }
 
+    // Note: not on UML Diagram
+    public StaticEntity getItem(Position pos) {
+        return items[pos.x][pos.y];
+    }
+
     private BufferedImage map;
     Score score = new Score();
     GameTimer tt = new GameTimer();
