@@ -115,6 +115,11 @@ public class Map{
         }
     }
 
+    // Note: not on UML Diagram
+    public Position getEnd() {
+        return end;
+    }
+
     private BufferedImage map;
     Score score = new Score();
     GameTimer tt = new GameTimer();
