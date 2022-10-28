@@ -3,12 +3,8 @@ import java.awt.*;
 
 public class Entity {
     Position pos;
-    /*Graphics g;
+    Map map;
 
-    public Entity(Graphics g) {
-        this.g = g;
-    }
-*/
     public Position getPos() {
         return pos;
     }
