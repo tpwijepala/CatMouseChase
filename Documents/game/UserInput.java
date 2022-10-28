@@ -12,20 +12,20 @@ class UserInput extends KeyAdapter {
     public void keyPressed(KeyEvent input) {
         int key = input.getKeyCode();
         if (key == KeyEvent.VK_W) {  // Move UP
-            player.pos = new Position(player.pos.getX(), player.pos.getY() - 1);
-            System.out.println("U");
+            player.move(new Position(player.pos.getX(), player.pos.getY() - 1));
+            System.out.println("U, " + player.pos);
         }
         else if (key == KeyEvent.VK_S) {  // Move DOWN
-            player.pos = new Position(player.pos.getX(), player.pos.getY() + 1);
-            System.out.println("D");
+            player.move(new Position(player.pos.getX(), player.pos.getY() + 1));
+            System.out.println("D, " + player.pos);
         }
         else if (key == KeyEvent.VK_A) {  // Move LEFT
-            player.pos = new Position(player.pos.getX() - 1, player.pos.getY());
-            System.out.println("L");
+            player.move(new Position(player.pos.getX() - 1, player.pos.getY()));
+            System.out.println("L, " + player.pos);
         }
         else if (key == KeyEvent.VK_D) {  // Move RIGHT
-            player.pos = new Position(player.pos.getX() + 1, player.pos.getY());
-            System.out.println("R");
+            player.move(new Position(player.pos.getX() + 1, player.pos.getY()));
+            System.out.println("R, " + player.pos);
         }
 
     }
