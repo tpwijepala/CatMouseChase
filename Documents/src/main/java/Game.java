@@ -1,7 +1,5 @@
-package com.mycompany.app;
-
+// import java.Map;
 import java.awt.Graphics;
-
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import java.awt.Canvas;
@@ -16,8 +14,8 @@ import java.awt.Color;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 320;
-    public static final int HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 313;
+    public static final int HEIGHT = 222;
     public static final int SCALE = 2;
     public final String TITLE = "PROJECT TEST";
 
@@ -88,7 +86,9 @@ public class Game extends Canvas implements Runnable {
             menu.mainMenu = true;
         }
         if (State == STATE.GAME) {
-            menu.win(g);
+            Map map = new Map();
+            map.drawEntities(g);
+            // menu.win(g);
         }
         if (State == STATE.LOSE) {
             menu.lose(g);

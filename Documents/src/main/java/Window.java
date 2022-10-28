@@ -1,6 +1,4 @@
 
-package com.mycompany.app;
-
 import javax.swing.JFrame;
 
 public class Window {

@@ -1,5 +1,3 @@
-package main.java;
-
 import java.awt.*;
 
 public class Cheese extends StaticEntity {
