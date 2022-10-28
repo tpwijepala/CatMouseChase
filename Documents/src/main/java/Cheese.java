@@ -4,9 +4,9 @@ import java.awt.*;
 
 public class Cheese extends StaticEntity {
 
-    final private int points = 2;
+    final private int points = 2;  // Placeholder value
     private Image cheesePic;
-    private int timer = 0;
+    private int timer = 30;  // Placeholder value
 
     public Cheese(Position pos) {
         this.pos = pos;
@@ -18,5 +18,9 @@ public class Cheese extends StaticEntity {
 
     public void countdown() {
         timer -= 1;
+    }
+
+    public int getTimer() {
+        return timer;
     }
 }
