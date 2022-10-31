@@ -19,17 +19,23 @@ class GameTimer {
 
     //Restart the clock
     void setTime() {
-        this.timerCount = this.startCount - System.currentTimeMillis();
+        this.timerCount = System.currentTimeMillis() - this.startCount;
         //gameTime.schedule(startTime, 0, delay);
     }
 
-    String getTime() {
-        return String.valueOf(timerCount);
-    }
+    String displayTime() {
+        setTime();
+        long seconds = this.timerCount/1000;
+        long mins = seconds/60;
+        seconds = seconds%60;
+        long hours = mins/60;
+        mins = mins%60;
+        return (Long.toString(hours) + ":" + Long.toString(mins) + ":" + Long.toString(seconds));
+    }  
 
     //TODO: check graphics implementation
     void displayTime(Graphics g) {
-        g.drawString(getTime(), 225, 30);
+        g.drawString(displayTime(), 225, 30);
         //display the number
     }
 

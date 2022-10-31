@@ -25,6 +25,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
     private Menu menu;
+    Map map = new Map();
 
     public enum STATE {
         MENU,
@@ -58,7 +59,6 @@ public class Game extends Canvas implements Runnable {
 
         thread.start();
         isPlaying = true;
-
     }
 
     public void stop() {
@@ -86,7 +86,7 @@ public class Game extends Canvas implements Runnable {
             menu.mainMenu = true;
         }
         if (State == STATE.GAME) {
-            Map map = new Map();
+            
             map.drawEntities(g);
             // menu.win(g);
         }
@@ -125,11 +125,12 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
+                
                 delta--;
-
+                draw();
                 frames++;
             }
-            draw();
+            
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;

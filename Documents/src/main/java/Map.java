@@ -98,6 +98,7 @@ public class Map{
     private BufferedImage map;
     Score score = new Score();
     GameTimer tt = new GameTimer();
+
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         try{
@@ -109,6 +110,7 @@ public class Map{
         g.drawImage(map, 0,0, null);
         
         tt.displayTime(g);
+        // System.out.println(tt.getTime());
         score.displayScore(g);
         
 
