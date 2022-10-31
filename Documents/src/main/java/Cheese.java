@@ -1,4 +1,8 @@
 import java.awt.*;
+import java.lang.Math;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class Cheese extends StaticEntity {
 
@@ -6,8 +10,9 @@ public class Cheese extends StaticEntity {
     private Image cheesePic;
     private int timer = 30;  // Placeholder value
 
-    public Cheese(Position pos) {
-        this.pos = pos;
+    public Cheese() {
+        super();
+        this.pos = generatePosition();
     }
 
     protected int getPoints() {
@@ -21,4 +26,20 @@ public class Cheese extends StaticEntity {
     public int getTimer() {
         return timer;
     }
+
+    protected Position generatePosition(){
+        int maxX = 626;
+        int maxY = 444;
+        int x =0 ,y = 0;
+        boolean posAvail = false;
+        while (!posAvail){
+            x = (int)(Math.random() * maxX);
+            y = (int)(Math.random() * maxY);
+            if (Map.isWall((int)(x/58),(int)(y/41)) == 0){
+                posAvail = true;
+            }
+        }
+        return new Position(x,y);
+    }
+
 }

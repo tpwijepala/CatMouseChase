@@ -54,8 +54,8 @@ public class Map{
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    StaticEntity[][] items = new StaticEntity[41][58];
-    MovingEntity[][] characters = new MovingEntity[41][58];
+    StaticEntity[][] items = new StaticEntity[58][41];
+    MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
     int startX = 0, startY = 0;
@@ -63,6 +63,7 @@ public class Map{
     int crumbsCollect = 0;
 
     boolean cheeseExist = false;
+    Entity c;
     long startTime;
     long timer;
 
@@ -82,20 +83,22 @@ public class Map{
 
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
-            // Entity c = new Cheese();
-            // objects.add(c);
+            c = new Cheese();
+            objects.add(c);
             cheeseExist = true;
         }
 
         else if (cheeseExist && timer >= 12000){
             // if cheese uncollected for 12s
-            // objects.remove(c);
+            objects.remove(c);
             cheeseExist = false;
+            startTime = System.currentTimeMillis();
         }
         return true;
     }
 
     private BufferedImage map;
+    private Image cheesePic;
     Score score = new Score();
     GameTimer tt = new GameTimer();
 
@@ -103,6 +106,7 @@ public class Map{
         Graphics2D g2d = (Graphics2D) g;
         try{
         map = ImageIO.read(new File("src/main/resources/map.png"));
+        cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -110,9 +114,13 @@ public class Map{
         g.drawImage(map, 0,0, null);
         
         tt.displayTime(g);
-        // System.out.println(tt.getTime());
         score.displayScore(g);
-        
+
+        cheeseExist(false);
+        if (cheeseExist){
+            c.draw(g, cheesePic);
+            System.out.println(c.getPos().x);
+        }
 
         }
    

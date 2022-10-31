@@ -12,10 +12,11 @@ public class Entity {
         return pos;
     }
 
-    public void draw(Image picture) {
+    public void draw(Graphics g, Image picture) {
         //g.drawRect(pos.x, pos.y, 10, 10);
         // TO-DO:
         //   Dependent on implementation of Map class and how the program window is created
+        g.drawImage(picture, pos.x,pos.y, null);
     }
 }
 
