@@ -4,12 +4,8 @@ public class Entity {
     private int x;
     private int y;
     Position pos;
-    /*Graphics g;
+    Map map;
 
-    public Entity(Graphics g) {
-        this.g = g;
-    }
-*/
     public Position getPos() {
         return pos;
     }

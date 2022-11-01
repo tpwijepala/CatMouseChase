@@ -2,13 +2,13 @@ import java.awt.*;
 
 public class Mouse extends MovingEntity{
     private Image mousePic;  // mousePic can be declared const and given an initial value once a picture is found and included in files
-    // TO-DO: private Score playerScore;
+    private Score playerScore;
 
     public Mouse(int x, int y) {
         pos = new Position(x, y);
     }
 
-    //  TEMPORARY:
+    /*  TEMPORARY:
     public static void main(String[] args) {
         Mouse m = new Mouse(1, 1);
 
@@ -19,19 +19,23 @@ public class Mouse extends MovingEntity{
         f.setVisible(true);
 
     }
+    */
 
     public void checkFinish() {
-        //  TO-DO:
-        //    if pos == finish position && all rewards collected:
-        //      end game
+        Position end = map.getEnd();
+        if (pos.x == end.x && pos.y == end.y) {
+            // If all rewards collected:
+                // End Game
+        }
     }
 
     public void collectItem() {
-        //  TO-DO:
-        //    if pos == position of any item:
-        //      get points of the item
-        //      adjust score based on those points
-        //      despawn item
+        StaticEntity item = map.getItem(pos);
+        if (item != null) {
+            playerScore.setScore(item.getPoints());
+            // if playerScore.checkScoreBelowZero() == true:  End game
+            map.removeItem(item);
+        }
     }
 
 
