@@ -9,6 +9,7 @@ public class Position {
         this.y = y;
     }
 
+    //Getters and setters are new to position class compared to UML
     public int getX() {
         return x;
     }

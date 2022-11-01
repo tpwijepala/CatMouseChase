@@ -33,4 +33,9 @@ class gameTimer {
         //display the number
     }
 
+    //toString new to Timer class
+    public String toString() {
+        return (" + timerCount + ");
+    }
+
 }
