@@ -1,7 +1,7 @@
 public class MovingEntity extends Entity{
 
     public MovingEntity(Position p) {
-        super()
+        super();
     }
 
     public void move(Position newPos) {
