@@ -1,10 +1,15 @@
-//package project.Documents;
+// package java;
 import java.util.ArrayList;
-import java.util.Timer;
+// import java.util.Timer;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+//import javax.swing.*;
 
 
-public class Map {
+public class Map{
 
     private static final int[][] walls = 
         {{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -49,15 +54,16 @@ public class Map {
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    staticEntity[][] items = new staticEntity[41][58];
-    movingEntity[][] characters = new movingEntity[41][58];
+    StaticEntity[][] items = new StaticEntity[58][41];
+    MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
-    int startX, startY;
-    int endX, endY;
-    int crumbsCollect;
+    int startX = 0, startY = 0;
+    int endX = 0, endY = 0;
+    int crumbsCollect = 0;
 
     boolean cheeseExist = false;
+    Entity c;
     long startTime;
     long timer;
 
@@ -77,7 +83,7 @@ public class Map {
 
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
-            Entity c = new Cheese();
+            c = new Cheese();
             objects.add(c);
             cheeseExist = true;
         }
@@ -86,11 +92,37 @@ public class Map {
             // if cheese uncollected for 12s
             objects.remove(c);
             cheeseExist = false;
+            startTime = System.currentTimeMillis();
         }
+        return true;
     }
-    public void drawEntities(Image img, int x, int y) {
 
-    }
+    private BufferedImage map;
+    private Image cheesePic;
+    Score score = new Score();
+    GameTimer tt = new GameTimer();
+
+    public void drawEntities(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        try{
+        map = ImageIO.read(new File("src/main/resources/map.png"));
+        cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        g.drawImage(map, 0,0, null);
+        
+        tt.displayTime(g);
+        score.displayScore(g);
+
+        cheeseExist(false);
+        if (cheeseExist){
+            c.draw(g, cheesePic);
+            System.out.println(c.getPos().x);
+        }
+
+        }
    
 }
 

@@ -1,5 +1,3 @@
-package main.java;
-
 public class MovingEntity extends Entity{
 
     public MovingEntity(Position p) {

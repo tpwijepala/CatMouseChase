@@ -1,4 +1,3 @@
-package main.java;
 import java.awt.*;
 
 public class Entity {
@@ -15,13 +14,11 @@ public class Entity {
         return pos;
     }
 
-    //May or may not want to implement this later depending on complexity of code
-    //public Boolean collision() {}
-
-    public void draw(Image picture) {
+    public void draw(Graphics g, Image picture) {
         //g.drawRect(pos.x, pos.y, 10, 10);
         // TO-DO:
         //   Dependent on implementation of Map class and how the program window is created
+        g.drawImage(picture, pos.x,pos.y, null);
     }
 }
 

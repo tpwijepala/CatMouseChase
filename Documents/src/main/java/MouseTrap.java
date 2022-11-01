@@ -1,11 +1,13 @@
-package main.java;
-
 import java.awt.*;
 
 public class MouseTrap extends StaticEntity {
 
-    private int points = -1;
+    final private int points = -1;  // Placeholder value
     private Image trapPic;
+
+    public MouseTrap(Position pos) {
+        this.pos = pos;
+    }
 
     protected int getPoints() {
         return points;

@@ -16,8 +16,8 @@ class Score {
         playerScore += scoreChange;
     }
 
-    int getScore() {
-        return playerScore;
+    String getScore() {
+        return Integer.toString(playerScore);
     }
 
     Boolean checkScoreBelowZero() {
@@ -29,8 +29,8 @@ class Score {
     }
 
     //TODO: check graphics implementation
-    void displayScore() {
+    void displayScore(Graphics g) {
         //create(ScoreBoard)
-        //drawString(getScore(), int x, int y)
+        g.drawString(getScore(), 375, 30);
     }
 }

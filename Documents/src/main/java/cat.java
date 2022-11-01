@@ -1,13 +1,10 @@
 import java.awt.Image;
 
 class Cat extends MovingEntity {
-    //Image catPic = new Image();
-    private int x;
-    private int y;
+    Image catPic;
 
-    public Cat(int xPos, int yPos) {
-        Position(x, y);
-        super(Position p);
+    public Cat() {
+        // super(Position p);
     }
 
     public void catchMouse(Position p) {
