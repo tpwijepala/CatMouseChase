@@ -2,8 +2,8 @@ package main.java;
 
 public class MovingEntity extends Entity{
 
-    public MovingEntity(Position p) {
-        super();
+    public MovingEntity(int x, int y) {
+        super(x, y);
     }
 
     public void move(Position newPos) {
@@ -14,18 +14,12 @@ public class MovingEntity extends Entity{
     }
 
     public boolean checkValidMove(Position newPos) {
-        if (isWall(newPos.getX(), newPos.getY())) {
+        if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
             return false;
-        }
-
-        else if (){
-
         }
         //  TO-DO:
         //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
-        if (Map.isWall(pos.x, pos.y) == 1) {
-            return false;
-        }
+
         return true;
     }
 }

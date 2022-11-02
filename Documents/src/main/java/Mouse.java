@@ -7,7 +7,7 @@ public class Mouse extends MovingEntity{
     private Score playerScore;
 
     public Mouse(int x, int y) {
-        pos = new Position(x, y);
+        super(x, y);
     }
 
     public void checkFinish() {

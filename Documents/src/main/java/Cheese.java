@@ -13,8 +13,8 @@ public class Cheese extends StaticEntity {
     private int timer = 30;  // Placeholder value
 
     public Cheese() {
-        super();
-        this.pos = generatePosition();
+        super(generatePosition());
+
     }
 
     protected int getPoints() {
@@ -29,7 +29,7 @@ public class Cheese extends StaticEntity {
         return timer;
     }
 
-    protected Position generatePosition(){
+    protected static Position generatePosition(){
         int maxX = 626;
         int maxY = 444;
         int x =0 ,y = 0;

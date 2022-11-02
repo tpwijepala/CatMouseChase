@@ -8,6 +8,13 @@ public class Entity {
     Position pos;
     Map map;
 
+    public Entity(int x, int y) {
+        pos = new Position(x, y);
+    }
+    public Entity(Position pos) {
+        this.pos = pos;
+    }
+
     public Position getPos() {
         return pos;
     }

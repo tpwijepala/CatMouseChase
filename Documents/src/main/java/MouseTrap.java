@@ -8,7 +8,7 @@ public class MouseTrap extends StaticEntity {
     private Image trapPic;
 
     public MouseTrap(Position pos) {
-        this.pos = pos;
+        super(pos);
     }
 
     protected int getPoints() {
