@@ -133,9 +133,6 @@ public class Map{
         return items[pos.x][pos.y];
     }
 
-    private BufferedImage map;
-    Score score = new Score();
-    GameTimer tt = new GameTimer();
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         try{
