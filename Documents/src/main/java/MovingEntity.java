@@ -18,6 +18,9 @@ public class MovingEntity extends Entity{
         }
     }
 
+    /**
+    * Returns a boolean 
+     */
     public boolean checkValidMove(Position newPos) {
 
         //  TO-DO:

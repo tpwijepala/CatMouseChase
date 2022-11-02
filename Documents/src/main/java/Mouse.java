@@ -11,7 +11,7 @@ public class Mouse extends MovingEntity{
     }
 
     public Position getMousePosition() {
-        //return this.pos.getX();
+        return this.pos;
     }
 
     /*  TEMPORARY:

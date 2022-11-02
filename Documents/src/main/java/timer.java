@@ -23,7 +23,7 @@ class gameTimer {
         //gameTime.schedule(startTime, 0, delay);
     }
 
-    Timer getTime() {
+    long getTime() {
         return timerCount;
     }
 

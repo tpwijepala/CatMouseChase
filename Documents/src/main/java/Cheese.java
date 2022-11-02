@@ -9,9 +9,16 @@ public class Cheese extends StaticEntity {
     final private int points = 2;  // Placeholder value
     private Image cheesePic;
     private int timer = 30;  // Placeholder value
+    Position pos;
 
+    /*
     public Cheese() {
         super();
+        this.pos = generatePosition();
+    }
+    */
+    public Cheese (int x, int y) {
+        super(x, y);
         this.pos = generatePosition();
     }
 

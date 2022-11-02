@@ -1,8 +1,8 @@
 import java.awt.Image;
 
 class Cat extends MovingEntity {
-    Image catPic;
-    Position currentCatPosition;
+    private Image catPic;
+    Position currentPosition;
 
     public Cat(int x, int y) {
         super(x, y);
@@ -15,7 +15,9 @@ class Cat extends MovingEntity {
     }
 
     private void getBestMove(Position p) {
+        this.currentPosition = 
         /* LOGIC:
+        Get cat's current position
         If mouse is above cat, move cat up
         If mouse is below cat, move cat down
         If mouse is left of cat, move cat left
