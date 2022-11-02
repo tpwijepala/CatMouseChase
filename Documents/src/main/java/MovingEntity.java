@@ -5,13 +5,10 @@ public class MovingEntity extends Entity{
     }
 
     public void move(Position newPos) {
-        pos = newPos;
-
         if (checkValidMove(newPos)) {
-            // TO-DO:
-            //   Move entity's position on characters 2D array in Map class
+            map.moveCharacter(pos, newPos);
+            pos = newPos;
         }
-
     }
 
     public boolean checkValidMove(Position newPos) {
@@ -23,8 +20,10 @@ public class MovingEntity extends Entity{
 
         }
         //  TO-DO:
-        //    if newPos intersects the walls array:  return false
         //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
+        if (Map.isWall(pos.x, pos.y) == 1) {
+            return false;
+        }
         return true;
     }
 }

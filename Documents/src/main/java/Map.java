@@ -102,6 +102,39 @@ public class Map{
     Score score = new Score();
     GameTimer tt = new GameTimer();
 
+    // Note: not on UML Diagram
+    public void moveCharacter(Position oldPos, Position newPos) {
+        MovingEntity temp = characters[oldPos.y][oldPos.x];
+        characters[oldPos.y][oldPos.x] = null;
+        characters[newPos.y][newPos.x] = temp;
+    }
+
+    // Note: not on UML Diagram
+    public void removeItem(StaticEntity item) {
+        // Remove from items array:
+        items[item.pos.y][item.pos.x] = null;
+
+        // Remove from objects ArrayList:
+        for (int i = 0; i < objects.size(); i++) {
+            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
+                objects.remove(i);
+            }
+        }
+    }
+
+    // Note: not on UML Diagram
+    public Position getEnd() {
+        return end;
+    }
+
+    // Note: not on UML Diagram
+    public StaticEntity getItem(Position pos) {
+        return items[pos.x][pos.y];
+    }
+
+    private BufferedImage map;
+    Score score = new Score();
+    GameTimer tt = new GameTimer();
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         try{
