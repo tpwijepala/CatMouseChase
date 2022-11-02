@@ -1,10 +1,12 @@
 import java.awt.*;
 
 public class Entity {
-    private int x;
-    private int y;
     Position pos;
     Map map;
+
+    public Entity(int eX, int eY) {
+        this.pos = new Position(eX, eY);
+    }
 
     public Position getPos() {
         return pos;

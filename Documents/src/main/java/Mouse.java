@@ -3,9 +3,15 @@ import java.awt.*;
 public class Mouse extends MovingEntity{
     private Image mousePic;  // mousePic can be declared const and given an initial value once a picture is found and included in files
     private Score playerScore;
+    //private Position mousePosition;
+    Position pos;
 
     public Mouse(int x, int y) {
-        pos = new Position(x, y);
+        super(x, y);
+    }
+
+    public Position getMousePosition() {
+        //return this.pos.getX();
     }
 
     /*  TEMPORARY:
