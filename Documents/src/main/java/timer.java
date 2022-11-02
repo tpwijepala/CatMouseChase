@@ -1,3 +1,5 @@
+package main.java;
+
 import java.awt.Graphics;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,7 +25,7 @@ class gameTimer {
         //gameTime.schedule(startTime, 0, delay);
     }
 
-    Timer getTime() {
+    long getTime() {
         return timerCount;
     }
 

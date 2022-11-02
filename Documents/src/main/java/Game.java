@@ -1,3 +1,5 @@
+package main.java;
+
 // import java.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

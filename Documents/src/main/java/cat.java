@@ -1,3 +1,5 @@
+package main.java;
+
 import java.awt.Image;
 
 class Cat extends MovingEntity {
