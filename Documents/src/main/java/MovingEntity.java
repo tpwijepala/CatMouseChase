@@ -19,7 +19,9 @@ public class MovingEntity extends Entity{
             return false;
         }
 
-        else if ()
+        else if (){
+
+        }
         //  TO-DO:
         //    if newPos intersects the walls array:  return false
         //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
