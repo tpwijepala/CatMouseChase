@@ -3,7 +3,7 @@ package main.java;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import android.graphics.Point;
+//import android.graphics.Point;
 
 public class MouseInput implements MouseListener {
 
