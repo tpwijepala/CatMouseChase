@@ -73,6 +73,11 @@ public class Map{
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
+    private BufferedImage map;
+    private Image cheesePic;
+    Score score = new Score();
+    GameTimer tt = new GameTimer();
+
     /**
      * Sets up the characters on the map to their initial positions
      * 
@@ -85,6 +90,10 @@ public class Map{
         generateCats();
         generateMouseTraps();
 
+    }
+
+    public Map getMap() {
+        return this;
     }
 
     public Mouse getPlayer() {
@@ -165,11 +174,6 @@ public class Map{
         }
         return true;
     }
-
-    private BufferedImage map;
-    private Image cheesePic;
-    Score score = new Score();
-    GameTimer tt = new GameTimer();
 
     // Note: not on UML Diagram
     public void moveCharacter(Position oldPos, Position newPos) {

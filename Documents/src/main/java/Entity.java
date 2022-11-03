@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Entity {
     Position pos;
-    Map map;
 
     public Entity(int x, int y) {
         pos = new Position(x, y);
@@ -15,9 +14,15 @@ public class Entity {
         this.pos = pos;
     }
     */
-    
+
     public Position getPos() {
         return pos;
+    }
+
+    //Not on UML
+    public void setPos(int newX, int newY) {
+        pos.setX(newX);
+        pos.setY(newY);
     }
 
     public void draw(Graphics g, Image picture) {
