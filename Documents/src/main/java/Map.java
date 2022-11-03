@@ -106,6 +106,20 @@ public class Map{
         objects.add(c4);
     }
 
+    private void generateCats() {
+        Cat cat1 = new Cat(49, 17);
+        characters[49][17] = cat1;
+        objects.add(cat1);
+
+        Cat cat2 = new Cat(47, 28);
+        characters[47][28] = cat2;
+        objects.add(cat2);
+
+        Cat cat3 = new Cat(29, 33);
+        characters[29][33] = cat3;
+        objects.add(cat3);
+    }
+
     public static int isWall(int x, int y) {
         return walls[y][x];
     }
@@ -176,6 +190,7 @@ public class Map{
             //File reads specific to my file system
             map = ImageIO.read(new File("src/main/resources/map.png"));
             cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
+
         }catch(IOException e){
             e.printStackTrace();
         }
