@@ -78,11 +78,31 @@ public class Map{
         player = new Mouse(startX, startY, this);
         characters[startX][startY] = player;
         objects.add(player);
+        generateCrumbs();
 
     }
 
     public Mouse getPlayer() {
         return player;
+    }
+
+    //Note: All crumb locations are placeholder
+    private void generateCrumbs() {
+        Crumb c1 = new Crumb(10, 12);
+        items[1][1] = c1;
+        objects.add(c1);
+
+        Crumb c2 = new Crumb(25, 12);
+        items[1][1] = c2;
+        objects.add(c2);
+
+        Crumb c3 = new Crumb(10, 20);
+        items[1][1] = c3;
+        objects.add(c3);
+
+        Crumb c4 = new Crumb(22, 18);
+        items[1][1] = c4;
+        objects.add(c4);
     }
 
     public static int isWall(int x, int y) {
@@ -164,7 +184,7 @@ public class Map{
         cheeseExist(false);
         if (cheeseExist){
             //c.draw(g, cheesePic);
-            System.out.println(c.getPos().x);
+            //System.out.println(c.getPos().x);
         }
 
         for (int i = 0; i < objects.size(); i++) {
