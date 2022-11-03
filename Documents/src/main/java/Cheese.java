@@ -28,14 +28,14 @@ public class Cheese extends StaticEntity {
     }
 
     protected Position generatePosition(){
-        int maxX = 626;
-        int maxY = 444;
-        int x =0 ,y = 0;
+        int maxX = 1450;
+        int maxY = 1025;
+        int x = 0 ,y = 0;
         boolean posAvail = false;
         while (!posAvail){
-            x = (int)(Math.random() * maxX);
-            y = (int)(Math.random() * maxY);
-            if (Map.isWall((int)(x/58),(int)(y/41)) == 0){
+            x = (int)(Math.random() * maxX)/25;
+            y = (int)(Math.random() * maxY)/25;
+            if (Map.isWall((int)(x),(int)(y)) == 0){
                 posAvail = true;
             }
         }
