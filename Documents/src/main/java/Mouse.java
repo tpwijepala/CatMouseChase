@@ -13,7 +13,7 @@ public class Mouse extends MovingEntity{
         super(x, y);
         map = m;
         try{
-            mousePic = ImageIO.read(new File("Documents/src/main/resources/cat.png"));
+            mousePic = ImageIO.read(new File("Documents/src/main/resources/mouse.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
