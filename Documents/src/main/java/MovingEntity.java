@@ -10,6 +10,7 @@ public class MovingEntity extends Entity{
         if (checkValidMove(newPos)) {
             map.moveCharacter(pos, newPos);
             pos = newPos;
+
         }
     }
 

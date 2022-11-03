@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Mouse extends MovingEntity{
     private Image mousePic;  // mousePic can be declared const and given an initial value once a picture is found and included in files
-    private Score playerScore;
+    private Score playerScore = new Score();
 
     public Mouse(int x, int y, Map m) {
         super(x, y);
