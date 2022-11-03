@@ -1,5 +1,4 @@
-//package main.java;
-
+import java.awt.Font;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.FileWriter;
@@ -33,6 +32,7 @@ class Score {
     //TODO: check graphics implementation
     void displayScore(Graphics g) {
         //create(ScoreBoard)
-        g.drawString(getScore(), 375, 30);
+        g.setFont(new Font("Arial", Font.BOLD, 45));
+        g.drawString(getScore(), 850, 75);
     }
 }
