@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("TESTIING", this);
+        new Window("TESTING", this);
         init();
 
     }
@@ -145,7 +145,7 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         Game game = new Game();
-        game.start();
+        //game.start();
 
     }
 

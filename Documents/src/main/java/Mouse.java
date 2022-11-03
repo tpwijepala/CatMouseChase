@@ -14,19 +14,6 @@ public class Mouse extends MovingEntity{
         return this.pos;
     }
 
-    /*  TEMPORARY:
-    public static void main(String[] args) {
-        Mouse m = new Mouse(1, 1);
-
-        Frame f = new Frame("test");
-
-        f.addKeyListener(new UserInput(m));
-        f.setSize(200, 200);
-        f.setVisible(true);
-
-    }
-    */
-
     public void checkFinish() {
         Position end = map.getEnd();
         if (pos.x == end.x && pos.y == end.y) {
