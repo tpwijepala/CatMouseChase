@@ -25,6 +25,9 @@ public class Entity {
         //   Dependent on implementation of Map class and how the program window is created
         g.drawImage(picture, pos.x,pos.y, null);
     }
+    public void draw(Graphics g) {
+        //g.drawImage(picture, pos.x,pos.y, null);
+    }
 }
 
 

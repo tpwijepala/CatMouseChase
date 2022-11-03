@@ -14,7 +14,11 @@ public class Cheese extends StaticEntity {
 
     public Cheese() {
         super(generatePosition());
-
+        try{
+            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     protected int getPoints() {
@@ -42,6 +46,10 @@ public class Cheese extends StaticEntity {
             }
         }
         return new Position(x,y);
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(cheesePic, pos.x, pos.y, null);
     }
 
 }
