@@ -59,20 +59,34 @@ public class Map{
     MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
-    int startX = 0, startY = 0;
+    int startX = 4, startY = 4;
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
+
+    final static int CELLWIDTH = 11;
 
     boolean cheeseExist = false;
     Entity c;
     long startTime;
     long timer;
+    private Mouse player;
 
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
+    public Map() {
+        player = new Mouse(startX, startY, this);
+        characters[startX][startY] = player;
+        objects.add(player);
+
+    }
+
+    public Mouse getPlayer() {
+        return player;
+    }
+
     public static int isWall(int x, int y) {
-        return walls[x][y];
+        return walls[y][x];
     }
 
     public boolean cheeseExist(boolean cheeseDespawn) {
@@ -105,9 +119,9 @@ public class Map{
 
     // Note: not on UML Diagram
     public void moveCharacter(Position oldPos, Position newPos) {
-        MovingEntity temp = characters[oldPos.y][oldPos.x];
-        characters[oldPos.y][oldPos.x] = null;
-        characters[newPos.y][newPos.x] = temp;
+        MovingEntity temp = characters[oldPos.x][oldPos.y];
+        characters[oldPos.x][oldPos.y] = null;
+        characters[newPos.x][newPos.y] = temp;
     }
 
     // Note: not on UML Diagram
@@ -136,8 +150,8 @@ public class Map{
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         try{
-        map = ImageIO.read(new File("src/main/resources/map.png"));
-        cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
+            map = ImageIO.read(new File("Documents/src/main/resources/map.png"));
+            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -149,11 +163,15 @@ public class Map{
 
         cheeseExist(false);
         if (cheeseExist){
-            c.draw(g, cheesePic);
+            //c.draw(g, cheesePic);
             System.out.println(c.getPos().x);
         }
 
+        for (int i = 0; i < objects.size(); i++) {
+            objects.get(i).draw(g);
         }
+
+    }
    
 }
 

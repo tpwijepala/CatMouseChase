@@ -46,6 +46,8 @@ public class Game extends Canvas implements Runnable {
         new Window("TESTIING", this);
         init();
 
+        this.addKeyListener(new UserInput(map.getPlayer()));
+
     }
 
     private void init() {
