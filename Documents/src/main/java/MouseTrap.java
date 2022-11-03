@@ -14,7 +14,6 @@ public class MouseTrap extends StaticEntity {
         super(x, y);
     }
     
-    /*
     public MouseTrap(Position pos) {
         super(pos);
         try{
@@ -27,7 +26,7 @@ public class MouseTrap extends StaticEntity {
     public void draw(Graphics g) {
         g.drawImage(trapPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
     }
-    */
+    
     protected int getPoints() {
         return points;
     }

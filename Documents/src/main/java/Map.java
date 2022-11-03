@@ -58,8 +58,7 @@ public class Map{
     MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
-    int startX = 4;
-    int startY = 4;
+    int startX = 4, startY = 4;
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
 
@@ -74,12 +73,16 @@ public class Map{
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
+    /**
+     * Sets up the characters on the map to their initial positions
+     * 
+     */
     public Map() {
         player = new Mouse(startX, startY, this);
-        //System.out.println("PLAYER: " + player.getMousePosition().getX() + player.getMousePosition().getY());
         characters[startX][startY] = player;
         objects.add(player);
         generateCrumbs();
+        generateCats();
 
     }
 
@@ -108,16 +111,27 @@ public class Map{
 
     private void generateCats() {
         Cat cat1 = new Cat(49, 17);
+        //System.out.println("CAT1 GENERATED. POSITION: " + cat1.getPos().getX() + " " + cat1.getPos().getY());
         characters[49][17] = cat1;
         objects.add(cat1);
 
         Cat cat2 = new Cat(47, 28);
+        //System.out.println("CAT2 GENERATED. POSITION: " + cat2.getPos().getX() + " " + cat2.getPos().getY());
         characters[47][28] = cat2;
         objects.add(cat2);
 
         Cat cat3 = new Cat(29, 33);
+        //System.out.println("CAT3 GENERATED. POSITION: " + cat3.getPos().getX() + " " + cat3.getPos().getY());
         characters[29][33] = cat3;
         objects.add(cat3);
+    }
+
+    private void generateMouseTraps() {
+        MouseTrap trap1 = new MouseTrap();
+
+        MouseTrap trap2 = new MouseTrap();
+
+        MouseTrap trap3 = new MouseTrap();
     }
 
     public static int isWall(int x, int y) {

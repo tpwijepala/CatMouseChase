@@ -63,8 +63,8 @@ public class Mouse extends MovingEntity{
     }
 
     public void draw(Graphics g) {
-        int newX = getPos().getX() * Map.CELLWIDTH;
-        int newY = getPos().getY() * Map.CELLWIDTH;
-        g.drawImage(mousePic, newX, newY, null);
+        //int newX = getPos().getX() * Map.CELLWIDTH;
+        //int newY = getPos().getY() * Map.CELLWIDTH;
+        g.drawImage(mousePic, getPos().getX() * Map.CELLWIDTH, getPos().getY() * Map.CELLWIDTH, null);
     }
 }
