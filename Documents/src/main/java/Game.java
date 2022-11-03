@@ -14,9 +14,9 @@ import java.awt.Color;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 313;
-    public static final int HEIGHT = 222;
-    public static final int SCALE = 2;
+    public static final int WIDTH = 1450;
+    public static final int HEIGHT = 1025;
+    public static final int SCALE = 1;
     public final String TITLE = "PROJECT TEST";
 
     private boolean isPlaying = false;
@@ -100,7 +100,7 @@ public class Game extends Canvas implements Runnable {
     private void drawBackground(Graphics g) {
         // black background
         g.setColor(Color.blue);
-        g.fillRect(0, 0, 1000, 1000);
+        g.fillRect(0, 0, 1450, 1025);
 
     }
 
