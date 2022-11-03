@@ -8,22 +8,55 @@ class Cat extends MovingEntity {
         super(x, y);
     }
 
+    //p will probably be mouse's current position
     public void catchMouse(Position p) {
-
+        Position nextMove = getBestMove(p);
         
+        if (nextMove.getX() == p.getX() && nextMove.getY() == p.getY()) {
+            //return LOSE;
+            return;
+        }
 
     }
 
-    private void getBestMove(Position p) {
-        this.currentPosition = 
-        /* LOGIC:
-        Get cat's current position
-        If mouse is above cat, move cat up
-        If mouse is below cat, move cat down
-        If mouse is left of cat, move cat left
-        If mouse is right of cat, move cat right
-        Check for barriers at all times
-        */
+    private Position getBestMove(Position p) {
+        int moveUp = 0;
+        int moveDown = 0;
+        int moveRight = 0;
+        int moveLeft = 0;
+        Position currentPosition = this.pos;
+        Position nextPosition = new Position(currentPosition.getX(), currentPosition.getY());
+
+        //Check where the mouse is in proximity to cat
+        if (currentPosition.getY() < p.getY()) {
+            moveUp = currentPosition.getY() + 1;
+            nextPosition.setY(moveUp);
+        }
+
+        else if (currentPosition.getY() > p.getY()) {
+            moveDown = currentPosition.getY() - 1;
+            nextPosition.setY(moveDown);
+        }
+        
+        else if (currentPosition.getX() < p.getX()) {
+            moveRight = currentPosition.getX() + 1;
+            nextPosition.setX(moveRight);
+        }
+
+        else {
+            moveLeft = currentPosition.getX() - 1;
+            nextPosition.setX(moveLeft);
+        }
+
+        //Check for barriers
+        if (this.checkValidMove(nextPosition)) {
+            currentPosition = nextPosition;
+        }
+
+        //Check for any other cats
+        //Develop the rest of this code here
+
+        return currentPosition;
 
     }
 }
