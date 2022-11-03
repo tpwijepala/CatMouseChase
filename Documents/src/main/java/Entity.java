@@ -1,11 +1,16 @@
+package main.java;
+
 import java.awt.*;
 
 public class Entity {
     Position pos;
     Map map;
 
-    public Entity(int eX, int eY) {
-        this.pos = new Position(eX, eY);
+    public Entity(int x, int y) {
+        pos = new Position(x, y);
+    }
+    public Entity(Position pos) {
+        this.pos = pos;
     }
 
     public Position getPos() {
@@ -17,6 +22,9 @@ public class Entity {
         // TO-DO:
         //   Dependent on implementation of Map class and how the program window is created
         g.drawImage(picture, pos.x,pos.y, null);
+    }
+    public void draw(Graphics g) {
+        //g.drawImage(picture, pos.x,pos.y, null);
     }
 }
 

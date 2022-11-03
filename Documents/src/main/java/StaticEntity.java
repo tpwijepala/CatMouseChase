@@ -1,6 +1,14 @@
-public abstract class StaticEntity extends Entity {
-    StaticEntity(int x, int y) {
-        super(x, y);
+package main.java;
+
+public class StaticEntity extends Entity {
+    public StaticEntity(int x, int y) {
+        super (x, y);
     }
-    protected abstract int getPoints();
+    public StaticEntity(Position pos) {
+        super (pos);
+    }
+
+    protected int getPoints() {
+        return 0;
+    }
 }

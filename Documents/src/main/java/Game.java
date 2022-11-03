@@ -1,4 +1,6 @@
-//import java.Map;
+package main.java;
+
+// import java.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
@@ -43,6 +45,8 @@ public class Game extends Canvas implements Runnable {
 
         new Window("TESTIING", this);
         init();
+
+        this.addKeyListener(new UserInput(map.getPlayer()));
 
     }
 

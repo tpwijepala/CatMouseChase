@@ -1,4 +1,9 @@
+package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
 class Cat extends MovingEntity {
     private Image catPic;
@@ -6,6 +11,11 @@ class Cat extends MovingEntity {
 
     public Cat(int x, int y) {
         super(x, y);
+        try{
+            catPic = ImageIO.read(new File("Documents/src/main/resources/cat.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     //p will probably be mouse's current position

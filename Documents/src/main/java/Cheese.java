@@ -1,3 +1,5 @@
+package main.java;
+
 import java.awt.*;
 import java.lang.Math;
 import javax.imageio.ImageIO;
@@ -13,8 +15,12 @@ public class Cheese extends StaticEntity {
 
     /*
     public Cheese() {
-        super();
-        this.pos = generatePosition();
+        super(generatePosition());
+        try{
+            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     */
     public Cheese (int x, int y) {
@@ -34,7 +40,7 @@ public class Cheese extends StaticEntity {
         return timer;
     }
 
-    protected Position generatePosition(){
+    protected static Position generatePosition(){
         int maxX = 626;
         int maxY = 444;
         int x =0 ,y = 0;
@@ -47,6 +53,10 @@ public class Cheese extends StaticEntity {
             }
         }
         return new Position(x,y);
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(cheesePic, pos.x, pos.y, null);
     }
 
 }

@@ -1,4 +1,9 @@
+package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Mouse extends MovingEntity{
     private Image mousePic;  // mousePic can be declared const and given an initial value once a picture is found and included in files
@@ -24,8 +29,17 @@ public class Mouse extends MovingEntity{
         f.setSize(200, 200);
         f.setVisible(true);
 
+    private Score playerScore = new Score();
+
+    public Mouse(int x, int y, Map m) {
+        super(x, y);
+        map = m;
+        try{
+            mousePic = ImageIO.read(new File("Documents/src/main/resources/mouse.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
-    */
 
     public void checkFinish() {
         Position end = map.getEnd();
@@ -44,5 +58,7 @@ public class Mouse extends MovingEntity{
         }
     }
 
-
+    public void draw(Graphics g) {
+        g.drawImage(mousePic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
+    }
 }
