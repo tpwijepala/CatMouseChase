@@ -1,12 +1,7 @@
-package main.java;
+//package main.java;
 
 public class MovingEntity extends Entity{
     Position pos;
-
-    public MovingEntity(int x, int y) {
-        super(x, y);
-    }
-    */
 
     public MovingEntity(int mEX, int mEY) {
         super(mEX, mEY);

@@ -58,7 +58,8 @@ public class Map{
     MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
-    int startX = 4, startY = 4;
+    int startX = 4;
+    int startY = 4;
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
 
@@ -75,6 +76,7 @@ public class Map{
 
     public Map() {
         player = new Mouse(startX, startY, this);
+        //System.out.println("PLAYER: " + player.getMousePosition().getX() + player.getMousePosition().getY());
         characters[startX][startY] = player;
         objects.add(player);
         generateCrumbs();
@@ -117,7 +119,7 @@ public class Map{
 
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
-            c = new Cheese();
+            c = new Cheese(0,0);
             objects.add(c);
             cheeseExist = true;
         }
@@ -163,14 +165,17 @@ public class Map{
 
     // Note: not on UML Diagram
     public StaticEntity getItem(Position pos) {
-        return items[pos.x][pos.y];
+        return items[pos.getX()][pos.getY()];
     }
 
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         try{
-            map = ImageIO.read(new File("Documents/src/main/resources/map.png"));
-            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+            //map = ImageIO.read(new File("Documents/src/main/resources/map.png"));
+            //cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+            //File reads specific to my file system
+            map = ImageIO.read(new File("src/main/resources/map.png"));
+            cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
         }catch(IOException e){
             e.printStackTrace();
         }

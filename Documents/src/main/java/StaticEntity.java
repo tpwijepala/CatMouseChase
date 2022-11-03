@@ -1,4 +1,4 @@
-package main.java;
+//package main.java;
 
 public class StaticEntity extends Entity {
     public StaticEntity(int x, int y) {

@@ -1,4 +1,4 @@
-package main.java;
+//package main.java;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
@@ -34,7 +34,7 @@ class Cat extends MovingEntity {
         int moveDown = 0;
         int moveRight = 0;
         int moveLeft = 0;
-        Position currentPosition = this.pos;
+        currentPosition = this.pos;
         Position nextPosition = new Position(currentPosition.getX(), currentPosition.getY());
 
         //Check where the mouse is in proximity to cat
