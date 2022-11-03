@@ -13,8 +13,9 @@ public class Entity {
     /*
     public Entity(Position pos) {
         this.pos = pos;
-    }*/
-
+    }
+    */
+    
     public Position getPos() {
         return pos;
     }

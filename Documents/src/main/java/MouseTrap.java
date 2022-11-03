@@ -12,16 +12,23 @@ public class MouseTrap extends StaticEntity {
 
     public MouseTrap(int x, int y) {
         super(x, y);
-    }
-    
-    public MouseTrap(Position pos) {
-        super(pos);
         try{
-            trapPic = ImageIO.read(new File("Documents/src/main/resources/trap.png"));
+            trapPic = ImageIO.read(new File("src/main/resources/trap.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
     }
+    
+    /*
+    public MouseTrap(Position pos) {
+        super(pos);
+        try{
+            trapPic = ImageIO.read(new File("src/main/resources/trap.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    */
 
     public void draw(Graphics g) {
         g.drawImage(trapPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);

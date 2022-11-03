@@ -83,6 +83,7 @@ public class Map{
         objects.add(player);
         generateCrumbs();
         generateCats();
+        generateMouseTraps();
 
     }
 
@@ -92,6 +93,7 @@ public class Map{
 
     //Note: All crumb locations are placeholder
     private void generateCrumbs() {
+        //41 down, 58 across
         Crumb c1 = new Crumb(10, 12);
         items[10][12] = c1;
         objects.add(c1);
@@ -110,28 +112,31 @@ public class Map{
     }
 
     private void generateCats() {
-        Cat cat1 = new Cat(49, 17);
-        //System.out.println("CAT1 GENERATED. POSITION: " + cat1.getPos().getX() + " " + cat1.getPos().getY());
+        Cat cat1 = new Cat(12, 34);
         characters[49][17] = cat1;
         objects.add(cat1);
 
-        Cat cat2 = new Cat(47, 28);
-        //System.out.println("CAT2 GENERATED. POSITION: " + cat2.getPos().getX() + " " + cat2.getPos().getY());
+        Cat cat2 = new Cat(36, 24);
         characters[47][28] = cat2;
         objects.add(cat2);
 
-        Cat cat3 = new Cat(29, 33);
-        //System.out.println("CAT3 GENERATED. POSITION: " + cat3.getPos().getX() + " " + cat3.getPos().getY());
+        Cat cat3 = new Cat(43, 13);
         characters[29][33] = cat3;
         objects.add(cat3);
     }
 
     private void generateMouseTraps() {
-        MouseTrap trap1 = new MouseTrap();
+        MouseTrap trap1 = new MouseTrap(23, 20);
+        items[23][20] = trap1;
+        objects.add(trap1);
 
-        MouseTrap trap2 = new MouseTrap();
+        MouseTrap trap2 = new MouseTrap(38, 34);
+        items[38][34] = trap2;
+        objects.add(trap2);
 
-        MouseTrap trap3 = new MouseTrap();
+        MouseTrap trap3 = new MouseTrap(55,5);
+        items[55][5] = trap3;
+        objects.add(trap3);
     }
 
     public static int isWall(int x, int y) {
