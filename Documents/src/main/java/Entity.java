@@ -2,17 +2,14 @@ import java.awt.*;
 
 public class Entity {
     Position pos;
-    /*Graphics g;
+    Map map;
+    Image picture;
 
-    public Entity(Graphics g) {
-        this.g = g;
-    }
-*/
     public Position getPos() {
         return pos;
     }
 
-    public void draw(Graphics g, Image picture) {
+    public void draw(Graphics g) {
         //g.drawRect(pos.x, pos.y, 10, 10);
         // TO-DO:
         //   Dependent on implementation of Map class and how the program window is created

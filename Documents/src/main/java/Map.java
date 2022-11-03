@@ -54,8 +54,8 @@ public class Map{
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    StaticEntity[][] items = new StaticEntity[58][41];
-    MovingEntity[][] characters = new MovingEntity[58][41];
+    protected static StaticEntity[][] items = new StaticEntity[58][41];
+    protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
     int startX = 0, startY = 0;
@@ -63,12 +63,31 @@ public class Map{
     int crumbsCollect = 0;
 
     boolean cheeseExist = false;
-    Entity c;
+    Cheese c;
     long startTime;
     long timer;
 
+    private BufferedImage map;
+    Score score = new Score();
+    GameTimer tt = new GameTimer();
+
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
+
+    public Map(){
+        try{
+            map = ImageIO.read(new File("src/main/resources/map.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        generateTraps();
+    }
+
+    private void generateTraps(){
+        MouseTrap t1 = new MouseTrap(new Position(15,11));
+        addItem(t1);
+    }
 
     public static int isWall(int x, int y) {
         return walls[y][x];
@@ -85,31 +104,44 @@ public class Map{
             // spawn after its been despawned for 5s
             c = new Cheese();
             objects.add(c);
+
             cheeseExist = true;
         }
 
         else if (cheeseExist && timer >= 12000){
             // if cheese uncollected for 12s
-            objects.remove(c);
+            this.removeItem(c);
             cheeseExist = false;
             startTime = System.currentTimeMillis();
         }
         return true;
     }
 
-    private BufferedImage map;
-    private Image cheesePic;
-    Score score = new Score();
-    GameTimer tt = new GameTimer();
+    public static StaticEntity getItem(int x, int y){
+        return items[x][y];
+    }
+    public static MovingEntity getCharactr(int x, int y){
+        return characters[x][y];
+    }
+
+    public void addItem(StaticEntity item) {
+        // add to items array:
+        items[item.pos.y][item.pos.x] = item;
+
+        // add to objects ArrayList:
+        objects.add(item);
+    }
+
+    public void removeItem(StaticEntity item) {
+        // Remove from items array:
+        items[item.pos.y][item.pos.x] = null;
+
+        // Remove from objects ArrayList:
+        objects.remove(item);
+    }
 
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        try{
-        map = ImageIO.read(new File("src/main/resources/map.png"));
-        cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
 
         g.drawImage(map, 0,0, null);
         
@@ -117,9 +149,12 @@ public class Map{
         score.displayScore(g);
 
         cheeseExist(false);
-        if (cheeseExist){
-            c.draw(g, cheesePic);
-            System.out.println(c.getPos().x + " " + c.getPos().y);
+        // if (cheeseExist){
+        //     c.draw(g);
+        //     System.out.println(c.getPos().x + " " + c.getPos().y);
+        // }
+        for (int i = 0; i < objects.size(); i++){
+            objects.get(i).draw(g);
         }
 
         }

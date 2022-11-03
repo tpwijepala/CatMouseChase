@@ -7,12 +7,18 @@ import java.io.IOException;
 public class Cheese extends StaticEntity {
 
     final private int points = 2;  // Placeholder value
-    private Image cheesePic;
     private int timer = 30;  // Placeholder value
 
     public Cheese() {
-        super();
+        //super();
         this.pos = generatePosition();
+
+        try{
+            picture = ImageIO.read(new File("src/main/resources/cheese.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
     }
 
     protected int getPoints() {
@@ -35,7 +41,7 @@ public class Cheese extends StaticEntity {
         while (!posAvail){
             x = (int)(Math.random() * maxX)/25;
             y = (int)(Math.random() * maxY)/25;
-            if (Map.isWall((int)(x),(int)(y)) == 0){
+            if (Map.isWall(x,y) == 0 && Map.getItem(x,y) == null && Map.getCharactr(x, y) == null){
                 posAvail = true;
             }
         }
