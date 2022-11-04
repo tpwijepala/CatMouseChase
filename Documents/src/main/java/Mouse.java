@@ -47,24 +47,27 @@ public class Mouse extends MovingEntity{
 
     public void checkFinish() {
         Position end = map.getEnd();
-        if (pos.x == end.x && pos.y == end.y) {
+        if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
             // If all rewards collected:
                 // End Game
         }
     }
 
     public void collectItem() {
-        StaticEntity item = map.getItem(pos);
+        StaticEntity item = map.getItem(getPos());
         if (item != null) {
             playerScore.setScore(item.getPoints());
+            System.out.println("ITEM POINTS: " + item.getPoints());
             // if playerScore.checkScoreBelowZero() == true:  End game
             map.removeItem(item);
         }
     }
 
+    public Score getMouseScore() {
+        return playerScore;
+    }
+
     public void draw(Graphics g) {
-        //int newX = getPos().getX() * Map.CELLWIDTH;
-        //int newY = getPos().getY() * Map.CELLWIDTH;
         g.drawImage(mousePic, getPos().getX() * Map.CELLWIDTH, getPos().getY() * Map.CELLWIDTH, null);
     }
 }

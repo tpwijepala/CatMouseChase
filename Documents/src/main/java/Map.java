@@ -75,7 +75,6 @@ public class Map{
 
     private BufferedImage map;
     private Image cheesePic;
-    Score score = new Score();
     GameTimer tt = new GameTimer();
 
     /**
@@ -90,10 +89,6 @@ public class Map{
         generateCats();
         generateMouseTraps();
 
-    }
-
-    public Map getMap() {
-        return this;
     }
 
     public Mouse getPlayer() {
@@ -221,7 +216,7 @@ public class Map{
         g.drawImage(map, 0,0, null);
         
         tt.displayTime(g);
-        score.displayScore(g);
+        player.getMouseScore().displayScore(g);
 
         cheeseExist(false);
         if (cheeseExist){

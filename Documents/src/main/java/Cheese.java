@@ -28,7 +28,7 @@ public class Cheese extends StaticEntity {
         this.pos = generatePosition();
     }
 
-    protected int getPoints() {
+    public int getPoints() {
         return points;
     }
 

@@ -9,6 +9,7 @@ public class MovingEntity extends Entity{
 
     public void move(Position newPos) {
         Map map = new Map();
+        
         if (checkValidMove(newPos)) {
             map.moveCharacter(this.getPos(), newPos);
             //pos = newPos;
@@ -24,6 +25,7 @@ public class MovingEntity extends Entity{
         if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
             return false;
         }
+
         //  TO-DO:
         //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
 

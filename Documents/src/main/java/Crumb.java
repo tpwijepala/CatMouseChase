@@ -24,7 +24,7 @@ public class Crumb extends StaticEntity{
         g.drawImage(crumbPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
     }
 
-    protected int getPoints() {
+    public int getPoints() {
         return points;
     }
 }
