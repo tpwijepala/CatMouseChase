@@ -180,7 +180,7 @@ public class Map{
     // Note: not on UML Diagram
     public void removeItem(StaticEntity item) {
         // Remove from items array:
-        items[item.pos.y][item.pos.x] = null;
+        items[item.pos.x][item.pos.y] = null;
 
         // Remove from objects ArrayList:
         for (int i = 1; i < objects.size(); i++) {
