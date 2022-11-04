@@ -10,7 +10,7 @@ public class Cheese extends StaticEntity {
     private int timer = 30;  // Placeholder value
 
     public Cheese() {
-        //super();
+        super(0, 0);
         this.pos = generatePosition();
 
         try{

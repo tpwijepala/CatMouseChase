@@ -58,7 +58,7 @@ public class Map{
     protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
-    int startX = 0, startY = 0;
+    int startX = 4, startY = 4;
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
 
@@ -71,6 +71,7 @@ public class Map{
     Score score = new Score();
     GameTimer tt = new GameTimer();
 
+    private Mouse player;
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
@@ -80,14 +81,51 @@ public class Map{
         }catch(IOException e){
             e.printStackTrace();
         }
-
-        generateTraps();
+        player = new Mouse(startX, startY);
+        addCharacter(player);
+        generateCrumbs();
+        generateCats();
+        generateMouseTraps();
     }
 
-    private void generateTraps(){
-        MouseTrap t1 = new MouseTrap(new Position(15,11));
-        addItem(t1);
+    private void generateCrumbs() {
+        //41 down, 58 across
+        Crumb c1 = new Crumb(10, 12);
+        addItem(c1);
+
+        Crumb c2 = new Crumb(25, 12);
+        addItem(c2);
+
+        Crumb c3 = new Crumb(10, 20);
+        addItem(c3);
+
+        Crumb c4 = new Crumb(22, 18);
+        addItem(c4);
     }
+    
+
+    private void generateCats() {
+        Cat cat1 = new Cat(12, 34);
+        addCharacter(cat1);
+
+        Cat cat2 = new Cat(36, 24);
+        addCharacter(cat2);
+
+        Cat cat3 = new Cat(43, 13);
+        addCharacter(cat3);
+    }
+
+    private void generateMouseTraps() {
+        MouseTrap trap1 = new MouseTrap(23, 20);
+        addItem(trap1);
+
+        MouseTrap trap2 = new MouseTrap(38, 34);
+        addItem(trap2);
+
+        MouseTrap trap3 = new MouseTrap(55,5);
+        addItem(trap3);
+    }
+
 
     public static int isWall(int x, int y) {
         return walls[y][x];
@@ -125,18 +163,18 @@ public class Map{
     }
 
     public void addItem(StaticEntity item) {
-        // add to items array:
-        items[item.pos.y][item.pos.x] = item;
-
-        // add to objects ArrayList:
+        items[item.pos.x][item.pos.y] = item;
         objects.add(item);
     }
 
-    public void removeItem(StaticEntity item) {
-        // Remove from items array:
-        items[item.pos.y][item.pos.x] = null;
+    public void addCharacter(MovingEntity charac) {
+        characters[charac.pos.x][charac.pos.y] = charac;
+        objects.add(charac);
+    }
 
-        // Remove from objects ArrayList:
+    public void removeItem(StaticEntity item) {
+
+        items[item.pos.x][item.pos.y] = null;
         objects.remove(item);
     }
 
@@ -149,10 +187,7 @@ public class Map{
         score.displayScore(g);
 
         cheeseExist(false);
-        // if (cheeseExist){
-        //     c.draw(g);
-        //     System.out.println(c.getPos().x + " " + c.getPos().y);
-        // }
+
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
         }

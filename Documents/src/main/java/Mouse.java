@@ -1,24 +1,33 @@
 import java.awt.*;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class Mouse extends MovingEntity{
     private Image mousePic;  // mousePic can be declared const and given an initial value once a picture is found and included in files
     // TO-DO: private Score playerScore;
 
     public Mouse(int x, int y) {
-        pos = new Position(x, y);
+        super(x,y);
+
+        try{
+            picture = ImageIO.read(new File("src/main/resources/mouse.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
-    //  TEMPORARY:
-    public static void main(String[] args) {
-        Mouse m = new Mouse(1, 1);
+    // //  TEMPORARY:
+    // public static void main(String[] args) {
+    //     Mouse m = new Mouse(1, 1);
 
-        Frame f = new Frame("test");
+    //     Frame f = new Frame("test");
 
-        f.addKeyListener(new UserInput(m));
-        f.setSize(200, 200);
-        f.setVisible(true);
+    //     f.addKeyListener(new UserInput(m));
+    //     f.setSize(200, 200);
+    //     f.setVisible(true);
 
-    }
+    // }
 
     public void checkFinish() {
         //  TO-DO:
