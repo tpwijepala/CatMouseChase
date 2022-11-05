@@ -1,38 +1,63 @@
+//package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class Mouse extends MovingEntity{
-    private Image mousePic;  // mousePic can be declared const and given an initial value once a picture is found and included in files
-    // TO-DO: private Score playerScore;
+    //private Image picture;  // mousePic can be declared const and given an initial value once a picture is found and included in files
+    //private Position mousePosition;
+    //Position pos;
+    Map map;
+    private Score playerScore = new Score();
 
-    public Mouse(int x, int y) {
-        pos = new Position(x, y);
+    public Mouse(int x, int y, Map m) {
+        super(x,y);
+        map = m;
+        try{
+            picture = ImageIO.read(new File("src/main/resources/mouse.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
-
-    //  TEMPORARY:
-    public static void main(String[] args) {
-        Mouse m = new Mouse(1, 1);
-
-        Frame f = new Frame("test");
-
-        f.addKeyListener(new UserInput(m));
-        f.setSize(200, 200);
-        f.setVisible(true);
-
+    
+    public Position getMousePosition() {
+        return pos;
     }
 
     public void checkFinish() {
-        //  TO-DO:
-        //    if pos == finish position && all rewards collected:
-        //      end game
+        Position end = map.getEnd();
+        if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
+            // If all rewards collected:
+                // End Game
+        }
     }
 
     public void collectItem() {
-        //  TO-DO:
-        //    if pos == position of any item:
-        //      get points of the item
-        //      adjust score based on those points
-        //      despawn item
+        StaticEntity item = Map.getItem(getPos());
+        if (item != null) {
+            playerScore.setScore(item.getPoints());
+            
+            if (playerScore.checkScoreBelowZero() == true) {
+                Game.State = Game.STATE.LOSE;
+            }
+
+            else {
+                map.removeItem(item);
+            }
+            
+        }
     }
 
+    public Score getMouseScore() {
+        return playerScore;
+    }
 
+    /*
+    public void draw(Graphics g) {
+        g.drawImage(mousePic, getPos().getX() * Map.CELLWIDTH, getPos().getY() * Map.CELLWIDTH, null);
+    }
+    */
 }
