@@ -9,23 +9,20 @@ import java.io.IOException;
 public class Cheese extends StaticEntity {
 
     final private int points = 2;  // Placeholder value
-    private Image cheesePic;
     private int timer = 30;  // Placeholder value
     Position pos;
 
-    /*
-    public Cheese() {
-        super(generatePosition());
+    
+    public Cheese(int x, int y) {
+        super(x, y);
+        this.pos = generatePosition();
+
         try{
-            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+            picture = ImageIO.read(new File("src/main/resources/cheese.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
-    }
-    */
-    public Cheese (int x, int y) {
-        super(x, y);
-        this.pos = generatePosition();
+        
     }
 
     public int getPoints() {
@@ -48,15 +45,16 @@ public class Cheese extends StaticEntity {
         while (!posAvail){
             x = (int)(Math.random() * maxX)/25;
             y = (int)(Math.random() * maxY)/25;
-            if (Map.isWall((int)(x),(int)(y)) == 0){
+            if (Map.isWall(x,y) == 0 && Map.getItem(getPos()) == null && Map.getCharactr(x, y) == null){
                 posAvail = true;
             }
         }
         return new Position(x,y);
     }
 
+    /*
     public void draw(Graphics g) {
         g.drawImage(cheesePic, pos.x, pos.y, null);
     }
-
+    */
 }

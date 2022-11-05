@@ -54,8 +54,8 @@ public class Map{
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    StaticEntity[][] items = new StaticEntity[58][41];
-    MovingEntity[][] characters = new MovingEntity[58][41];
+    protected static StaticEntity[][] items = new StaticEntity[58][41];
+    protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
     int startX = 4, startY = 4;
@@ -65,83 +65,68 @@ public class Map{
     final static int CELLWIDTH = 11;
 
     boolean cheeseExist = false;
-    Entity c;
+    Cheese c;
     long startTime;
     long timer;
     private Mouse player;
 
+    private BufferedImage map;
+    GameTimer tt = new GameTimer();
+
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
-    private BufferedImage map;
-    private Image cheesePic;
-    GameTimer tt = new GameTimer();
-
-    /**
-     * Sets up the characters on the map to their initial positions
-     * 
-     */
-    public Map() {
+    public Map(){
+        try{
+            map = ImageIO.read(new File("src/main/resources/map.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         player = new Mouse(startX, startY, this);
-        characters[startX][startY] = player;
-        objects.add(player);
+        addCharacter(player);
         generateCrumbs();
         generateCats();
         generateMouseTraps();
-
     }
 
-    public Mouse getPlayer() {
-        return player;
-    }
-
-    //Note: All crumb locations are placeholder
     private void generateCrumbs() {
         //41 down, 58 across
         Crumb c1 = new Crumb(10, 12);
-        items[10][12] = c1;
-        objects.add(c1);
+        addItem(c1);
 
         Crumb c2 = new Crumb(25, 12);
-        items[25][12] = c2;
-        objects.add(c2);
+        addItem(c2);
 
         Crumb c3 = new Crumb(10, 20);
-        items[10][20] = c3;
-        objects.add(c3);
+        addItem(c3);
 
         Crumb c4 = new Crumb(22, 18);
-        items[22][18] = c4;
-        objects.add(c4);
+        addItem(c4);
     }
+    
 
     private void generateCats() {
         Cat cat1 = new Cat(12, 34);
-        characters[49][17] = cat1;
-        objects.add(cat1);
+        addCharacter(cat1);
 
         Cat cat2 = new Cat(36, 24);
-        characters[47][28] = cat2;
-        objects.add(cat2);
+        addCharacter(cat2);
 
         Cat cat3 = new Cat(43, 13);
-        characters[29][33] = cat3;
-        objects.add(cat3);
+        addCharacter(cat3);
     }
 
     private void generateMouseTraps() {
         MouseTrap trap1 = new MouseTrap(23, 20);
-        items[23][20] = trap1;
-        objects.add(trap1);
+        addItem(trap1);
 
         MouseTrap trap2 = new MouseTrap(38, 34);
-        items[38][34] = trap2;
-        objects.add(trap2);
+        addItem(trap2);
 
         MouseTrap trap3 = new MouseTrap(55,5);
-        items[55][5] = trap3;
-        objects.add(trap3);
+        addItem(trap3);
     }
+
 
     public static int isWall(int x, int y) {
         return walls[y][x];
@@ -158,12 +143,13 @@ public class Map{
             // spawn after its been despawned for 5s
             c = new Cheese(0,0);
             objects.add(c);
+
             cheeseExist = true;
         }
 
         else if (cheeseExist && timer >= 12000){
             // if cheese uncollected for 12s
-            objects.remove(c);
+            this.removeItem(c);
             cheeseExist = false;
             startTime = System.currentTimeMillis();
         }
@@ -177,41 +163,43 @@ public class Map{
         characters[newPos.x][newPos.y] = temp;
     }
 
-    // Note: not on UML Diagram
-    public void removeItem(StaticEntity item) {
-        // Remove from items array:
-        items[item.pos.x][item.pos.y] = null;
-
-        // Remove from objects ArrayList:
-        for (int i = 1; i < objects.size(); i++) {
-            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
-                objects.remove(i);
-            }
-        }
-    }
-
+    
     // Note: not on UML Diagram
     public Position getEnd() {
         return end;
     }
 
+    public Mouse getPlayer() {
+        return player;
+    }
+
     // Note: not on UML Diagram
-    public StaticEntity getItem(Position pos) {
+    public static StaticEntity getItem(Position pos) {
         return items[pos.getX()][pos.getY()];
+    }
+
+    public static MovingEntity getCharactr(int x, int y){
+        return characters[x][y];
+    }
+
+    public void addItem(StaticEntity item) {
+        items[item.pos.x][item.pos.y] = item;
+        objects.add(item);
+    }
+
+    public void addCharacter(MovingEntity charac) {
+        characters[charac.pos.x][charac.pos.y] = charac;
+        objects.add(charac);
+    }
+
+    public void removeItem(StaticEntity item) {
+
+        items[item.pos.x][item.pos.y] = null;
+        objects.remove(item);
     }
 
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        try{
-            //map = ImageIO.read(new File("Documents/src/main/resources/map.png"));
-            //cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
-            //File reads specific to my file system
-            map = ImageIO.read(new File("src/main/resources/map.png"));
-            cheesePic = ImageIO.read(new File("src/main/resources/cheese.png"));
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
 
         g.drawImage(map, 0,0, null);
         
@@ -219,9 +207,9 @@ public class Map{
         player.getMouseScore().displayScore(g);
 
         cheeseExist(false);
-        if (cheeseExist){
-            c.draw(g, cheesePic);
-            System.out.println(c.getPos().x + " " + c.getPos().y);
+
+        for (int i = 0; i < objects.size(); i++){
+            objects.get(i).draw(g);
         }
 
         for (int i = 0; i < objects.size(); i++) {

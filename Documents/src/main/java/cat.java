@@ -2,6 +2,7 @@
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,8 +12,9 @@ class Cat extends MovingEntity {
 
     public Cat(int x, int y) {
         super(x, y);
+
         try{
-            catPic = ImageIO.read(new File("src/main/resources/cat.png"));
+            picture = ImageIO.read(new File("src/main/resources/cat.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
