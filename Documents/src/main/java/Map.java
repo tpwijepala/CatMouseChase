@@ -194,8 +194,16 @@ public class Map{
 
     public void removeItem(StaticEntity item) {
 
-        items[item.pos.x][item.pos.y] = null;
-        objects.remove(item);
+        // Remove from items array:
+        items[item.pos.getY()][item.pos.getX()] = null;
+
+        // Remove from objects ArrayList:
+        for (int i = 1; i < objects.size(); i++) {
+            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
+                objects.remove(i);
+            }
+        }
+
     }
 
     public void drawEntities(Graphics g) {
