@@ -45,7 +45,7 @@ public class Cheese extends StaticEntity {
         while (!posAvail){
             x = (int)(Math.random() * maxX)/25;
             y = (int)(Math.random() * maxY)/25;
-            if (Map.isWall(x,y) == 0 && Map.getItem(getPos()) == null && Map.getCharactr(x, y) == null){
+            if (Map.isWall(x,y) == 0 && Map.getItem(getPos()) == null && Map.getCharacter(x, y) == null){
                 posAvail = true;
             }
         }

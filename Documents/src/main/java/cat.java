@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 class Cat extends MovingEntity {
-    private Image catPic;
     Position currentPosition;
 
     public Cat(int x, int y) {
@@ -23,9 +22,10 @@ class Cat extends MovingEntity {
     //p will probably be mouse's current position
     public void catchMouse(Position p) {
         Position nextMove = getBestMove(p);
+        move(nextMove);
         
         if (nextMove.getX() == p.getX() && nextMove.getY() == p.getY()) {
-            //return LOSE;
+            Game.State = Game.STATE.LOSE;
             return;
         }
 

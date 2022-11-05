@@ -1,7 +1,6 @@
 //package main.java;
 
 public class MovingEntity extends Entity{
-    
 
     public MovingEntity(int x, int y) {
         super(x, y);

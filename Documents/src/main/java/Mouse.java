@@ -30,8 +30,10 @@ public class Mouse extends MovingEntity{
     public void checkFinish() {
         Position end = map.getEnd();
         if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
-            // If all rewards collected:
-                // End Game
+            if (map.crumbsCollect == 4) {
+                Game.State = Game.STATE.WIN;
+            }
+            
         }
     }
 
@@ -55,9 +57,4 @@ public class Mouse extends MovingEntity{
         return playerScore;
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(mousePic, getPos().getX() * Map.CELLWIDTH, getPos().getY() * Map.CELLWIDTH, null);
-    }
-    */
 }

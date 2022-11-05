@@ -57,6 +57,7 @@ public class Map{
     protected static StaticEntity[][] items = new StaticEntity[58][41];
     protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
+    ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
     int endX = 0, endY = 0;
@@ -107,12 +108,15 @@ public class Map{
 
     private void generateCats() {
         Cat cat1 = new Cat(12, 34);
+        mapCats.add(cat1);
         addCharacter(cat1);
 
         Cat cat2 = new Cat(36, 24);
+        mapCats.add(cat2);
         addCharacter(cat2);
 
         Cat cat3 = new Cat(43, 13);
+        mapCats.add(cat3);
         addCharacter(cat3);
     }
 
@@ -173,12 +177,20 @@ public class Map{
         return player;
     }
 
+    public ArrayList<Cat> getCats() {
+        return mapCats;
+    }
+
+    public ArrayList<Entity> getObjectsArray() {
+        return objects;
+    }
+
     // Note: not on UML Diagram
     public static StaticEntity getItem(Position pos) {
         return items[pos.getX()][pos.getY()];
     }
 
-    public static MovingEntity getCharactr(int x, int y){
+    public static MovingEntity getCharacter(int x, int y){
         return characters[x][y];
     }
 
