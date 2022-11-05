@@ -34,9 +34,10 @@ class Cat extends MovingEntity {
         int moveDown = 0;
         int moveRight = 0;
         int moveLeft = 0;
-        currentPosition = this.pos;
+        currentPosition = getPos();
         Position nextPosition = new Position(currentPosition.getX(), currentPosition.getY());
 
+        //Check BFS or store 
         //Check where the mouse is in proximity to cat
         if (currentPosition.getY() < p.getY()) {
             moveUp = currentPosition.getY() + 1;
