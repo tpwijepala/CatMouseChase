@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,7 +36,8 @@ class GameTimer {
 
     //TODO: check graphics implementation
     void displayTime(Graphics g) {
-        g.drawString(displayTime(), 225, 30);
+        g.setFont(new Font("Arial", Font.BOLD, 45));
+        g.drawString(displayTime(), 475, 75);
         //display the number
     }
 

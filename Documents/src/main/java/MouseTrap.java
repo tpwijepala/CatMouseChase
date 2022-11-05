@@ -1,4 +1,9 @@
+//package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class MouseTrap extends StaticEntity {
 
@@ -7,14 +12,29 @@ public class MouseTrap extends StaticEntity {
 
     public MouseTrap(int x, int y) {
         super(x, y);
+        try{
+            trapPic = ImageIO.read(new File("src/main/resources/trap.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
     /*
     public MouseTrap(Position pos) {
-        this.pos = pos;
+        super(pos);
+        try{
+            trapPic = ImageIO.read(new File("src/main/resources/trap.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     */
-    protected int getPoints() {
+
+    public void draw(Graphics g) {
+        g.drawImage(trapPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
+    }
+    
+    public int getPoints() {
         return points;
     }
 }

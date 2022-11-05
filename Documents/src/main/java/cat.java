@@ -1,4 +1,9 @@
+//package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
 class Cat extends MovingEntity {
     private Image catPic;
@@ -6,6 +11,11 @@ class Cat extends MovingEntity {
 
     public Cat(int x, int y) {
         super(x, y);
+        try{
+            catPic = ImageIO.read(new File("src/main/resources/cat.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     //p will probably be mouse's current position
@@ -24,9 +34,10 @@ class Cat extends MovingEntity {
         int moveDown = 0;
         int moveRight = 0;
         int moveLeft = 0;
-        Position currentPosition = this.pos;
+        currentPosition = getPos();
         Position nextPosition = new Position(currentPosition.getX(), currentPosition.getY());
 
+        //Check BFS or store 
         //Check where the mouse is in proximity to cat
         if (currentPosition.getY() < p.getY()) {
             moveUp = currentPosition.getY() + 1;

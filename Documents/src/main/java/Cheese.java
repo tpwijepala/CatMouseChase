@@ -1,3 +1,5 @@
+//package main.java;
+
 import java.awt.*;
 import java.lang.Math;
 import javax.imageio.ImageIO;
@@ -13,8 +15,12 @@ public class Cheese extends StaticEntity {
 
     /*
     public Cheese() {
-        super();
-        this.pos = generatePosition();
+        super(generatePosition());
+        try{
+            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     */
     public Cheese (int x, int y) {
@@ -22,7 +28,7 @@ public class Cheese extends StaticEntity {
         this.pos = generatePosition();
     }
 
-    protected int getPoints() {
+    public int getPoints() {
         return points;
     }
 
@@ -35,18 +41,22 @@ public class Cheese extends StaticEntity {
     }
 
     protected Position generatePosition(){
-        int maxX = 626;
-        int maxY = 444;
-        int x =0 ,y = 0;
+        int maxX = 1450;
+        int maxY = 1025;
+        int x = 0 ,y = 0;
         boolean posAvail = false;
         while (!posAvail){
-            x = (int)(Math.random() * maxX);
-            y = (int)(Math.random() * maxY);
-            if (Map.isWall((int)(x/58),(int)(y/41)) == 0){
+            x = (int)(Math.random() * maxX)/25;
+            y = (int)(Math.random() * maxY)/25;
+            if (Map.isWall((int)(x),(int)(y)) == 0){
                 posAvail = true;
             }
         }
         return new Position(x,y);
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(cheesePic, pos.x, pos.y, null);
     }
 
 }

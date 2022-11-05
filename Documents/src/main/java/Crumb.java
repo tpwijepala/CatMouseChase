@@ -1,4 +1,9 @@
+//package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Crumb extends StaticEntity{
 
@@ -7,9 +12,19 @@ public class Crumb extends StaticEntity{
 
     public Crumb(int x, int y) {
         super(x, y);
+        try{
+            //File path specific to my file system
+            crumbPic = ImageIO.read(new File("src/main/resources/crumbs.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
-    protected int getPoints() {
+    public void draw(Graphics g) {
+        g.drawImage(crumbPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
+    }
+
+    public int getPoints() {
         return points;
     }
 }
