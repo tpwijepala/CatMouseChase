@@ -10,7 +10,6 @@ public class Cheese extends StaticEntity {
 
     final private int points = 2;  // Placeholder value
     private int timer = 30;  // Placeholder value
-    Position pos;
 
     
     public Cheese(int x, int y) {
