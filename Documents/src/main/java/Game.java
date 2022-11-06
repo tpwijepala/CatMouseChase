@@ -9,6 +9,13 @@ import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
+/*
+ * Class encapsulates all of Game
+ * <p>
+ * Contains everything to run the game, and to render the graphics
+ * 
+ * @author Ethan
+ */
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1450;

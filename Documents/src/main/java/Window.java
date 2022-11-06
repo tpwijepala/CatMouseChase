@@ -10,8 +10,7 @@ import javax.swing.JFrame;
 public class Window {
 
     /**
-     * Contains the specifications for the Game window, creates and opens the window
-     * when called.
+     * Creates and opens the window with the specifications
      * 
      * @param title The title of the window
      * @param game  The game that we are applying these window specifications to

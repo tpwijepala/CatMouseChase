@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Struct;
 import java.awt.Point;
 
 /*
