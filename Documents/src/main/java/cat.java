@@ -45,6 +45,7 @@ class Cat extends MovingEntity {
 
     }
 
+    
     private Position getBestMove(Position p) {
         int moveUp = 0;
         int moveDown = 0;
@@ -83,4 +84,12 @@ class Cat extends MovingEntity {
         return nextPosition;
 
     }
+
+    /* //Implement using BFS with depth of 3
+    private Position getBestMove(Position p) {
+        currentPosition = getPos();
+        Position nextPosition = new Position(currentPosition.getX(), currentPosition.getY());
+
+    }
+    */
 }
