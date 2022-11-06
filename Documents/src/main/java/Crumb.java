@@ -1,3 +1,6 @@
+//package main.java;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -16,7 +19,13 @@ public class Crumb extends StaticEntity{
 
     final private int points = 1;  // Placeholder value
 
-    protected int getPoints() {
+    /*
+    public void draw(Graphics g) {
+        g.drawImage(crumbPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
+    }
+    */
+
+    public int getPoints() {
         return points;
     }
 }

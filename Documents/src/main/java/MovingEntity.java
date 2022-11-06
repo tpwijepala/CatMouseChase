@@ -1,22 +1,34 @@
+//package main.java;
+
 public class MovingEntity extends Entity{
-    public MovingEntity(int x, int y){
+    
+
+    public MovingEntity(int x, int y) {
         super(x, y);
     }
 
     public void move(Position newPos) {
-        pos = newPos;
-
+        Map map = new Map();
+        
         if (checkValidMove(newPos)) {
-            // TO-DO:
-            //   Move entity's position on characters 2D array in Map class
-        }
+            map.moveCharacter(this.getPos(), newPos);
+            //pos = newPos;
+            this.setPos(newPos.getX(), newPos.getY());
 
+        }
     }
 
+    /**
+    * Returns a boolean 
+    */
     public boolean checkValidMove(Position newPos) {
+        if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
+            return false;
+        }
+
         //  TO-DO:
-        //    if newPos intersects the walls array:  return false
         //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
+
         return true;
     }
 }

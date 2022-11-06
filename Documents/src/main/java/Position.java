@@ -1,3 +1,5 @@
+//package main.java;
+
 public class Position {
     protected int x;
     protected int y;
@@ -7,6 +9,7 @@ public class Position {
         this.y = y;
     }
 
+    //Getters and setters are new to position class compared to UML
     public int getX() {
         return x;
     }

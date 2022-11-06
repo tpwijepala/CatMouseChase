@@ -1,3 +1,5 @@
+//package main.java;
+
 import java.awt.*;
 
 public class Entity {
@@ -13,9 +15,21 @@ public class Entity {
         return pos;
     }
 
+    //Not on UML
+    public void setPos(int newX, int newY) {
+        pos.setX(newX);
+        pos.setY(newY);
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(picture, pos.getX()*25, pos.getY()*25, null);
+    }
+
+    /*
     public void draw(Graphics g) {
         g.drawImage(picture, pos.x*25,pos.y*25, null);
     }
+    */
 }
 
 

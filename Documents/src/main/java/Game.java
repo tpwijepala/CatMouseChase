@@ -1,3 +1,5 @@
+//package main.java;
+
 // import java.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -41,8 +43,10 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("TESTIING", this);
+        new Window("TESTING", this);
         init();
+
+        this.addKeyListener(new UserInput(map.getPlayer()));
 
     }
 
@@ -134,7 +138,7 @@ public class Game extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                System.out.println("FPS: " + frames);
+                //System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }

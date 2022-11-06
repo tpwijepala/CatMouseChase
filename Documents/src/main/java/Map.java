@@ -1,4 +1,4 @@
-// package java;
+//package main.java;
 import java.util.ArrayList;
 // import java.util.Timer;
 import java.awt.*;
@@ -47,11 +47,11 @@ public class Map{
         {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,1,1,1},
-        {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
-        {1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+        {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
     protected static StaticEntity[][] items = new StaticEntity[58][41];
@@ -62,16 +62,17 @@ public class Map{
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
 
+    final static int CELLWIDTH = 11;
+
     boolean cheeseExist = false;
     Cheese c;
     long startTime;
     long timer;
+    private Mouse player;
 
     private BufferedImage map;
-    Score score = new Score();
     GameTimer tt = new GameTimer();
 
-    private Mouse player;
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
@@ -81,7 +82,7 @@ public class Map{
         }catch(IOException e){
             e.printStackTrace();
         }
-        player = new Mouse(startX, startY);
+        player = new Mouse(startX, startY, this);
         addCharacter(player);
         generateCrumbs();
         generateCats();
@@ -140,7 +141,7 @@ public class Map{
 
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
-            c = new Cheese();
+            c = new Cheese(0,0);
             objects.add(c);
 
             cheeseExist = true;
@@ -155,9 +156,28 @@ public class Map{
         return true;
     }
 
-    public static StaticEntity getItem(int x, int y){
-        return items[x][y];
+    // Note: not on UML Diagram
+    public void moveCharacter(Position oldPos, Position newPos) {
+        MovingEntity temp = characters[oldPos.x][oldPos.y];
+        characters[oldPos.x][oldPos.y] = null;
+        characters[newPos.x][newPos.y] = temp;
     }
+
+    
+    // Note: not on UML Diagram
+    public Position getEnd() {
+        return end;
+    }
+
+    public Mouse getPlayer() {
+        return player;
+    }
+
+    // Note: not on UML Diagram
+    public static StaticEntity getItem(Position pos) {
+        return items[pos.getX()][pos.getY()];
+    }
+
     public static MovingEntity getCharactr(int x, int y){
         return characters[x][y];
     }
@@ -174,8 +194,16 @@ public class Map{
 
     public void removeItem(StaticEntity item) {
 
-        items[item.pos.x][item.pos.y] = null;
-        objects.remove(item);
+        // Remove from items array:
+        items[item.pos.getX()][item.pos.getY()] = null;
+
+        // Remove from objects ArrayList:
+        for (int i = 1; i < objects.size(); i++) {
+            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
+                objects.remove(i);
+            }
+        }
+
     }
 
     public void drawEntities(Graphics g) {
@@ -184,7 +212,7 @@ public class Map{
         g.drawImage(map, 0,0, null);
         
         tt.displayTime(g);
-        score.displayScore(g);
+        player.getMouseScore().displayScore(g);
 
         cheeseExist(false);
 
@@ -192,7 +220,11 @@ public class Map{
             objects.get(i).draw(g);
         }
 
+        for (int i = 0; i < objects.size(); i++) {
+            objects.get(i).draw(g);
         }
+
+    }
    
 }
 
