@@ -1,4 +1,4 @@
-package main.java;
+//package main.java;
 
 public class Position {
     protected int x;

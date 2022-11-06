@@ -1,4 +1,4 @@
-package main.java;
+//package main.java;
 
 import java.awt.*;
 import java.lang.Math;
@@ -9,19 +9,22 @@ import java.io.IOException;
 public class Cheese extends StaticEntity {
 
     final private int points = 2;  // Placeholder value
-    private Image cheesePic;
     private int timer = 30;  // Placeholder value
 
-    public Cheese() {
-        super(generatePosition());
+    
+    public Cheese(int x, int y) {
+        super(x, y);
+        this.pos = generatePosition();
+
         try{
-            cheesePic = ImageIO.read(new File("Documents/src/main/resources/cheese.png"));
+            picture = ImageIO.read(new File("src/main/resources/cheese.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
+        
     }
 
-    protected int getPoints() {
+    public int getPoints() {
         return points;
     }
 
@@ -33,23 +36,24 @@ public class Cheese extends StaticEntity {
         return timer;
     }
 
-    protected static Position generatePosition(){
-        int maxX = 626;
-        int maxY = 444;
-        int x =0 ,y = 0;
+    protected Position generatePosition(){
+        int maxX = 1450;
+        int maxY = 1025;
+        int x = 0 ,y = 0;
         boolean posAvail = false;
         while (!posAvail){
-            x = (int)(Math.random() * maxX);
-            y = (int)(Math.random() * maxY);
-            if (Map.isWall((int)(x/58),(int)(y/41)) == 0){
+            x = (int)(Math.random() * maxX)/25;
+            y = (int)(Math.random() * maxY)/25;
+            if (Map.isWall(x,y) == 0 && Map.getItem(getPos()) == null && Map.getCharactr(x, y) == null){
                 posAvail = true;
             }
         }
         return new Position(x,y);
     }
 
+    /*
     public void draw(Graphics g) {
         g.drawImage(cheesePic, pos.x, pos.y, null);
     }
-
+    */
 }

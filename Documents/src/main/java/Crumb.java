@@ -1,29 +1,31 @@
-package main.java;
+//package main.java;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
 public class Crumb extends StaticEntity{
+    public Crumb(int x, int y){
+        super(x,y);
 
-    final private int points = 1;  // Placeholder value
-    private Image crumbPic;
-
-    public Crumb(int x, int y) {
-        super(x, y);
         try{
-            crumbPic = ImageIO.read(new File("Documents/src/main/resources/crumbs.png"));
+            picture = ImageIO.read(new File("src/main/resources/crumbs.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
+    final private int points = 1;  // Placeholder value
+
+    /*
     public void draw(Graphics g) {
         g.drawImage(crumbPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
     }
+    */
 
-    protected int getPoints() {
+    public int getPoints() {
         return points;
     }
 }
