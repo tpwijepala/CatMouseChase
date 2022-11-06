@@ -143,7 +143,8 @@ public class Map{
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
             c = new Cheese(0,0);
-            objects.add(c);
+            addItem(c);
+            
 
             cheeseExist = true;
         }
@@ -226,14 +227,16 @@ public class Map{
 
         cheeseExist(false);
 
-        for (int i = 0; i < objects.size(); i++){
-            objects.get(i).draw(g);
-        }
-
         if (tick()){
             player.move(player.newPos);
             player.collectItem();
         }
+
+        for (int i = 0; i < objects.size(); i++){
+            objects.get(i).draw(g);
+        }
+
+       
 
     }
    
