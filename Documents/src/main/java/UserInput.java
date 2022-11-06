@@ -18,19 +18,19 @@ class UserInput extends KeyAdapter {
         System.out.println("CAT MOVE FLAG IS " + catMoveFlag);
 
         if (key == KeyEvent.VK_W) {  // Move UP
-            player.move(new Position(player.getPos().getX(), player.getPos().getY() - 1));
+            player.newPos = (new Position(player.getPos().getX(), player.getPos().getY() - 1));
         }
 
         else if (key == KeyEvent.VK_S) {  // Move DOWN
-            player.move(new Position(player.getPos().getX(), player.getPos().getY() + 1));
+            player.newPos = (new Position(player.getPos().getX(), player.getPos().getY() + 1));
         }
 
         else if (key == KeyEvent.VK_A) {  // Move LEFT
-            player.move(new Position(player.getPos().getX() - 1, player.getPos().getY()));
+            player.newPos = (new Position(player.getPos().getX() - 1, player.getPos().getY()));
         }
 
         else if (key == KeyEvent.VK_D) {  // Move RIGHT
-            player.move(new Position(player.getPos().getX() + 1, player.getPos().getY()));
+            player.newPos = (new Position(player.getPos().getX() + 1, player.getPos().getY()));
         }
 
         if (catMoveFlag == false) {
@@ -45,7 +45,8 @@ class UserInput extends KeyAdapter {
             }
         }
 
-        player.collectItem();
+        //enemy.catchMouse(player.getPos());
+        // player.collectItem();
 
     }
 }

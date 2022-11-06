@@ -1,7 +1,6 @@
 import java.awt.Font;
 import java.awt.Graphics;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 class GameTimer {
     //https://www.overclock.net/threads/making-a-countup-timer-in-java.1335918/

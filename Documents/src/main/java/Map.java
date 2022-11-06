@@ -63,12 +63,13 @@ public class Map{
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
 
-    final static int CELLWIDTH = 11;
+    final static int CELLWIDTH = 25;
 
     boolean cheeseExist = false;
     Cheese c;
     long startTime;
     long timer;
+    long tickTime = System.currentTimeMillis();
     private Mouse player;
 
     private BufferedImage map;
@@ -146,7 +147,8 @@ public class Map{
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
             c = new Cheese(0,0);
-            objects.add(c);
+            addItem(c);
+            
 
             cheeseExist = true;
         }
@@ -159,14 +161,6 @@ public class Map{
         }
         return true;
     }
-
-    // Note: not on UML Diagram
-    public void moveCharacter(Position oldPos, Position newPos) {
-        MovingEntity temp = characters[oldPos.x][oldPos.y];
-        characters[oldPos.x][oldPos.y] = null;
-        characters[newPos.x][newPos.y] = temp;
-    }
-
     
     // Note: not on UML Diagram
     public Position getEnd() {
@@ -183,6 +177,23 @@ public class Map{
 
     public ArrayList<Entity> getObjectsArray() {
         return objects;
+    }
+
+    // Note: not on UML Diagram
+    private boolean tick(){
+        long time = System.currentTimeMillis();
+        if (time >= tickTime + 1000){
+            tickTime = System.currentTimeMillis();
+            return true;
+        }
+        return false;
+    }
+
+    // Note: not on UML Diagram
+    public void moveCharacter(Position oldPos, Position newPos) {
+        MovingEntity temp = characters[oldPos.x][oldPos.y];
+        characters[oldPos.x][oldPos.y] = null;
+        characters[newPos.x][newPos.y] = temp;
     }
 
     // Note: not on UML Diagram
@@ -207,7 +218,7 @@ public class Map{
     public void removeItem(StaticEntity item) {
 
         // Remove from items array:
-        items[item.pos.getY()][item.pos.getX()] = null;
+        items[item.pos.getX()][item.pos.getY()] = null;
 
         // Remove from objects ArrayList:
         for (int i = 1; i < objects.size(); i++) {
@@ -228,13 +239,16 @@ public class Map{
 
         cheeseExist(false);
 
+        if (tick()){
+            player.move(player.newPos);
+            player.collectItem();
+        }
+
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
         }
 
-        for (int i = 0; i < objects.size(); i++) {
-            objects.get(i).draw(g);
-        }
+       
 
     }
    
