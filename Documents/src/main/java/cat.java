@@ -19,15 +19,29 @@ class Cat extends MovingEntity {
         }
     }
 
+    public void startMove(Position mousePos) {
+        System.out.println("CAT START MOVE TRIGGERED");
+        //long startTime, timer;
+
+        //startTime = System.currentTimeMillis();
+        //timer = System.currentTimeMillis() - startTime;
+
+        catchMouse(mousePos);
+    }
+
     //p will probably be mouse's current position
     public void catchMouse(Position p) {
+        System.out.println("CATCH MOUSE TRIGGERED");
         Position nextMove = getBestMove(p);
-        move(nextMove);
+        System.out.println("CAT NEXT MOVE: " + nextMove);
+        //move(nextMove);
+        move(new Position(nextMove.getX(), nextMove.getY()));
         
         if (nextMove.getX() == p.getX() && nextMove.getY() == p.getY()) {
             Game.State = Game.STATE.LOSE;
-            return;
+            //return;
         }
+        System.out.println("MOUSE NOT CAUGHT");
 
     }
 
@@ -37,7 +51,9 @@ class Cat extends MovingEntity {
         int moveRight = 0;
         int moveLeft = 0;
         currentPosition = getPos();
+        System.out.println("CAT CURRENT POSITION: " + currentPosition);
         Position nextPosition = new Position(currentPosition.getX(), currentPosition.getY());
+        System.out.println("CAT NEXT POSITION INITIALIZED: " + nextPosition);
 
         //Check BFS or store 
         //Check where the mouse is in proximity to cat
@@ -61,15 +77,10 @@ class Cat extends MovingEntity {
             nextPosition.setX(moveLeft);
         }
 
-        //Check for barriers
-        if (this.checkValidMove(nextPosition)) {
-            currentPosition = nextPosition;
-        }
-
         //Check for any other cats
         //Develop the rest of this code here
-
-        return currentPosition;
+        System.out.println("CAT BEST MOVE: " + nextPosition);
+        return nextPosition;
 
     }
 }
