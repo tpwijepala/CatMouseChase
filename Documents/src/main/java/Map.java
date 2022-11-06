@@ -195,7 +195,7 @@ public class Map{
     public void removeItem(StaticEntity item) {
 
         // Remove from items array:
-        items[item.pos.getY()][item.pos.getX()] = null;
+        items[item.pos.getX()][item.pos.getY()] = null;
 
         // Remove from objects ArrayList:
         for (int i = 1; i < objects.size(); i++) {
