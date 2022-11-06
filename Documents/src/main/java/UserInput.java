@@ -40,7 +40,7 @@ class UserInput extends KeyAdapter {
             //Based on where we added the cats in the objects array
             //TODO: adjust loop index
             for (int i = 0; i < 3; i++) {
-                Cat mapCat = gameMap.getCats().get(i);
+                Cat mapCat = Map.getCats().get(i);
                 mapCat.startMove(player.getPos());
             }
         }

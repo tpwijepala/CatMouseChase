@@ -31,11 +31,11 @@ class Cat extends MovingEntity {
 
     //p will probably be mouse's current position
     public void catchMouse(Position p) {
+
         System.out.println("CATCH MOUSE TRIGGERED");
         Position nextMove = getBestMove(p);
         System.out.println("CAT NEXT MOVE: " + nextMove);
-        //move(nextMove);
-        move(new Position(nextMove.getX(), nextMove.getY()));
+        move(nextMove);
         
         if (nextMove.getX() == p.getX() && nextMove.getY() == p.getY()) {
             Game.State = Game.STATE.LOSE;

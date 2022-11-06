@@ -57,7 +57,7 @@ public class Map{
     protected static StaticEntity[][] items = new StaticEntity[58][41];
     protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
-    ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
+    static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
     int endX = 0, endY = 0;
@@ -177,7 +177,7 @@ public class Map{
         return player;
     }
 
-    public ArrayList<Cat> getCats() {
+    public static ArrayList<Cat> getCats() {
         return mapCats;
     }
 
