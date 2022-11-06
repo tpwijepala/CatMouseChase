@@ -11,6 +11,7 @@ public class Entity {
         pos = new Position(x, y);
     }
 
+
     public Position getPos() {
         return pos;
     }
