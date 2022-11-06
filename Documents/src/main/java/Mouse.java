@@ -12,10 +12,12 @@ public class Mouse extends MovingEntity{
     //Position pos;
     Map map;
     private Score playerScore = new Score();
+    Position newPos;
 
     public Mouse(int x, int y, Map m) {
         super(x,y);
         map = m;
+        newPos = pos;
         try{
             picture = ImageIO.read(new File("src/main/resources/mouse.png"));
         }catch(IOException e){

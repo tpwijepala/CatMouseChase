@@ -62,12 +62,13 @@ public class Map{
     int endX = 0, endY = 0;
     int crumbsCollect = 0;
 
-    final static int CELLWIDTH = 11;
+    final static int CELLWIDTH = 25;
 
     boolean cheeseExist = false;
     Cheese c;
     long startTime;
     long timer;
+    long tickTime = System.currentTimeMillis();
     private Mouse player;
 
     private BufferedImage map;
@@ -156,6 +157,15 @@ public class Map{
         return true;
     }
 
+    private boolean tick(){
+        long time = System.currentTimeMillis();
+        if (time >= tickTime + 1000){
+            tickTime = System.currentTimeMillis();
+            return true;
+        }
+        return false;
+    }
+
     // Note: not on UML Diagram
     public void moveCharacter(Position oldPos, Position newPos) {
         MovingEntity temp = characters[oldPos.x][oldPos.y];
@@ -220,8 +230,9 @@ public class Map{
             objects.get(i).draw(g);
         }
 
-        for (int i = 0; i < objects.size(); i++) {
-            objects.get(i).draw(g);
+        if (tick()){
+            player.move(player.newPos);
+            player.collectItem();
         }
 
     }
