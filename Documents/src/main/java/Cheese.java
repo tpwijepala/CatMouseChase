@@ -37,6 +37,18 @@ public class Cheese extends StaticEntity {
         return timer;
     }
 
+    /**
+     * Returns a random Position where a new Cheese can spawn. 
+     * This position is checked to ensure the cheese doesn't appear
+     * on a barrier or on top of another character.
+     * <p>
+     * This method is called after 5 sec. of the previous Cheese
+     * object despawning and will occur until the player loses or wins
+     * the game
+     * 
+     * @return  Position object
+     * @see     Position
+     */
     protected Position generatePosition(){
         int maxX = 1450;
         int maxY = 1025;
@@ -52,9 +64,4 @@ public class Cheese extends StaticEntity {
         return new Position(x,y);
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(cheesePic, pos.x, pos.y, null);
-    }
-    */
 }
