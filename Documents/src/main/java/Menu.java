@@ -7,12 +7,18 @@ import java.awt.Rectangle;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.sql.Struct;
 import java.awt.Point;
 
+/*
+ * This class encapsulates the Menu UI for the game
+ * 
+ * @author Ethan
+ */
 public class Menu extends MouseAdapter {
+
     String font = "DialogInput";
-    public boolean mainMenu; // if main menu is displaying
+
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 150, 300, 50);
     private boolean pHighlight = false; // true if the mouse hovered over the Play button
 
@@ -22,8 +28,13 @@ public class Menu extends MouseAdapter {
     public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 350, 300, 50);
     private boolean qHighlight = false;
 
+    /*
+     * Renders the main menu to the game screen
+     * 
+     * @param g Graphics library for customizing the menu
+     */
     public void draw(Graphics g) {
-        mainMenu = true;
+
         Graphics2D g2d = (Graphics2D) g;
 
         Font fnt0 = new Font(font, Font.BOLD, 50);
@@ -58,6 +69,11 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
+    /*
+     * Renders the win screen at end of game
+     * 
+     * @param g Graphics library for customizing the menu
+     */
     public void win(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
@@ -80,6 +96,11 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
+    /*
+     * Renders game over screen if you lose
+     * 
+     * @param g Graphics library for customizing the menu
+     */
     public void lose(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
@@ -102,6 +123,11 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
+    /*
+     * Allows mouse input, allows user to click the menu buttons
+     * 
+     * @param e MouseEvent, checks to see if a mouse click has happened
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -120,6 +146,11 @@ public class Menu extends MouseAdapter {
 
     }
 
+    /*
+     * This checks if mouse is being moved and not being pressed,
+     * 
+     * @param e the mouse movement
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
 
