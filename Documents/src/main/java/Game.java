@@ -9,11 +9,6 @@ import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
-/**
- * Hello world!
- *
- */
-
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1450;
@@ -24,7 +19,8 @@ public class Game extends Canvas implements Runnable {
     private boolean isPlaying = false;
     private Thread thread;
 
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    // private BufferedImage image = new BufferedImage(WIDTH, HEIGHT,
+    // BufferedImage.TYPE_INT_RGB);
 
     private Menu menu;
     Map map = new Map();
@@ -43,7 +39,7 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("TESTING", this);
+        new Window("276 Project", this);
         init();
 
         this.addKeyListener(new UserInput(map.getPlayer()));
@@ -56,7 +52,6 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(menu);
     }
 
-    // If method gets called again returns out of method
     public synchronized void start() {
 
         thread = new Thread(this);
@@ -90,7 +85,7 @@ public class Game extends Canvas implements Runnable {
             menu.mainMenu = true;
         }
         if (State == STATE.GAME) {
-            
+
             map.drawEntities(g);
             // menu.win(g);
         }
@@ -110,10 +105,10 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        // so you can keep your sanity, I won't explain the game loop... you're welcome
-        // I have a video on this game loop tho, check it out
         // Run code obtained from
-        // https://github.com/AzizZayed/Simple-Pong/blob/master/src/com/main/Game.java
+        // https://github.com/AzizZayed/Simple-Pong/blob/master/src/com/main/Game.java\
+        // Also from other resources online
+
         // for testing purposes
         this.requestFocus();
 
@@ -129,16 +124,15 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
-                
+
                 delta--;
                 draw();
                 frames++;
             }
-            
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                //System.out.println("FPS: " + frames);
+                // System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
@@ -147,7 +141,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
         Game game = new Game();
         game.start();
 
