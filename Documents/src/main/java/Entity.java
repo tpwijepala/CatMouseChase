@@ -1,5 +1,3 @@
-//package main.java;
-
 import java.awt.*;
 
 public class Entity {
@@ -10,7 +8,6 @@ public class Entity {
     public Entity(int x, int y){
         pos = new Position(x, y);
     }
-
 
     public Position getPos() {
         return pos;
@@ -26,11 +23,6 @@ public class Entity {
         g.drawImage(picture, pos.getX()*25, pos.getY()*25, null);
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(picture, pos.x*25,pos.y*25, null);
-    }
-    */
 }
 
 

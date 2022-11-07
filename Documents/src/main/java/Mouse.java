@@ -12,10 +12,12 @@ public class Mouse extends MovingEntity{
     //Position pos;
     Map map;
     private Score playerScore = new Score();
+    Position newPos;
 
     public Mouse(int x, int y, Map m) {
         super(x,y);
         map = m;
+        newPos = pos;
         try{
             picture = ImageIO.read(new File("src/main/resources/mouse.png"));
         }catch(IOException e){
@@ -30,8 +32,10 @@ public class Mouse extends MovingEntity{
     public void checkFinish() {
         Position end = map.getEnd();
         if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
-            // If all rewards collected:
-                // End Game
+            if (map.crumbsCollect == 4) {
+                Game.State = Game.STATE.WIN;
+            }
+            
         }
     }
 
@@ -55,9 +59,4 @@ public class Mouse extends MovingEntity{
         return playerScore;
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(mousePic, getPos().getX() * Map.CELLWIDTH, getPos().getY() * Map.CELLWIDTH, null);
-    }
-    */
 }
