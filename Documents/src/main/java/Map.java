@@ -8,7 +8,16 @@ import java.io.File;
 import java.io.IOException;
 //import javax.swing.*;
 
-
+/**
+ * This class is used to create everything for the game
+ * It creates & draws the Map
+ * It is also used for moving, spawning in and drawing new objects
+ * It also keeps track of elapsed time
+ * Map also stores and maintains the objects in Arrays & ArrayLists so that they
+ * can be accessed by other classes
+ * 
+ * @author Thimira Wijepala
+ */
 public class Map{
 
     private static final int[][] walls = 
@@ -77,6 +86,12 @@ public class Map{
     Position start = new Position(startX, startY);
     Position end = new Position(endX, endY);
 
+    /**
+     * Constructer of Map object
+     * Loads map png to draw later
+     * creates player & generates intial objects
+     */
+
     public Map(){
         try{
             map = ImageIO.read(new File("src/main/resources/map.png"));
@@ -103,8 +118,7 @@ public class Map{
 
         Crumb c4 = new Crumb(22, 18);
         addItem(c4);
-    }
-    
+    }  
 
     private void generateCats() {
         Cat cat1 = new Cat(12, 34);
@@ -133,8 +147,14 @@ public class Map{
         return walls[y][x];
     }
 
-    public boolean cheeseExist(boolean cheeseDespawn) {
-        if (cheeseDespawn) { // if cheese is collected or despawned
+     /**
+      * This method is used to spawn/despawn cheese after a given time
+      *
+      * @param cheeseDespawn - used to restart timer if item is collected
+      */
+
+    public void cheeseExist(boolean cheeseCollected) {
+        if (cheeseCollected) { // if cheese is collected
             startTime = System.currentTimeMillis();
             cheeseExist = false;
         }
@@ -155,9 +175,13 @@ public class Map{
             cheeseExist = false;
             startTime = System.currentTimeMillis();
         }
-        return true;
     }
 
+
+    /**
+     * Method is used to determine whether a tick or '1000ms' has passed
+     * @return true or false depending whether 1000ms has passed
+     */
     private boolean tick(){
         long time = System.currentTimeMillis();
         if (time >= tickTime + 1000){
@@ -204,7 +228,6 @@ public class Map{
     }
 
     public void removeItem(StaticEntity item) {
-
         // Remove from items array:
         items[item.pos.getX()][item.pos.getY()] = null;
 
@@ -214,9 +237,14 @@ public class Map{
                 objects.remove(i);
             }
         }
-
     }
 
+    /**
+     * This method is used to draw map and objects
+     * also used to generate & move the objects
+     * 
+     * @param g - the canvas that gets drawn
+     */
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 

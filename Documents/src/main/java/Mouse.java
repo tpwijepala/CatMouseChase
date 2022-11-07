@@ -42,6 +42,7 @@ public class Mouse extends MovingEntity{
         if (item != null) {
             playerScore.setScore(item.getPoints());
             
+            
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
             }

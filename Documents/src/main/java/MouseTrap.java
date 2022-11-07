@@ -6,10 +6,23 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class is used to mainly create MouseTrap objects
+ * which will decrease score when picked up by Mouse.
+ * 
+ * @author
+ */
+
 public class MouseTrap extends StaticEntity {
 
     final private int points = -1;  // Placeholder value
-
+    /**
+     * MouseTrap Constructuor
+     * Used to initalize objects position & load img
+     * 
+     * @param x - used to initalize x pos
+     * @param y - used to initalize y pos
+     */
     public MouseTrap(int x, int y) {
         super(x, y);
         try{
@@ -19,11 +32,6 @@ public class MouseTrap extends StaticEntity {
         }
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(trapPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
-    }
-    */
     public int getPoints() {
         return points;
     }
