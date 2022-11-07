@@ -146,7 +146,7 @@ public class Menu extends MouseAdapter {
     }
 
     /*
-     * This checks if mouse is being moved and not being pressed,
+     * Checks if mouse is being moved and not being pressed,
      * 
      * @param e the mouse movement
      */

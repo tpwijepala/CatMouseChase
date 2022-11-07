@@ -12,7 +12,7 @@ import java.awt.Color;
 /*
  * Class encapsulates all of Game
  * <p>
- * Contains everything to run the game, and to render the graphics
+ * Contains everything to run the game, render the graphics and manage objects
  * 
  * @author Ethan
  */
@@ -41,24 +41,27 @@ public class Game extends Canvas implements Runnable {
 
     public static STATE State = STATE.MENU;
 
+    /*
+     * Creates Game with specifications and initialization
+     */
     public Game() {
         this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
         new Window("276 Project", this);
-        init();
 
         this.addKeyListener(new UserInput(map.getPlayer()));
 
-    }
-
-    private void init() {
         menu = new Menu();
         this.addMouseListener(menu);
         this.addMouseListener(menu);
+
     }
 
+    /*
+     * Creates a new thread and starts the game
+     */
     public synchronized void start() {
 
         thread = new Thread(this);
@@ -67,6 +70,9 @@ public class Game extends Canvas implements Runnable {
         isPlaying = true;
     }
 
+    /*
+     * Stops the thread and stops the game
+     */
     public void stop() {
 
         try {
@@ -78,6 +84,9 @@ public class Game extends Canvas implements Runnable {
 
     }
 
+    /*
+     * Renders the graphics by calling in the other classes
+     */
     public void draw() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
@@ -106,6 +115,9 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /*
+     * Creates the background for game
+     */
     private void drawBackground(Graphics g) {
         // black background
         g.setColor(Color.blue);
@@ -113,6 +125,9 @@ public class Game extends Canvas implements Runnable {
 
     }
 
+    /*
+     * Running game loop that allows the game to work
+     */
     @Override
     public void run() {
         // Run code obtained from
@@ -150,6 +165,9 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    /*
+     * Main method, start of the game
+     */
     public static void main(String[] args) {
 
         Game game = new Game();
