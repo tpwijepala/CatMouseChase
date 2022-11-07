@@ -240,6 +240,11 @@ public class Map{
         if (tick()){
             player.move(player.newPos);
             player.collectItem();
+
+            for (int i = 0; i < 3; i++) {
+                Cat mapCat = Map.getCats().get(i);
+                mapCat.startMove(player.getPos());
+            }
         }
 
         for (int i = 0; i < objects.size(); i++){
