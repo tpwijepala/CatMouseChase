@@ -4,14 +4,25 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 //import java.awt.Boolean;
 
+/*
+ * Class encapsulates the input for movement
+ * 
+ * @author Robert, Thimara
+ */
 class UserInput extends KeyAdapter {
     Mouse player;
     Map gameMap = new Map();
 
+    /*
+     * Sets the userinput to the player
+     */
     public UserInput(Mouse player) {
         this.player = player;
     }
 
+    /*
+     * Moves the actor with input from keyboard
+     */
     public void keyPressed(KeyEvent input) {
         int key = input.getKeyCode();
         boolean catMoveFlag = false;

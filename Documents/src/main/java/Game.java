@@ -9,11 +9,13 @@ import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
-/**
- * Hello world!
- *
+/*
+ * Class encapsulates all of Game
+ * <p>
+ * Contains everything to run the game, render the graphics and manage objects
+ * 
+ * @author Ethan
  */
-
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1450;
@@ -24,7 +26,8 @@ public class Game extends Canvas implements Runnable {
     private boolean isPlaying = false;
     private Thread thread;
 
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    // private BufferedImage image = new BufferedImage(WIDTH, HEIGHT,
+    // BufferedImage.TYPE_INT_RGB);
 
     private Menu menu;
     Map map = new Map();
@@ -38,25 +41,27 @@ public class Game extends Canvas implements Runnable {
 
     public static STATE State = STATE.MENU;
 
+    /*
+     * Creates Game with specifications and initialization
+     */
     public Game() {
         this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
         new Window("WELCOME TO: CAT AND MOUSE CHASE", this);
-        init();
 
         this.addKeyListener(new UserInput(map.getPlayer()));
 
-    }
-
-    private void init() {
         menu = new Menu();
         this.addMouseListener(menu);
         this.addMouseListener(menu);
+
     }
 
-    // If method gets called again returns out of method
+    /*
+     * Creates a new thread and starts the game
+     */
     public synchronized void start() {
 
         thread = new Thread(this);
@@ -65,6 +70,9 @@ public class Game extends Canvas implements Runnable {
         isPlaying = true;
     }
 
+    /*
+     * Stops the thread and stops the game
+     */
     public void stop() {
 
         try {
@@ -76,6 +84,9 @@ public class Game extends Canvas implements Runnable {
 
     }
 
+    /*
+     * Renders the graphics by calling in the other classes
+     */
     public void draw() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
@@ -87,20 +98,26 @@ public class Game extends Canvas implements Runnable {
         drawBackground(g);
         if (State == STATE.MENU) {
             menu.draw(g);
-            menu.mainMenu = true;
+
         }
         if (State == STATE.GAME) {
-            
+
             map.drawEntities(g);
-            // menu.win(g);
+
         }
         if (State == STATE.LOSE) {
             menu.lose(g);
+        }
+        if (State == STATE.WIN) {
+            menu.win(g);
         }
         g.dispose();
         bs.show();
     }
 
+    /*
+     * Creates the background for game
+     */
     private void drawBackground(Graphics g) {
         // black background
         g.setColor(Color.blue);
@@ -108,12 +125,15 @@ public class Game extends Canvas implements Runnable {
 
     }
 
+    /*
+     * Running game loop that allows the game to work
+     */
     @Override
     public void run() {
-        // so you can keep your sanity, I won't explain the game loop... you're welcome
-        // I have a video on this game loop tho, check it out
         // Run code obtained from
-        // https://github.com/AzizZayed/Simple-Pong/blob/master/src/com/main/Game.java
+        // https://github.com/AzizZayed/Simple-Pong/blob/master/src/com/main/Game.java\
+        // Also from other resources online
+
         // for testing purposes
         this.requestFocus();
 
@@ -129,12 +149,11 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
-                
+
                 delta--;
                 draw();
                 frames++;
             }
-            
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
@@ -145,6 +164,9 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    /*
+     * Main method, start of the game
+     */
     public static void main(String[] args) {
         System.out.println("Game loading...");
         Game game = new Game();
