@@ -126,6 +126,7 @@ class Cat extends MovingEntity {
         int[][] visitedCells = new int[5][5];
         int[] previousX = new int[25];  //Used to reconstruct path
         int[] previousY = new int[25];
+        //Directions go in clockwise order
         int[] directionX = {0, 1, 0, -1};
         int[] directionY = {-1, 0, 1, 0};
 
@@ -162,11 +163,11 @@ class Cat extends MovingEntity {
             }
 
             nodesNextLayer = findNodes(miniX, miniY, directionX, directionY, moveTrackerX, moveTrackerY, miniMap);
-            for (int i = 0; i < moveTrackerX.size(); i++) {
-                System.out.println("I = " + i);
-                System.out.println("TRACKER X: " + moveTrackerX.remove(i));
-                System.out.println("TRACKER Y: " + moveTrackerY.remove(i));
-            }
+
+            Position nextMove = getBestMoveBFS(moveTrackerX, moveTrackerY);
+
+            move(nextMove);
+            
             /*nodesCurrentLayer--;
 
             if (nodesCurrentLayer == 0) {
@@ -222,11 +223,12 @@ class Cat extends MovingEntity {
     }
 
     
-    private Position getBestMoveBFS(Position mouse, int x, int y) {
+    private Position getBestMoveBFS(Queue<Integer> moveX, Queue<Integer> moveY) {
     
-        Position nextPosition = new Position(x, y);
+        Position nextPosition = new Position(getPos().getX(), getPos().getY());
 
-
+        nextPosition.setX(moveX.remove());
+        nextPosition.setY(moveY.remove());
         
         return nextPosition;
     }

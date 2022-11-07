@@ -1,6 +1,4 @@
-//package main.java;
 
-// import java.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
@@ -9,10 +7,6 @@ import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
-/**
- * Hello world!
- *
- */
 
 public class Game extends Canvas implements Runnable {
 
