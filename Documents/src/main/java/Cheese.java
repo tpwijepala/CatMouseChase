@@ -9,9 +9,7 @@ import java.io.IOException;
  * @version 1.0
  */
 public class Cheese extends StaticEntity {
-
-    Position pos;
-
+    
     /**
      * Instantiates this Cheese object and draws its image
      * on the map
@@ -30,11 +28,6 @@ public class Cheese extends StaticEntity {
             e.printStackTrace();
         }
         
-    }
-
-    //Returns the number of points received for collecting cheese
-    public int getPoints() {
-        return points;
     }
 
     /**
