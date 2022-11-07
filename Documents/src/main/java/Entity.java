@@ -2,35 +2,47 @@
 
 import java.awt.*;
 
+/**
+ * @author Robert Wilson
+ * @version 1.0
+ */
 public class Entity {
     Position pos;
     Map map;
     Image picture;
 
+    /**
+     * @param x X-Coordinate
+     * @param y Y-Coordinate
+     */
     public Entity(int x, int y){
         pos = new Position(x, y);
     }
 
-
+    /**
+     * @return entity's current position
+     */
     public Position getPos() {
         return pos;
     }
 
-    //Not on UML
+    /**
+     * @param newX new X-Coordinate
+     * @param newY new Y-Coordinate
+     */
     public void setPos(int newX, int newY) {
         pos.setX(newX);
         pos.setY(newY);
     }
 
+    /**
+     * Draws this entity onto the game's window
+     * @param g Graphics object handling the game's UI
+     * @see Graphics
+     */
     public void draw(Graphics g) {
         g.drawImage(picture, pos.getX()*25, pos.getY()*25, null);
     }
-
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(picture, pos.x*25,pos.y*25, null);
-    }
-    */
 }
 
 
