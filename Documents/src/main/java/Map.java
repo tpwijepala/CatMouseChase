@@ -60,7 +60,7 @@ public class Map{
     static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
-    int endX = 0, endY = 0;
+    int endX = 56, endY = 38;   //EndY should be 36-40
     int crumbsCollect = 0;
 
     final static int CELLWIDTH = 25;
@@ -148,8 +148,6 @@ public class Map{
             // spawn after its been despawned for 5s
             c = new Cheese(0,0);
             addItem(c);
-            
-
             cheeseExist = true;
         }
 

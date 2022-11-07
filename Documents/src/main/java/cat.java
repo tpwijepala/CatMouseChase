@@ -14,9 +14,10 @@ class Cat extends MovingEntity {
     Position currentPosition;
 
     /**
-     * 
-     * @param x
-     * @param y
+     * Instantiates this cat's position and its image on 
+     * the game map
+     * @param x     Row coordinate on map
+     * @param y     Column coordinate on map
      */
     public Cat(int x, int y) {
         super(x, y);

@@ -59,9 +59,4 @@ public class Mouse extends MovingEntity{
         return playerScore;
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(mousePic, getPos().getX() * Map.CELLWIDTH, getPos().getY() * Map.CELLWIDTH, null);
-    }
-    */
 }

@@ -6,13 +6,22 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Author: Thimira Wijepala
+ * Version: 1.0
+ */
 public class Cheese extends StaticEntity {
 
     final private int points = 2;  // Placeholder value
-    private int timer = 30;  // Placeholder value
     Position pos;
 
-    
+    /**
+     * Instantiates this Cheese object and draws its image
+     * on the map
+     * 
+     * @param x     Row coordinate on map
+     * @param y     Column coordinate on map
+     */
     public Cheese(int x, int y) {
         super(x, y);
         this.pos = generatePosition();
@@ -25,16 +34,9 @@ public class Cheese extends StaticEntity {
         
     }
 
+    //Returns the number of points received for collecting cheese
     public int getPoints() {
         return points;
-    }
-
-    public void countdown() {
-        timer -= 1;
-    }
-
-    public int getTimer() {
-        return timer;
     }
 
     /**
