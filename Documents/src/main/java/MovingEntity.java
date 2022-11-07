@@ -10,9 +10,7 @@ public class MovingEntity extends Entity{
         Map map = new Map();
         
         if (checkValidMove(newPos)) {
-            System.out.println("VALID MOVE");
             map.moveCharacter(this.getPos(), newPos);
-            //pos = newPos;
             this.setPos(newPos.getX(), newPos.getY());
 
         }
@@ -23,7 +21,6 @@ public class MovingEntity extends Entity{
     */
     public boolean checkValidMove(Position newPos) {
         if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
-            System.out.println("INVALID MOVE");
             return false;
         }
 

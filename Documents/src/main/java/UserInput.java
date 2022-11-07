@@ -15,7 +15,6 @@ class UserInput extends KeyAdapter {
     public void keyPressed(KeyEvent input) {
         int key = input.getKeyCode();
         boolean catMoveFlag = false;
-        System.out.println("CAT MOVE FLAG IS " + catMoveFlag);
 
         if (key == KeyEvent.VK_W) {  // Move UP
             player.newPos = (new Position(player.getPos().getX(), player.getPos().getY() - 1));
@@ -35,7 +34,6 @@ class UserInput extends KeyAdapter {
 
         if (catMoveFlag == false) {
             catMoveFlag = true; 
-            System.out.println("CAT MOVE FLAG IS " + catMoveFlag);
 
             //Based on where we added the cats in the objects array
             //TODO: adjust loop index
@@ -44,9 +42,6 @@ class UserInput extends KeyAdapter {
                 mapCat.startMove(player.getPos());
             }
         }
-
-        //enemy.catchMouse(player.getPos());
-        // player.collectItem();
 
     }
 }

@@ -19,7 +19,7 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1450;
     public static final int HEIGHT = 1025;
     public static final int SCALE = 1;
-    public final String TITLE = "PROJECT TEST";
+    public final String TITLE = "CAT AND MOUSE CHASE";
 
     private boolean isPlaying = false;
     private Thread thread;
@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("TESTING", this);
+        new Window("WELCOME TO: CAT AND MOUSE CHASE", this);
         init();
 
         this.addKeyListener(new UserInput(map.getPlayer()));
@@ -146,7 +146,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Game loading...");
         Game game = new Game();
         game.start();
 
