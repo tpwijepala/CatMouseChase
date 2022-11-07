@@ -7,14 +7,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class Cheese extends StaticEntity {
-
-    final private int points = 2;  // Placeholder value
-    private int timer = 30;  // Placeholder value
-
     
     public Cheese(int x, int y) {
         super(x, y);
         this.pos = generatePosition();
+        points = 2;
 
         try{
             picture = ImageIO.read(new File("src/main/resources/cheese.png"));
@@ -22,18 +19,6 @@ public class Cheese extends StaticEntity {
             e.printStackTrace();
         }
         
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void countdown() {
-        timer -= 1;
-    }
-
-    public int getTimer() {
-        return timer;
     }
 
     protected Position generatePosition(){
@@ -51,9 +36,4 @@ public class Cheese extends StaticEntity {
         return new Position(x,y);
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(cheesePic, pos.x, pos.y, null);
-    }
-    */
 }

@@ -14,8 +14,6 @@ import java.io.IOException;
  */
 
 public class MouseTrap extends StaticEntity {
-
-    final private int points = -1;  // Placeholder value
     /**
      * MouseTrap Constructuor
      * Used to initalize objects position & load img
@@ -25,14 +23,11 @@ public class MouseTrap extends StaticEntity {
      */
     public MouseTrap(int x, int y) {
         super(x, y);
+        points = -1;
         try{
             picture = ImageIO.read(new File("src/main/resources/trap.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
-    }
-
-    public int getPoints() {
-        return points;
     }
 }

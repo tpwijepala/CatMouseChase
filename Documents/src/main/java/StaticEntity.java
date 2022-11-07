@@ -5,6 +5,8 @@
  *  create static Items that the Mouse collects
  */
 public class StaticEntity extends Entity {
+
+    protected int points = 0;
     public StaticEntity(int x, int y) {
         super (x, y);
     }
@@ -16,7 +18,7 @@ public class StaticEntity extends Entity {
      * 
      * @return points - how much to increase the Mouse's score by
      */
-    public int getPoints() { return 0; }
+    public int getPoints() { return points; }
 }
 
 

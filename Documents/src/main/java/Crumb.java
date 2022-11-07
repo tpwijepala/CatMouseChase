@@ -23,17 +23,12 @@ public class Crumb extends StaticEntity{
      */
     public Crumb(int x, int y){
         super(x,y);
+        points = 1;
 
         try{
             picture = ImageIO.read(new File("src/main/resources/crumbs.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
-    }
-
-    final private int points = 1;  // Placeholder value
-
-    public int getPoints() {
-        return points;
     }
 }
