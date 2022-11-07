@@ -4,15 +4,26 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Author: Karina Kramer
+ * Version: 1.0
+ */
 class Score {
 
     private int playerScore;
 
+    /**
+     * Instantiates the Mouse's score to start at 0
+     */
     public Score() {
         this.playerScore = 0;
     }
 
-    //Named adjustScore in UML but I think it's better to make it setScore
+    /**
+     * Increments or decrements the score
+     * 
+     * @param scoreChange       Number of points (can be positive or negative)
+     */
     void setScore(int scoreChange) {
         playerScore += scoreChange;
     }
@@ -29,9 +40,12 @@ class Score {
         return false;
     }
 
-    //TODO: check graphics implementation
+    /**
+     * Display the player's current score in the GUI
+     * 
+     * @param g     Graphics object used to draw this score
+     */
     void displayScore(Graphics g) {
-        //create(ScoreBoard)
         g.setFont(new Font("Arial", Font.BOLD, 45));
         g.drawString(getScore(), 850, 75);
     }
