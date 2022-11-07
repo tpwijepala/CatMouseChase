@@ -1,5 +1,3 @@
-//package main.java;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -65,6 +63,7 @@ public class Mouse extends MovingEntity{
         StaticEntity item = Map.getItem(getPos());
         if (item != null) {
             playerScore.setScore(item.getPoints());
+            
             
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;

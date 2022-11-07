@@ -7,8 +7,8 @@ import java.io.IOException;
 //import java.util.LinkedList;
 
 /**
- * Author: Karina Kramer
- * Version: 1.0
+ * @author Karina Kramer
+ * @version 1.0
  */
 class Cat extends MovingEntity {
     Position currentPosition;
@@ -118,86 +118,4 @@ class Cat extends MovingEntity {
 
     }
 
-    //NOTE: This is the attempt to implement a Breadth First Search algorithm to get a better move for the cat than the
-    //      move in the above functions
-    /*
-    public void catchMouse(Position mousePosition) {
-
-        int depth = 1;
-        int miniRows = 5;
-        int miniCols = 5;
-        int cPX = getPos().getX();
-        int cPY = getPos().getY();
-        int nodesCurrentLayer = 1;
-        int nodesNextLayer = 0;
-        int[] directionX = {0, 1, 0, -1};
-        int[] directionY = {-1, 0, 1, 0};
-        int[][] miniMap = {{Map.isWall(cPX - 2, cPY - 2), Map.isWall(cPX - 1, cPY - 2), Map.isWall(cPX, cPY - 2), Map.isWall(cPX + 1, cPY - 2), Map.isWall(cPX + 2, cPY - 2)},
-                           {Map.isWall(cPX - 2, cPY - 1), Map.isWall(cPX - 1, cPY - 1), Map.isWall(cPX, cPY - 1), Map.isWall(cPX + 1, cPY - 1), Map.isWall(cPX + 2, cPY - 1)},
-                           {Map.isWall(cPX - 2, cPY), Map.isWall(cPX - 1, cPY), Map.isWall(cPX, cPY), Map.isWall(cPX + 1, cPY), Map.isWall(cPX + 2, cPY)},
-                           {Map.isWall(cPX - 2, cPY + 1), Map.isWall(cPX - 1, cPY + 1), Map.isWall(cPX, cPY + 1), Map.isWall(cPX + 1, cPY + 1), Map.isWall(cPX + 2, cPY + 1)},
-                           {Map.isWall(cPX - 2, cPY + 2), Map.isWall(cPX - 1, cPY + 2), Map.isWall(cPX, cPY + 2), Map.isWall(cPX + 1, cPY + 2), Map.isWall(cPX + 2, cPY + 2)}};
-
-        Queue<Integer> moveTrackerX = new LinkedList<>();
-        Queue<Integer> moveTrackerY = new LinkedList<>();
-
-        moveTrackerX.add(cPX);
-        moveTrackerY.add(cPY);
-
-        while (moveTrackerX.size() > 0) {
-            int tempX = moveTrackerX.remove();
-            int tempY = moveTrackerY.remove();
-
-            if (tempX == mousePosition.getX() && tempY == mousePosition.getY()) {
-                Game.State = Game.STATE.LOSE;
-                break;
-            }
-
-            nodesNextLayer = getBestMoveBFS(mousePosition, cPX, cPY, directionX, directionY, moveTrackerX, moveTrackerY, miniMap);
-            //nextMove = getBestMoveBFS(mousePosition, cPX, cPY, directionX, directionY, moveTrackerX, moveTrackerY, miniMap);
-            nodesCurrentLayer--;
-
-            if (nodesCurrentLayer == 0) {
-                nodesCurrentLayer = nodesNextLayer;
-                depth--;
-            }
-        }
-
-        //nextPosition.setX(tempX);
-        //nextPosition.setY(tempY);
-        
-        
-        //move(nextMove);
-        
-        
-        System.out.println("MOUSE NOT CAUGHT");
-
-    }
-
-    //Implement using BFS with depth of 1 (1 cells, right, left, up and down)
-    //Acknowledgements: Thanks to Kevin Litvin for the idea and https://www.youtube.com/watch?v=KiCBXu4P-2Y for the explanation :) 
-    private int getBestMoveBFS(Position mouse, int catX, int catY, int[] dirX, int[] dirY, Queue<Integer> moveX, Queue<Integer> moveY, int[][] miniMap) {
-        int nodeCounter = 0;
-        Position nextPosition = new Position(catX, catY);
-
-
-        for (int i = 0; i < 4; i++) {
-            int tempX = catX + dirX[i];
-            int tempY = catY + dirY[i];
-
-            if (miniMap[tempX][tempY] == 0) {
-                moveX.add(tempX);
-                moveY.add(tempY);
-                nodeCounter++;
-            }
-
-        }
-
-        return nodeCounter;
-        
-    }
-    */
-    
-    
-    
 } 
