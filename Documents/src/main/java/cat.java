@@ -3,9 +3,8 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.util.Queue;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
+import java.lang.Math.*;
 
 /**
  * Author: Karina Kramer
@@ -117,7 +116,7 @@ class Cat extends MovingEntity {
     */
 
     private class PositionStruct{
-        public Position prevPos;
+        public PositionStruct prevPos;
         public Position pos;
         public int depth; 
     }
@@ -127,28 +126,28 @@ class Cat extends MovingEntity {
 
         int maxDepth = 2;
         ArrayList<PositionStruct> possibleMoves = new ArrayList<PositionStruct>();
-        HashSet<PositionStruct> visitedPos = new HashSet<PositionStruct>();
+        HashSet<Position> visitedPos = new HashSet<Position>();
         PositionStruct temp = new PositionStruct();
         temp.prevPos = null;
         temp.pos = getPos();
         temp.depth = 0;
         possibleMoves.add(temp);
 
-        int bestScore;
+        int bestScore = -1;
         PositionStruct bestMove = null;
 
         while(possibleMoves.size() > 0){
             int curPosValue;
             PositionStruct curPos = possibleMoves.remove(0);
-            if (visitedPos.contains(curPos)) { continue; }
-            visitedPos.add(curPos);
+            if (visitedPos.contains(curPos.pos)) { continue; }
+            visitedPos.add(curPos.pos);
             if(curPos.depth <= maxDepth){
-                getMovesFromPos(possibleMoves, curPos, visitedPos);
+                getMovesFromPos(possibleMoves, curPos);
             }
 
             curPosValue = rateNextMoveManhattan(mousePosition, curPos.pos);
             // We have to move
-            if(curPos != getPos() && (bestMove == null || bestScore > curPosValue )){
+            if(curPos.pos != getPos() && (bestMove == null || bestScore > curPosValue )){
                 bestScore = curPosValue;
                 bestMove = curPos;
             }
@@ -163,16 +162,32 @@ class Cat extends MovingEntity {
         while(bestMove.depth != 1){
             bestMove = bestMove.prevPos;
         }
-        move(bestMove);
+        move(bestMove.pos);
     }
 
     //Calculate the possible moves to move to from the current position
-    private void getMovesFromPos(ArrayList<PositionStruct> possibleMoves, PositionStruct curPos, HashSet<PositionStruct> visitedPos){
-        
+    private void getMovesFromPos(ArrayList<PositionStruct> possibleMoves, PositionStruct curPos){
+        ArrayList<Position> adjacent = new ArrayList<Position>();
+        adjacent.add(new Position(curPos.pos.getX()+1, curPos.pos.getY()));
+        adjacent.add(new Position(curPos.pos.getX()-1, curPos.pos.getY()));
+        adjacent.add(new Position(curPos.pos.getX(), curPos.pos.getY()+1));
+        adjacent.add(new Position(curPos.pos.getX(), curPos.pos.getY()-1));
+
+        for (Position pos : adjacent) {
+            PositionStruct tempPos = new PositionStruct();
+            tempPos.prevPos = curPos;
+            tempPos.pos = pos;
+            tempPos.depth = curPos.depth + 1;
+
+            if (checkValidMove(tempPos.pos)) {
+                possibleMoves.add(tempPos);
+            }
+        }
+
     }
 
     private int rateNextMoveManhattan(Position mousePos, Position potentialMove){
-        int rating = abs(mousePos.getX() - potentialMove.getX()) + abs(mousePos.getY() - potentialMove.getY());
+        int rating = Math.abs(mousePos.getX() - potentialMove.getX()) + Math.abs(mousePos.getY() - potentialMove.getY());
 
         return rating;
     }

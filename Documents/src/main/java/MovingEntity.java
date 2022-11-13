@@ -20,7 +20,11 @@ public class MovingEntity extends Entity{
     * Returns a boolean 
     */
     public boolean checkValidMove(Position newPos) {
-        if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
+        if (newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 57 || newPos.getY() > 41) {
+            return false;
+        }
+
+        else if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
             return false;
         }
 
