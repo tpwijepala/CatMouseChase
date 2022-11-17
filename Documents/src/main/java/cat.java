@@ -62,16 +62,16 @@ class Cat extends MovingEntity {
         //Acknowledgements: Thanks to Kevin Litvin for the idea and https://www.youtube.com/watch?v=KiCBXu4P-2Y for the explanation :) 
 
         int maxDepth = 2;
+        int bestScore = -1;
+        PositionStruct bestMove = null;
         ArrayList<PositionStruct> possibleMoves = new ArrayList<PositionStruct>();
         HashSet<Position> visitedPos = new HashSet<Position>();
         PositionStruct temp = new PositionStruct();
+
         temp.prevPos = null;
         temp.pos = getPos();
         temp.depth = 0;
         possibleMoves.add(temp);
-
-        int bestScore = -1;
-        PositionStruct bestMove = null;
 
         while(possibleMoves.size() > 0){
             int curPosValue;
