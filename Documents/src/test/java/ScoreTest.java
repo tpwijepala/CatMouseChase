@@ -1,12 +1,12 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-//package main.java;
 
 public class ScoreTest {
     Score testScore = new Score();
 
     /**
      * Test if score increments and decrements
+     * UNIT TEST
      */
     @Test
     public void adjustScore() {
@@ -19,6 +19,7 @@ public class ScoreTest {
 
     /**
      * Test if negative score detection works
+     * UNIT TEST
      */
     @Test
     public void checkNegativeScore() {
