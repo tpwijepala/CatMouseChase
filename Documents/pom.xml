@@ -81,6 +81,12 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.2</version>
         </plugin>
+        <!-- Include code coverage report -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.9-SNAPSHOT</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
