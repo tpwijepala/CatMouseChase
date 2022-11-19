@@ -70,7 +70,7 @@ public class Map{
     long startTime;
     long timer;
     long tickTime = System.currentTimeMillis();
-    private Mouse player;
+    Mouse player;
 
     private BufferedImage map;
     GameTimer tt = new GameTimer();
