@@ -1,17 +1,20 @@
 import java.awt.Font;
 import java.awt.Graphics;
-import java.util.Timer;
-import java.util.TimerTask;
 
+/**
+ * Author: Thimira Wijepala
+ * Version: 1.0
+ */
 class GameTimer {
-    //https://www.overclock.net/threads/making-a-countup-timer-in-java.1335918/
-    // Timer gameTime = new Timer();
-    // TimerTask startTime = new TimerTask;
 
     private long delay;  //in nanoseconds; equates to 1 sec delay
     private long timerCount;
     private long startCount;
 
+    /**
+     * Instantiates the game clock to start counting up from
+     * the current time by 1 sec (1000 milliseconds)
+     */
     public GameTimer() {
         this.startCount = System.currentTimeMillis();
         this.timerCount = 0; 
@@ -21,9 +24,13 @@ class GameTimer {
     //Restart the clock
     void setTime() {
         this.timerCount = System.currentTimeMillis() - this.startCount;
-        //gameTime.schedule(startTime, 0, delay);
     }
 
+    /**
+     * Return the string that displays the time as hours:minutes:seconds
+     * 
+     * @return      hours:mins:sec format as a string
+     */
     String displayTime() {
         setTime();
         long seconds = this.timerCount/1000;
@@ -34,11 +41,15 @@ class GameTimer {
         return (Long.toString(hours) + ":" + Long.toString(mins) + ":" + Long.toString(seconds));
     }  
 
-    //TODO: check graphics implementation
+
+    /**
+     * Prints the current time from {@link displayTime()} on the timer box
+     * inside the GUI 
+     * @param g     Graphics object used to draw the time
+     */
     void displayTime(Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 45));
         g.drawString(displayTime(), 475, 75);
-        //display the number
     }
 
 }

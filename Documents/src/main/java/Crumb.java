@@ -19,12 +19,6 @@ public class Crumb extends StaticEntity{
 
     final private int points = 1;  // Placeholder value
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(crumbPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
-    }
-    */
-
     public int getPoints() {
         return points;
     }

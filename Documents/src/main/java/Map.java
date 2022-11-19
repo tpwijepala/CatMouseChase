@@ -57,17 +57,19 @@ public class Map{
     protected static StaticEntity[][] items = new StaticEntity[58][41];
     protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
+    static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
-    int endX = 0, endY = 0;
+    int endX = 56, endY = 38;   //EndY should be 36-40
     int crumbsCollect = 0;
 
-    final static int CELLWIDTH = 11;
+    final static int CELLWIDTH = 25;
 
     boolean cheeseExist = false;
     Cheese c;
     long startTime;
     long timer;
+    long tickTime = System.currentTimeMillis();
     private Mouse player;
 
     private BufferedImage map;
@@ -107,12 +109,15 @@ public class Map{
 
     private void generateCats() {
         Cat cat1 = new Cat(12, 34);
+        mapCats.add(cat1);
         addCharacter(cat1);
 
         Cat cat2 = new Cat(36, 24);
+        mapCats.add(cat2);
         addCharacter(cat2);
 
         Cat cat3 = new Cat(43, 13);
+        mapCats.add(cat3);
         addCharacter(cat3);
     }
 
@@ -142,8 +147,7 @@ public class Map{
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
             c = new Cheese(0,0);
-            objects.add(c);
-
+            addItem(c);
             cheeseExist = true;
         }
 
@@ -155,14 +159,6 @@ public class Map{
         }
         return true;
     }
-
-    // Note: not on UML Diagram
-    public void moveCharacter(Position oldPos, Position newPos) {
-        MovingEntity temp = characters[oldPos.x][oldPos.y];
-        characters[oldPos.x][oldPos.y] = null;
-        characters[newPos.x][newPos.y] = temp;
-    }
-
     
     // Note: not on UML Diagram
     public Position getEnd() {
@@ -173,12 +169,40 @@ public class Map{
         return player;
     }
 
+    public static ArrayList<Cat> getCats() {
+        return mapCats;
+    }
+
+    public ArrayList<Entity> getObjectsArray() {
+        return objects;
+    }
+
+    // Note: not on UML Diagram
+    private boolean tick(){
+        long time = System.currentTimeMillis();
+        if (time >= tickTime + 1000){
+            tickTime = System.currentTimeMillis();
+            return true;
+        }
+        return false;
+    }
+
+    // Note: not on UML Diagram
+    public void moveCharacter(Position oldPos, Position newPos) {
+        if (tick()) {
+            MovingEntity temp = characters[oldPos.x][oldPos.y];
+            characters[oldPos.x][oldPos.y] = null;
+            characters[newPos.x][newPos.y] = temp;
+        }
+        
+    }
+
     // Note: not on UML Diagram
     public static StaticEntity getItem(Position pos) {
         return items[pos.getX()][pos.getY()];
     }
 
-    public static MovingEntity getCharactr(int x, int y){
+    public static MovingEntity getCharacter(int x, int y){
         return characters[x][y];
     }
 
@@ -216,13 +240,16 @@ public class Map{
 
         cheeseExist(false);
 
+        if (tick()){
+            player.move(player.newPos);
+            player.collectItem();
+        }
+
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
         }
 
-        for (int i = 0; i < objects.size(); i++) {
-            objects.get(i).draw(g);
-        }
+       
 
     }
    

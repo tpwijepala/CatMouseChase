@@ -1,6 +1,4 @@
-//package main.java;
 
-// import java.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
@@ -9,17 +7,13 @@ import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
-/**
- * Hello world!
- *
- */
 
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1450;
     public static final int HEIGHT = 1025;
     public static final int SCALE = 1;
-    public final String TITLE = "PROJECT TEST";
+    public final String TITLE = "CAT AND MOUSE CHASE";
 
     private boolean isPlaying = false;
     private Thread thread;
@@ -43,7 +37,7 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("TESTING", this);
+        new Window("WELCOME TO: CAT AND MOUSE CHASE", this);
         init();
 
         this.addKeyListener(new UserInput(map.getPlayer()));
@@ -138,7 +132,6 @@ public class Game extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                //System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
@@ -147,7 +140,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Game loading...");
         Game game = new Game();
         game.start();
 

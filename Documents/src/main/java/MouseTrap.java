@@ -19,11 +19,6 @@ public class MouseTrap extends StaticEntity {
         }
     }
 
-    /*
-    public void draw(Graphics g) {
-        g.drawImage(trapPic, pos.x * Map.CELLWIDTH, pos.y * Map.CELLWIDTH, null);
-    }
-    */
     public int getPoints() {
         return points;
     }
