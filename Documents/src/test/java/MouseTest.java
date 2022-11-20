@@ -63,7 +63,7 @@ public class MouseTest {
         // check game state
         assertTrue(Game.State == Game.State.GAME);
         // check if item was removed
-        assertTrue(Map.getItem(pos) == null);
+        assertTrue(map.getItem(pos) == null);
     }
 
     @Test
