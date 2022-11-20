@@ -178,7 +178,8 @@ public class Map{
     }
 
     // Note: not on UML Diagram
-    private boolean tick(){
+    //private boolean tick(){
+    public boolean tick() {
         long time = System.currentTimeMillis();
         if (time >= tickTime + 1000){
             tickTime = System.currentTimeMillis();

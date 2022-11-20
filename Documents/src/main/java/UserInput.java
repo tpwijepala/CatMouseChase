@@ -32,7 +32,12 @@ class UserInput extends KeyAdapter {
             player.newPos = (new Position(player.getPos().getX() + 1, player.getPos().getY()));
         }
 
-        
+        //Based on where we added the cats in the objects array
+        for (int i = 0; i < 3; i++) {
+        Cat mapCat = Map.getCats().get(i);
+        mapCat.startMove(player.getPos());
+        }
+        /* 
         if (catMoveFlag == false) {
             catMoveFlag = true; 
 
@@ -42,6 +47,6 @@ class UserInput extends KeyAdapter {
                 mapCat.startMove(player.getPos());
             }
         }
-        
+        */
     }
 }
