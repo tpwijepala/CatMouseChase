@@ -14,7 +14,6 @@ class UserInput extends KeyAdapter {
 
     public void keyPressed(KeyEvent input) {
         int key = input.getKeyCode();
-        boolean catMoveFlag = false;
 
         if (key == KeyEvent.VK_W) {  // Move UP
             player.newPos = (new Position(player.getPos().getX(), player.getPos().getY() - 1));
@@ -32,21 +31,5 @@ class UserInput extends KeyAdapter {
             player.newPos = (new Position(player.getPos().getX() + 1, player.getPos().getY()));
         }
 
-        //Based on where we added the cats in the objects array
-        for (int i = 0; i < 3; i++) {
-        Cat mapCat = Map.getCats().get(i);
-        mapCat.startMove(player.getPos());
-        }
-        /* 
-        if (catMoveFlag == false) {
-            catMoveFlag = true; 
-
-            //Based on where we added the cats in the objects array
-            for (int i = 0; i < 3; i++) {
-                Cat mapCat = Map.getCats().get(i);
-                mapCat.startMove(player.getPos());
-            }
-        }
-        */
     }
 }

@@ -190,11 +190,11 @@ public class Map{
 
     // Note: not on UML Diagram
     public void moveCharacter(Position oldPos, Position newPos) {
-        //if (tick()) {
+        if (tick()) {
             MovingEntity temp = characters[oldPos.x][oldPos.y];
             characters[oldPos.x][oldPos.y] = null;
             characters[newPos.x][newPos.y] = temp;
-        //}
+        }
         
     }
 
@@ -241,10 +241,13 @@ public class Map{
 
         cheeseExist(false);
 
-        //if (tick()){
+        if (tick()){
             player.move(player.newPos);
             player.collectItem();
-        //}
+            for (int i = 0; i < 3; i++) {
+                mapCats.get(i).startMove(player.getPos());
+            }
+        }
 
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
