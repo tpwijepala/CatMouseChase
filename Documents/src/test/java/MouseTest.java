@@ -17,7 +17,6 @@ public class MouseTest {
 
     @Test
     public void checkAtFinishNotAllCrumbs() {
-
         map.crumbsCollect = 3;
         map.player.pos = new Position(map.endX, map.endY);
         map.player.checkFinish();
@@ -27,7 +26,6 @@ public class MouseTest {
 
     @Test
     public  void checkAtFinishWithAllCrumbs() {
-        Map map = new Map();
         map.crumbsCollect = 4;
         map.player.pos = new Position(map.endX, map.endY);
         map.player.checkFinish();
@@ -37,7 +35,6 @@ public class MouseTest {
 
     @Test
     public void checkNotFinish() {
-        Map map = new Map();
         map.player.pos = new Position(map.endX - 1, map.endY - 1);
         map.player.checkFinish();
         // check game state
