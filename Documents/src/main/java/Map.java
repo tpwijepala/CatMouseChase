@@ -62,7 +62,7 @@ public class Map{
     int startX = 4, startY = 4;
     int endX = 56; 
     int[] endY = {35, 36, 37, 38, 39};   //This marks the finish line rather than a finish cell
-    int crumbsCollect = 0;
+    static int crumbsCollect = 0;
 
     final static int CELLWIDTH = 25;
 
@@ -222,10 +222,12 @@ public class Map{
     }
 
     public void removeItem(StaticEntity item) {
-
+        //System.out.println("BEFORE REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
+        
         // Remove from items array:
         items[item.getPos().getX()][item.getPos().getY()] = null;
-
+        
+        //System.out.println("AFTER REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
         // Remove from objects ArrayList:
         for (int i = 1; i < objects.size(); i++) {
             if (objects.get(i).getPos().getX() == item.getPos().getX() && objects.get(i).getPos().getY() == item.getPos().getY()) {
