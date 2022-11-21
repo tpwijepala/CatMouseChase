@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 
 public class Crumb extends StaticEntity{
-    final private int points;  
+    final private int points = 1;  
 
     /**
      * Crumb Constructuor
@@ -22,7 +22,6 @@ public class Crumb extends StaticEntity{
      */
     public Crumb(int x, int y){
         super(x,y);
-        points = 1;
 
         try{
             picture = ImageIO.read(new File("src/main/resources/crumbs.png"));
@@ -31,7 +30,6 @@ public class Crumb extends StaticEntity{
         }
     }
 
-    
     public int getPoints() {
         return points;
     }
