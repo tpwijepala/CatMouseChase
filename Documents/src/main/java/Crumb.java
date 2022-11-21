@@ -30,7 +30,6 @@ public class Crumb extends StaticEntity{
         }
     }
 
-    final private int points = 1;  // Placeholder value
 
     public int getPoints() {
         return points;

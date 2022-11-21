@@ -53,13 +53,5 @@ class UserInput extends KeyAdapter {
                 mapCat.startMove(player.getPos());
             }
         }
-
-            //Based on where we added the cats in the objects array
-            for (int i = 0; i < 3; i++) {
-                Cat mapCat = Map.getCats().get(i);
-                mapCat.startMove(player.getPos());
-            }
-        }
-        
     }
 }
