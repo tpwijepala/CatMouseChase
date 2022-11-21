@@ -1,5 +1,3 @@
-//package main.java;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -7,49 +5,60 @@ import java.awt.Rectangle;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.awt.Point;
 
+/*
+ * This class encapsulates the Menu UI for the game
+ * 
+ * @author Ethan
+ */
 public class Menu extends MouseAdapter {
-    public boolean mainMenu; // if main menu is displaying
-    public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 120, 150, 100, 50);
+
+    String font = "DialogInput";
+
+    public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 150, 300, 50);
     private boolean pHighlight = false; // true if the mouse hovered over the Play button
 
-    public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 120, 250, 100, 50);
+    public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 250, 300, 50);
     private boolean hHighlight = false;
 
-    public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);
+    public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 350, 300, 50);
     private boolean qHighlight = false;
 
+    /*
+     * Renders the main menu to the game screen
+     * 
+     * @param g Graphics library for customizing the menu
+     */
     public void draw(Graphics g) {
-        mainMenu = true;
+
         Graphics2D g2d = (Graphics2D) g;
 
-        Font fnt0 = new Font("arial", Font.BOLD, 50);
+        Font fnt0 = new Font(font, Font.BOLD, 50);
         g.setFont(fnt0);
         g.setColor(Color.white);
 
-        g.drawString("TESTING", Game.WIDTH / 2 + 50, 100);
+        g.drawString("276 Project", Game.WIDTH / 2 - 150, 100);
 
-        Font fnt1 = new Font("arial", Font.BOLD, 30);
+        Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
         g.setColor(Color.black);
         if (pHighlight) {
             g.setColor(Color.white);
         }
-        g.drawString("Play", playButton.x + 19, playButton.y + 30);
+        g.drawString("Play", playButton.x + 100, playButton.y + 30);
 
-        Font fnt2 = new Font("arial", Font.BOLD, 30);
+        Font fnt2 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt2);
         if (hHighlight)
             g.setColor(Color.RED);
-        g.drawString("Help", helpButton.x + 19, helpButton.y + 30);
+        g.drawString("Help", helpButton.x + 100, helpButton.y + 30);
 
-        Font fnt3 = new Font("arial", Font.BOLD, 30);
+        Font fnt3 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt3);
         if (qHighlight)
             g.setColor(Color.RED);
-        g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
+        g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
 
         g.setColor(Color.white);
         g2d.draw(playButton);
@@ -57,44 +66,65 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
+    /*
+     * Renders the win screen at end of game
+     * 
+     * @param g Graphics library for customizing the menu
+     */
     public void win(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        Font fnt0 = new Font("arial", Font.BOLD, 50);
+        Font fnt0 = new Font(font, Font.BOLD, 50);
         g.setFont(fnt0);
         g.setColor(Color.white);
-        g.drawString("YOU WIN!", 100, 100);
+        g.drawString("YOU WIN!", Game.WIDTH / 2 - 100, 100);
 
-        Font fnt1 = new Font("arial", Font.BOLD, 30);
+        Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
-        g.drawString("Play Again", playButton.x + 19, playButton.y + 30);
-        g2d.draw(playButton);
+        g.setColor(Color.black);
+        g.drawString("Play Again", playButton.x + 100, playButton.y + 30);
 
-        Font fnt3 = new Font("arial", Font.BOLD, 30);
+        Font fnt3 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt3);
-        g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
+        g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
+
+        g.setColor(Color.white);
+        g2d.draw(playButton);
         g2d.draw(quitButton);
     }
 
+    /*
+     * Renders game over screen if you lose
+     * 
+     * @param g Graphics library for customizing the menu
+     */
     public void lose(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        Font fnt0 = new Font("arial", Font.BOLD, 50);
+        Font fnt0 = new Font(font, Font.BOLD, 50);
         g.setFont(fnt0);
         g.setColor(Color.white);
-        g.drawString("GAME OVER!", 100, 100);
+        g.drawString("GAME OVER!", Game.WIDTH / 2 - 100, 100);
 
-        Font fnt1 = new Font("arial", Font.BOLD, 30);
+        Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
-        g.drawString("Play Again?", playButton.x + 19, playButton.y + 30);
-        g2d.draw(playButton);
+        g.setColor(Color.black);
+        g.drawString("Play Again?", playButton.x + 70, playButton.y + 30);
 
-        Font fnt3 = new Font("arial", Font.BOLD, 30);
+        Font fnt3 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt3);
-        g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
+        g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
+
+        g.setColor(Color.white);
+        g2d.draw(playButton);
         g2d.draw(quitButton);
     }
 
+    /*
+     * Allows mouse input, allows user to click the menu buttons
+     * 
+     * @param e MouseEvent, checks to see if a mouse click has happened
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -113,6 +143,11 @@ public class Menu extends MouseAdapter {
 
     }
 
+    /*
+     * Checks if mouse is being moved and not being pressed,
+     * 
+     * @param e the mouse movement
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
 
