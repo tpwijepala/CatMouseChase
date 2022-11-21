@@ -11,6 +11,7 @@ import java.io.IOException;
  */
 
 public class Crumb extends StaticEntity{
+    final private int points;  
 
     /**
      * Crumb Constructuor
@@ -28,5 +29,10 @@ public class Crumb extends StaticEntity{
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    
+    public int getPoints() {
+        return points;
     }
 }

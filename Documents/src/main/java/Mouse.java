@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
@@ -42,12 +43,18 @@ public class Mouse extends MovingEntity{
      * ending the game if met.
      */
     public void checkFinish() {
-        Position end = map.getEnd();
-        if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
-            if (map.crumbsCollect == 4) {
-                Game.State = Game.STATE.WIN;
+        Position[] end = map.getEnd();
+        //System.out.println("INSIDE checkFinish. X = " + getMousePosition().getX() + " Y = " + getMousePosition().getY());
+        if (getMousePosition().getX() == end[0].getX()) {
+            for (int i = 0; i < end.length; i++) {
+                if (getMousePosition().getY() == end[i].getY()) {
+                    //if (Map.crumbsCollect == 4) {
+                        //System.out.println("MOUSE WON");
+                        Game.State = Game.STATE.WIN;
+                    //}
+                    
+                }
             }
-            
         }
     }
 
@@ -63,7 +70,6 @@ public class Mouse extends MovingEntity{
         StaticEntity item = Map.getItem(getPos());
         if (item != null) {
             playerScore.setScore(item.getPoints());
-            
             
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
@@ -82,4 +88,5 @@ public class Mouse extends MovingEntity{
     public Score getMouseScore() {
         return playerScore;
     }
+
 }

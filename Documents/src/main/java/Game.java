@@ -1,6 +1,3 @@
-//package main.java;
-
-// import java.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
@@ -101,9 +98,10 @@ public class Game extends Canvas implements Runnable {
 
         }
         if (State == STATE.GAME) {
-
             map.drawEntities(g);
-
+        }
+        if (State == STATE.WIN) {
+            menu.win(g);
         }
         if (State == STATE.LOSE) {
             menu.lose(g);
