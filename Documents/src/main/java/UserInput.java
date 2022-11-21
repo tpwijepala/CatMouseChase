@@ -31,5 +31,7 @@ class UserInput extends KeyAdapter {
             player.newPos = (new Position(player.getPos().getX() + 1, player.getPos().getY()));
         }
 
+        player.collectItem();
+        player.checkFinish();
     }
 }

@@ -60,7 +60,8 @@ public class Map{
     static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
-    int endX = 56, endY = 38;   //EndY should be 36-40
+    int endX = 56; 
+    int[] endY = {35, 36, 37, 38, 39};   //This marks the finish line rather than a finish cell
     int crumbsCollect = 0;
 
     final static int CELLWIDTH = 25;
@@ -76,13 +77,16 @@ public class Map{
     GameTimer tt = new GameTimer();
 
     Position start = new Position(startX, startY);
-    Position end = new Position(endX, endY);
+    Position[] end = new Position[5];
 
     public Map(){
         try{
             map = ImageIO.read(new File("src/main/resources/map.png"));
         }catch(IOException e){
             e.printStackTrace();
+        }
+        for (int i = 0; i < endY.length; i++) {
+            end[i] = new Position(endX, endY[i]);
         }
         player = new Mouse(startX, startY, this);
         addCharacter(player);
@@ -161,7 +165,7 @@ public class Map{
     }
     
     // Note: not on UML Diagram
-    public Position getEnd() {
+    public Position[] getEnd() {
         return end;
     }
 
@@ -208,7 +212,7 @@ public class Map{
     }
 
     public void addItem(StaticEntity item) {
-        items[item.pos.x][item.pos.y] = item;
+        items[item.getPos().getX()][item.getPos().getY()] = item;
         objects.add(item);
     }
 
@@ -220,11 +224,11 @@ public class Map{
     public void removeItem(StaticEntity item) {
 
         // Remove from items array:
-        items[item.pos.getX()][item.pos.getY()] = null;
+        items[item.getPos().getX()][item.getPos().getY()] = null;
 
         // Remove from objects ArrayList:
         for (int i = 1; i < objects.size(); i++) {
-            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
+            if (objects.get(i).getPos().getX() == item.getPos().getX() && objects.get(i).getPos().getY() == item.getPos().getY()) {
                 objects.remove(i);
             }
         }
@@ -242,19 +246,17 @@ public class Map{
         cheeseExist(false);
 
         player.move(player.newPos);
-        player.collectItem();
+        //player.collectItem();
 
         if (tick()){
             for (int i = 0; i < 3; i++) {
-                mapCats.get(i).startMove(player.getPos());
+                mapCats.get(i).catchMouse(player.getPos());
             }
         }
 
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
         }
-
-       
 
     }
    

@@ -39,9 +39,9 @@ class Cat extends MovingEntity {
      * 
      * @param mousePos  Mouse's current position after key press
      */
-    public void startMove(Position mousePos) {
+    /*public void startMove(Position mousePos) {
         catchMouse(mousePos);
-    }
+    }*/
 
     /**
      * Contains all the data relevant to the current position
@@ -61,7 +61,7 @@ class Cat extends MovingEntity {
     public void catchMouse(Position mousePosition) {
         //Acknowledgements: Thanks to Kevin Litvin for the idea and https://www.youtube.com/watch?v=KiCBXu4P-2Y for the explanation :) 
 
-        int maxDepth = 1;
+        int maxDepth = 2;
         int bestScore = -1;
         PositionStruct bestMove = null;
         ArrayList<PositionStruct> possibleMoves = new ArrayList<PositionStruct>();

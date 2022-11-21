@@ -84,9 +84,10 @@ public class Game extends Canvas implements Runnable {
             menu.mainMenu = true;
         }
         if (State == STATE.GAME) {
-            
             map.drawEntities(g);
-            // menu.win(g);
+        }
+        if (State == STATE.WIN) {
+            menu.win(g);
         }
         if (State == STATE.LOSE) {
             menu.lose(g);

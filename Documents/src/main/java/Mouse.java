@@ -30,12 +30,18 @@ public class Mouse extends MovingEntity{
     }
 
     public void checkFinish() {
-        Position end = map.getEnd();
-        if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
-            if (map.crumbsCollect == 4) {
-                Game.State = Game.STATE.WIN;
+        Position[] end = map.getEnd();
+        //System.out.println("INSIDE checkFinish. X = " + getMousePosition().getX() + " Y = " + getMousePosition().getY());
+        if (getMousePosition().getX() == end[0].getX()) {
+            for (int i = 0; i < end.length; i++) {
+                if (getMousePosition().getY() == end[i].getY()) {
+                    //if (map.crumbsCollect == 4) {
+                        //System.out.println("MOUSE WON");
+                        Game.State = Game.STATE.WIN;
+                    //}
+                    
+                }
             }
-            
         }
     }
 
