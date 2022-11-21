@@ -263,9 +263,13 @@ public class Map{
 
         cheeseExist(false);
 
+        player.move(player.newPos);
+        player.collectItem();
+
         if (tick()){
-            player.move(player.newPos);
-            player.collectItem();
+            for (int i = 0; i < 3; i++) {
+                mapCats.get(i).startMove(player.getPos());
+            }
         }
 
         for (int i = 0; i < objects.size(); i++){
