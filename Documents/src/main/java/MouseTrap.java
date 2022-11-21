@@ -1,6 +1,4 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
-import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
@@ -28,11 +26,8 @@ public class MouseTrap extends StaticEntity {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
 
     public int getPoints() {
         return points;
     }
-=======
->>>>>>> origin/master
 }
