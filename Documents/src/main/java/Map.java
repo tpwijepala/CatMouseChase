@@ -64,11 +64,9 @@ public class Map{
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    // protected static StaticEntity[][] items = new StaticEntity[58][41];
     ArrayList<StaticEntity> items = new ArrayList<StaticEntity>();
-    protected static MovingEntity[][] characters = new MovingEntity[58][41];
+    ArrayList<MovingEntity> characters = new ArrayList<MovingEntity>();
     ArrayList<Entity> objects = new ArrayList<Entity>();
-    static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
     int endX = 56, endY = 36;
@@ -108,6 +106,7 @@ public class Map{
         generateCrumbs();
         generateCats();
         generateMouseTraps();
+        
         end = new ArrayList<Position>();
         for (int i = 0; i < endHeight; i++){
             end.add(new Position(endX, endY+i));
@@ -123,16 +122,13 @@ public class Map{
     }  
 
     private void generateCats() {
-        Cat cat1 = new Cat(12, 34);
-        mapCats.add(cat1);
+        Cat cat1 = new Cat(12, 34, this);
         addCharacter(cat1);
 
-        Cat cat2 = new Cat(36, 24);
-        mapCats.add(cat2);
+        Cat cat2 = new Cat(36, 24, this);
         addCharacter(cat2);
 
-        Cat cat3 = new Cat(43, 13);
-        mapCats.add(cat3);
+        Cat cat3 = new Cat(43, 13, this);
         addCharacter(cat3);
     }
 
@@ -148,7 +144,7 @@ public class Map{
     }
 
 
-    public static int isWall(int x, int y) {
+    public int isWall(int x, int y) {
         return walls[y][x];
     }
 
@@ -203,19 +199,8 @@ public class Map{
         return player;
     }
 
-    public static ArrayList<Cat> getCats() {
-        return mapCats;
-    }
-
     public ArrayList<Entity> getObjectsArray() {
         return objects;
-    }
-
-    // Note: not on UML Diagram
-    public void moveCharacter(Position oldPos, Position newPos) {
-        MovingEntity temp = characters[oldPos.x][oldPos.y];
-        characters[oldPos.x][oldPos.y] = null;
-        characters[newPos.x][newPos.y] = temp;
     }
 
     // Note: not on UML Diagram
@@ -228,8 +213,13 @@ public class Map{
         return null;
     }
 
-    public static MovingEntity getCharacter(int x, int y){
-        return characters[x][y];
+    public MovingEntity getCharacter(Position pos){
+        for (int i = 0; i < characters.size(); i++) {
+            if (characters.get(i).pos.x == pos.x && characters.get(i).pos.y == pos.y) {
+                return characters.get(i);
+            }
+        }
+        return null;
     }
 
     public void addItem(StaticEntity item) {
@@ -238,7 +228,7 @@ public class Map{
     }
 
     public void addCharacter(MovingEntity charac) {
-        characters[charac.pos.getX()][charac.pos.getY()] = charac;
+        characters.add(charac);
         objects.add(charac);
     } 
 
@@ -275,15 +265,13 @@ public class Map{
 
         cheeseExist(false);
 
-        player.move(player.newPos);
-        player.collectItem();
-        player.checkFinish();
+        player.move();
 
         if (tick()){
-            for (int i = 0; i < 3; i++) {
-                mapCats.get(i).startMove(player.getPos());
+            for (int i = 1; i < characters.size(); i++) {
+                Cat cat = (Cat)characters.get(i);
+                cat.startMove(player.getPos());
             }
-            
         }
 
         for (int i = 0; i < objects.size(); i++){

@@ -19,8 +19,8 @@ class Cat extends MovingEntity {
      * @param x     Row coordinate on map
      * @param y     Column coordinate on map
      */
-    public Cat(int x, int y) {
-        super(x, y);
+    public Cat(int x, int y, Map m) {
+        super(x, y, m);
 
         try{
             picture = ImageIO.read(new File("src/main/resources/cat.png"));
@@ -58,7 +58,7 @@ class Cat extends MovingEntity {
      * 
      * @param mousePosition     Mouse's current position on the board
      */
-    public void catchMouse(Position mousePosition) {
+    private void catchMouse(Position mousePosition) {
         //Acknowledgements: Thanks to Kevin Litvin for the idea and https://www.youtube.com/watch?v=KiCBXu4P-2Y for the explanation :) 
 
         int maxDepth = 1;

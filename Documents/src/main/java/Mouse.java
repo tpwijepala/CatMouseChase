@@ -14,7 +14,7 @@ public class Mouse extends MovingEntity{
     Position newPos;
 
     public Mouse(int x, int y, Map m) {
-        super(x,y);
+        super(x,y,m);
         map = m;
         newPos = pos;
         try{
@@ -28,7 +28,13 @@ public class Mouse extends MovingEntity{
         return pos;
     }
 
-    public void checkFinish() {
+    public void move(){
+        move(newPos);
+        collectItem();
+        checkFinish();
+    }
+
+    private void checkFinish() {
         ArrayList<Position> end = map.getEnd();
         if (map.crumbsCollect >= 4) {
             for (int i = 0; i < end.size(); i++){
@@ -40,7 +46,7 @@ public class Mouse extends MovingEntity{
         }
     }
 
-    public void collectItem() {
+    private void collectItem() {
         StaticEntity item = map.getItem(getPos());
         if (item != null) {
             if (item instanceof Cheese)
