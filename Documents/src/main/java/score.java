@@ -5,8 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Author: Karina Kramer
- * Version: 1.0
+ * @author: Karina Kramer
+ * @version: 1.0
  */
 class Score {
 
