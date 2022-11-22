@@ -13,7 +13,10 @@ public class Entity {
         return pos;
     }
 
-    //Not on UML
+    /**
+     * @param newX new X-Coordinate
+     * @param newY new Y-Coordinate
+     */
     public void setPos(int newX, int newY) {
         pos.setX(newX);
         pos.setY(newY);

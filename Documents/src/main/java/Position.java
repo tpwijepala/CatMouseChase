@@ -1,4 +1,3 @@
-//package main.java;
 
 /**
  * Represents a location on the map using x and y coordinates

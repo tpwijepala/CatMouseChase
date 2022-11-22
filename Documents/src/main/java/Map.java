@@ -1,4 +1,3 @@
-//package main.java;
 import java.util.ArrayList;
 // import java.util.Timer;
 import java.awt.*;
@@ -8,7 +7,16 @@ import java.io.File;
 import java.io.IOException;
 //import javax.swing.*;
 
-
+/**
+ * This class is used to create everything for the game
+ * It creates & draws the Map
+ * It is also used for moving, spawning in and drawing new objects
+ * It also keeps track of elapsed time
+ * Map also stores and maintains the objects in Arrays & ArrayLists so that they
+ * can be accessed by other classes
+ * 
+ * @author Thimira Wijepala
+ */
 public class Map{
 
     private static final int[][] walls = 
@@ -60,8 +68,9 @@ public class Map{
     static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
-    int endX = 56, endY = 38;   //EndY should be 36-40
-    int crumbsCollect = 0;
+    int endX = 56; 
+    int[] endY = {35, 36, 37, 38, 39};   //This marks the finish line rather than a finish cell
+    static int crumbsCollect = 0;
 
     final static int CELLWIDTH = 25;
 
@@ -76,13 +85,22 @@ public class Map{
     GameTimer tt = new GameTimer();
 
     Position start = new Position(startX, startY);
-    Position end = new Position(endX, endY);
+    Position[] end = new Position[5];
+
+    /**
+     * Constructer of Map object
+     * Loads map png to draw later
+     * creates player & generates intial objects
+     */
 
     public Map(){
         try{
             map = ImageIO.read(new File("src/main/resources/map.png"));
         }catch(IOException e){
             e.printStackTrace();
+        }
+        for (int i = 0; i < endY.length; i++) {
+            end[i] = new Position(endX, endY[i]);
         }
         player = new Mouse(startX, startY, this);
         addCharacter(player);
@@ -104,8 +122,7 @@ public class Map{
 
         Crumb c4 = new Crumb(22, 18);
         addItem(c4);
-    }
-    
+    }  
 
     private void generateCats() {
         Cat cat1 = new Cat(12, 34);
@@ -137,8 +154,14 @@ public class Map{
         return walls[y][x];
     }
 
-    public boolean cheeseExist(boolean cheeseDespawn) {
-        if (cheeseDespawn) { // if cheese is collected or despawned
+     /**
+      * This method is used to spawn/despawn cheese after a given time
+      *
+      * @param cheeseDespawn - used to restart timer if item is collected
+      */
+
+    public void cheeseExist(boolean cheeseCollected) {
+        if (cheeseCollected) { // if cheese is collected
             startTime = System.currentTimeMillis();
             cheeseExist = false;
         }
@@ -157,11 +180,24 @@ public class Map{
             cheeseExist = false;
             startTime = System.currentTimeMillis();
         }
-        return true;
+    }
+
+
+    /**
+     * Method is used to determine whether a tick or '1000ms' has passed
+     * @return true or false depending whether 1000ms has passed
+     */
+    private boolean tick(){
+        long time = System.currentTimeMillis();
+        if (time >= tickTime + 1000){
+            tickTime = System.currentTimeMillis();
+            return true;
+        }
+        return false;
     }
     
     // Note: not on UML Diagram
-    public Position getEnd() {
+    public Position[] getEnd() {
         return end;
     }
 
@@ -178,23 +214,10 @@ public class Map{
     }
 
     // Note: not on UML Diagram
-    private boolean tick(){
-        long time = System.currentTimeMillis();
-        if (time >= tickTime + 1000){
-            tickTime = System.currentTimeMillis();
-            return true;
-        }
-        return false;
-    }
-
-    // Note: not on UML Diagram
     public void moveCharacter(Position oldPos, Position newPos) {
-        if (tick()) {
-            MovingEntity temp = characters[oldPos.x][oldPos.y];
-            characters[oldPos.x][oldPos.y] = null;
-            characters[newPos.x][newPos.y] = temp;
-        }
-        
+        MovingEntity temp = characters[oldPos.x][oldPos.y];
+        characters[oldPos.x][oldPos.y] = null;
+        characters[newPos.x][newPos.y] = temp;
     }
 
     // Note: not on UML Diagram
@@ -207,7 +230,7 @@ public class Map{
     }
 
     public void addItem(StaticEntity item) {
-        items[item.pos.x][item.pos.y] = item;
+        items[item.getPos().getX()][item.getPos().getY()] = item;
         objects.add(item);
     }
 
@@ -217,19 +240,26 @@ public class Map{
     }
 
     public void removeItem(StaticEntity item) {
-
+        //System.out.println("BEFORE REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
+        
         // Remove from items array:
-        items[item.pos.getX()][item.pos.getY()] = null;
-
+        items[item.getPos().getX()][item.getPos().getY()] = null;
+        
+        //System.out.println("AFTER REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
         // Remove from objects ArrayList:
         for (int i = 1; i < objects.size(); i++) {
-            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
+            if (objects.get(i).getPos().getX() == item.getPos().getX() && objects.get(i).getPos().getY() == item.getPos().getY()) {
                 objects.remove(i);
             }
         }
-
     }
 
+    /**
+     * This method is used to draw map and objects
+     * also used to generate & move the objects
+     * 
+     * @param g - the canvas that gets drawn
+     */
     public void drawEntities(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
@@ -240,16 +270,18 @@ public class Map{
 
         cheeseExist(false);
 
+        player.move(player.newPos);
+        //player.collectItem();
+
         if (tick()){
-            player.move(player.newPos);
-            player.collectItem();
+            for (int i = 0; i < 3; i++) {
+                mapCats.get(i).catchMouse(player.getPos());
+            }
         }
 
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
         }
-
-       
 
     }
    

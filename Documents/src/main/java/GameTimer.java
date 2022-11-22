@@ -2,8 +2,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 /**
- * Author: Thimira Wijepala
- * Version: 1.0
+ * @author Thimira Wijepala
+ * @version 1.0
  */
 class GameTimer {
 

@@ -39,9 +39,9 @@ class Cat extends MovingEntity {
      * 
      * @param mousePos  Mouse's current position after key press
      */
-    public void startMove(Position mousePos) {
+    /*public void startMove(Position mousePos) {
         catchMouse(mousePos);
-    }
+    }*/
 
     /**
      * Contains all the data relevant to the current position
