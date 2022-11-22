@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.lang.model.type.NullType;
+
 import java.io.File;
 import java.io.IOException;
 //import javax.swing.*;
@@ -62,7 +64,8 @@ public class Map{
         {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    protected static StaticEntity[][] items = new StaticEntity[58][41];
+    // protected static StaticEntity[][] items = new StaticEntity[58][41];
+    ArrayList<StaticEntity> items = new ArrayList<StaticEntity>();
     protected static MovingEntity[][] characters = new MovingEntity[58][41];
     ArrayList<Entity> objects = new ArrayList<Entity>();
     static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
@@ -113,17 +116,10 @@ public class Map{
 
     private void generateCrumbs() {
         //41 down, 58 across
-        Crumb c1 = new Crumb(10, 12);
-        addItem(c1);
-
-        Crumb c2 = new Crumb(25, 12);
-        addItem(c2);
-
-        Crumb c3 = new Crumb(10, 20);
-        addItem(c3);
-
-        Crumb c4 = new Crumb(22, 18);
-        addItem(c4);
+        addItem(new Crumb(10, 12));
+        addItem(new Crumb(25, 12));
+        addItem(new Crumb(10, 20));
+        addItem(new Crumb(22, 18));
     }  
 
     private void generateCats() {
@@ -171,7 +167,7 @@ public class Map{
 
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
-            c = new Cheese(0,0);
+            c = new Cheese(0,0, this);
             addItem(c);
             cheeseExist = true;
         }
@@ -223,8 +219,13 @@ public class Map{
     }
 
     // Note: not on UML Diagram
-    public static StaticEntity getItem(Position pos) {
-        return items[pos.getX()][pos.getY()];
+    public StaticEntity getItem(Position pos) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).pos.x == pos.x && items.get(i).pos.y == pos.y) {
+                return items.get(i);
+            }
+        }
+        return null;
     }
 
     public static MovingEntity getCharacter(int x, int y){
@@ -232,23 +233,28 @@ public class Map{
     }
 
     public void addItem(StaticEntity item) {
-        items[item.pos.x][item.pos.y] = item;
+        items.add(item);
         objects.add(item);
     }
 
     public void addCharacter(MovingEntity charac) {
-        characters[charac.pos.x][charac.pos.y] = charac;
+        characters[charac.pos.getX()][charac.pos.getY()] = charac;
         objects.add(charac);
-    }
+    } 
 
     public void removeItem(StaticEntity item) {
-        // Remove from items array:
-        items[item.pos.getX()][item.pos.getY()] = null;
-
         // Remove from objects ArrayList:
+        Position pos = item.getPos();
+
         for (int i = 1; i < objects.size(); i++) {
-            if (objects.get(i).pos.x == item.pos.x && objects.get(i).pos.y == item.pos.y) {
+            if (objects.get(i).pos.x == pos.x && objects.get(i).pos.y == pos.y) {
                 objects.remove(i);
+            }
+        }
+        // Remove from items array:
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).pos.x == pos.x && items.get(i).pos.y == pos.y) {
+                items.remove(i);
             }
         }
     }

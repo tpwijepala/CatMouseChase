@@ -30,7 +30,6 @@ public class Mouse extends MovingEntity{
 
     public void checkFinish() {
         ArrayList<Position> end = map.getEnd();
-        System.out.println(map.crumbsCollect);
         if (map.crumbsCollect >= 4) {
             for (int i = 0; i < end.size(); i++){
                 if (getPos().getX() == end.get(i).getX() && getPos().getY() == end.get(i).getY()){
@@ -42,24 +41,24 @@ public class Mouse extends MovingEntity{
     }
 
     public void collectItem() {
-        StaticEntity item = Map.getItem(getPos());
+        StaticEntity item = map.getItem(getPos());
         if (item != null) {
-            playerScore.setScore(item.getPoints());
-            
             if (item instanceof Cheese)
                 map.cheeseExist(true);
 
             if (item instanceof Crumb)
                 map.crumbsCollect++;
             
+            playerScore.setScore(item.getPoints());
+            map.removeItem(item);
+            System.out.print("item removed");
+
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
             }
-
-            else {
-                map.removeItem(item);
-            }
-            
+        }
+        else{
+            System.out.println("null");
         }
     }
 
