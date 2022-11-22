@@ -3,6 +3,7 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Mouse extends MovingEntity{
     //private Image picture;  // mousePic can be declared const and given an initial value once a picture is found and included in files
@@ -28,12 +29,15 @@ public class Mouse extends MovingEntity{
     }
 
     public void checkFinish() {
-        Position end = map.getEnd();
-        if (getPos().getX() == end.getX() && getPos().getY() == end.getY()) {
-            if (map.crumbsCollect == 4) {
-                Game.State = Game.STATE.WIN;
+        ArrayList<Position> end = map.getEnd();
+        System.out.println(map.crumbsCollect);
+        if (map.crumbsCollect >= 4) {
+            for (int i = 0; i < end.size(); i++){
+                if (getPos().getX() == end.get(i).getX() && getPos().getY() == end.get(i).getY()){
+                    
+                    Game.State = Game.STATE.WIN;
+                }
             }
-            
         }
     }
 
@@ -41,10 +45,12 @@ public class Mouse extends MovingEntity{
         StaticEntity item = Map.getItem(getPos());
         if (item != null) {
             playerScore.setScore(item.getPoints());
-            System.out.println(item.getPoints());
             
             if (item instanceof Cheese)
                 map.cheeseExist(true);
+
+            if (item instanceof Crumb)
+                map.crumbsCollect++;
             
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
