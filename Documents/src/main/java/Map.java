@@ -70,7 +70,7 @@ public class Map{
     int startX = 4, startY = 4;
     int endX = 56; 
     int[] endY = {35, 36, 37, 38, 39};   //This marks the finish line rather than a finish cell
-    static int crumbsCollect = 0;
+    int crumbsCollect = 0;
 
     final static int CELLWIDTH = 25;
 

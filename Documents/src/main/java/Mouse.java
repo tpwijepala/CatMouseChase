@@ -33,7 +33,7 @@ public class Mouse extends MovingEntity{
         if (getMousePosition().getX() == end[0].getX()) {
             for (int i = 0; i < end.length; i++) {
                 if (getMousePosition().getY() == end[i].getY()) {
-                    //if (Map.crumbsCollect == 4) {
+                    //if (map.crumbsCollect == 4) {
                         //System.out.println("MOUSE WON");
                         Game.State = Game.STATE.WIN;
                     //}

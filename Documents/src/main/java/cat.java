@@ -11,8 +11,6 @@ import java.lang.Math.*;
  * Version: 1.0
  */
 class Cat extends MovingEntity {
-    Position currentPosition;
-
     /**
      * Instantiates this cat's position and its image on 
      * the game map
