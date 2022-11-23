@@ -71,7 +71,7 @@ public class Map{
 
     final static int CELLWIDTH = 25;
 
-    boolean cheeseExist = false;
+    boolean cheeseExists = false;
     Cheese c;
     long startTime;
     long timer;
@@ -153,21 +153,21 @@ public class Map{
     public void cheeseExist(boolean cheeseCollected) {
         if (cheeseCollected) { // if cheese is collected
             startTime = System.currentTimeMillis();
-            cheeseExist = false;
+            cheeseExists = false;
         }
         timer = System.currentTimeMillis() - startTime;
 
-        if (!cheeseExist && timer >= 5000) {
+        if (!cheeseExists && timer >= 5000) {
             // spawn after its been despawned for 5s
             c = new Cheese(0,0, this);
             addItem(c);
-            cheeseExist = true;
+            cheeseExists = true;
         }
 
-        else if (cheeseExist && timer >= 12000){
+        else if (cheeseExists && timer >= 12000){
             // if cheese uncollected for 12s
             this.removeItem(c);
-            cheeseExist = false;
+            cheeseExists = false;
             startTime = System.currentTimeMillis();
         }
     }
