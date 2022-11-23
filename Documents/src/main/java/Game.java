@@ -1,7 +1,5 @@
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import javax.swing.JFrame;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
@@ -141,7 +139,7 @@ public class Game extends Canvas implements Runnable {
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
-        int frames = 0;
+        // int frames = 0;
         while (isPlaying) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -150,12 +148,12 @@ public class Game extends Canvas implements Runnable {
 
                 delta--;
                 draw();
-                frames++;
+                // frames++;
             }
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                frames = 0;
+                // frames = 0;
             }
         }
 
