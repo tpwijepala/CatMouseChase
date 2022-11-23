@@ -10,6 +10,7 @@ public class MouseTest {
     public void resetMap() {
         map = new Map();
         Game.State = Game.STATE.GAME;
+        map.player.getMouseScore().setScore(0 - Integer.parseInt(map.player.getMouseScore().getScore()));
 
         // Position for testing collection of objects should be empty by default
         map.removeItem(new Crumb(1, 1));
@@ -89,15 +90,22 @@ public class MouseTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
-    // @Test
-    // public void collectCheese() {
-    //     map.addItem(new Cheese(4, 4, map));
-    //     map.player.newPos = pos;
-    //     map.player.move();
-    //     // System.out.println(map.player.getMouseScore().getScore());
-    //     // check score value
-    //     assertTrue(Integer.parseInt(map.player.getMouseScore().getScore()) == 2);
-    //     // check game state
-    //     assertTrue(Game.State == Game.STATE.GAME);
-    // }
+    @Test
+    public void collectCheese() {
+        Cheese c = new Cheese(1, 1, new Map());
+        c.pos.setX(1);
+        c.pos.setY(1);
+        map.addItem(c);
+
+        map.player.pos = pos;
+        System.out.println(map.player.getMouseScore().getScore());
+        /*
+        map.player.collectItem();
+        System.out.println(map.player.getMouseScore().getScore());
+        // check score value
+        assertTrue(Integer.parseInt(map.player.getMouseScore().getScore()) == 2);
+        */
+        // check game state
+        assertTrue(Game.State == Game.STATE.GAME);
+    }
 }
