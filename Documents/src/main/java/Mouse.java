@@ -3,10 +3,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Mouse extends MovingEntity{
-    //private Image picture;  // mousePic can be declared const and given an initial value once a picture is found and included in files
-    //private Position mousePosition;
-    //Position pos;
+public class Mouse extends MovingEntity {
+    // private Image picture; // mousePic can be declared const and given an initial
+    // value once a picture is found and included in files
+    // private Position mousePosition;
+    // Position pos;
     Map map;
     private Score playerScore = new Score();
     Position newPos;
@@ -15,13 +16,13 @@ public class Mouse extends MovingEntity{
         super(x,y,m);
         map = m;
         newPos = pos;
-        try{
+        try {
             picture = ImageIO.read(new File("src/main/resources/mouse.png"));
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public Position getMousePosition() {
         return pos;
     }
@@ -69,4 +70,7 @@ public class Mouse extends MovingEntity{
         return playerScore;
     }
 
+    public void setMouseScore() {
+        playerScore = new Score();
+    }
 }

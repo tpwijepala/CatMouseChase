@@ -1,3 +1,5 @@
+//package main.java;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,7 +17,8 @@ import java.awt.Point;
 public class Menu extends MouseAdapter {
 
     String font = "DialogInput";
-
+    Map map;
+    Game game;
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 150, 300, 50);
     private boolean pHighlight = false; // true if the mouse hovered over the Play button
 
