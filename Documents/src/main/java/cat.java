@@ -42,12 +42,18 @@ class Cat extends MovingEntity {
     public void catchMouse(Position mousePosition) {
         //Acknowledgements: Thanks to Kevin Litvin for the idea and https://www.youtube.com/watch?v=KiCBXu4P-2Y for the explanation :) 
 
-        int maxDepth = 2;
+        int maxDepth = 3;
         int bestScore = -1;
         PositionStruct bestMove = null;
         ArrayList<PositionStruct> possibleMoves = new ArrayList<PositionStruct>();
         HashSet<Position> visitedPos = new HashSet<Position>();
         PositionStruct temp = new PositionStruct();
+
+        //If the move that the cat takes collides with mouse, end game
+        if (getPos().getX() == mousePosition.getX() && getPos().getY() == mousePosition.getY()) {
+            Game.State = Game.STATE.LOSE;
+            return;
+        }
 
         temp.prevPos = null;
         temp.pos = getPos();
@@ -86,10 +92,7 @@ class Cat extends MovingEntity {
 
         move(bestMove.pos);
 
-        //If the move that the cat takes collides with mouse, end game
-        if (bestMove.pos.getX() == mousePosition.getX() && bestMove.pos.getY() == mousePosition.getY()) {
-            Game.State = Game.STATE.LOSE;
-        }
+        
     }
 
     /**
@@ -137,5 +140,22 @@ class Cat extends MovingEntity {
 
         return rating;
     }
-    
+
+    /*
+    //Check if next cell is outside map bounds, contains a barrier,
+    //or contains a cat
+    public boolean checkValidMove(Position newPos) {
+        if (newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 57 || newPos.getY() > 41) {
+            return false;
+        }
+
+        else if (map.isWall(newPos.getX(), newPos.getY()) == 1) {
+            return false;
+        }
+
+        else if ()
+
+        return true;
+    }
+    */
 } 
