@@ -17,8 +17,8 @@ class Cat extends MovingEntity {
      * @param x     Row coordinate on map
      * @param y     Column coordinate on map
      */
-    public Cat(int x, int y) {
-        super(x, y);
+    public Cat(int x, int y, Map m) {
+        super(x, y, m);
 
         try{
             picture = ImageIO.read(new File("src/main/resources/cat.png"));
@@ -26,20 +26,6 @@ class Cat extends MovingEntity {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Triggers the cats on the map to begin moving towards
-     * the mouse by passing the mouse's current position into
-     * catchMouse
-     * <p>
-     * This method is called only when the user presses a valid
-     * input key for the first time
-     * 
-     * @param mousePos  Mouse's current position after key press
-     */
-    /*public void startMove(Position mousePos) {
-        catchMouse(mousePos);
-    }*/
 
     /**
      * Contains all the data relevant to the current position

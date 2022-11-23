@@ -16,19 +16,18 @@ public class UserInputTest{
      */
     @Test
     public void acceptValidKeys() {
-        Robot testRobot = new Robot();
-        UserInput testUser = new UserInput(testMap.getPlayer());
+        //Robot testRobot = new Robot();
+        //UserInput testUser = new UserInput(testMap.getPlayer());
 
         // Simulate a key press
-        testRobot.keyPress(KeyEvent.VK_W);
-        testRobot.keyRelease(KeyEvent.VK_W);  
+        //testRobot.keyPress(KeyEvent.VK_W);
+        //testRobot.keyRelease(KeyEvent.VK_W);  
 
         
 
 
-        KeyEvent key = new KeyEvent(testUser, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_W, 'W');
-        testUser.getKeyListeners()[0].keyPressed(key);
-        //
+        //KeyEvent key = new KeyEvent(testUser, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_W, 'W');
+        //testUser.getKeyListeners()[0].keyPressed(key);
 
         
 

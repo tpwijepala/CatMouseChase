@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.lang.model.type.NullType;
+
 import java.io.File;
 import java.io.IOException;
 //import javax.swing.*;
@@ -55,21 +57,20 @@ public class Map{
         {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1},
         {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,1,1,1},
-        {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+        {1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+        {1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-    protected static StaticEntity[][] items = new StaticEntity[58][41];
-    protected static MovingEntity[][] characters = new MovingEntity[58][41];
+    ArrayList<StaticEntity> items = new ArrayList<StaticEntity>();
+    ArrayList<MovingEntity> characters = new ArrayList<MovingEntity>();
     ArrayList<Entity> objects = new ArrayList<Entity>();
-    static ArrayList<Cat> mapCats = new ArrayList<Cat>();  //This might be redundant later on
 
     int startX = 4, startY = 4;
-    int endX = 56; 
-    int[] endY = {35, 36, 37, 38, 39};   //This marks the finish line rather than a finish cell
+    int endX = 56, endY = 35; 
+    int endHeight = 5;
     int crumbsCollect = 0;
 
     final static int CELLWIDTH = 25;
@@ -85,7 +86,8 @@ public class Map{
     GameTimer tt = new GameTimer();
 
     Position start = new Position(startX, startY);
-    Position[] end = new Position[5];
+    ArrayList<Position> end;
+    
 
     /**
      * Constructer of Map object
@@ -99,42 +101,35 @@ public class Map{
         }catch(IOException e){
             e.printStackTrace();
         }
-        for (int i = 0; i < endY.length; i++) {
-            end[i] = new Position(endX, endY[i]);
-        }
+        
         player = new Mouse(startX, startY, this);
         addCharacter(player);
         generateCrumbs();
         generateCats();
         generateMouseTraps();
+        
+        end = new ArrayList<Position>();
+        for (int i = 0; i < endHeight; i++){
+            end.add(new Position(endX, endY+i));
+        }
     }
 
     private void generateCrumbs() {
         //41 down, 58 across
-        Crumb c1 = new Crumb(10, 12);
-        addItem(c1);
-
-        Crumb c2 = new Crumb(25, 12);
-        addItem(c2);
-
-        Crumb c3 = new Crumb(10, 20);
-        addItem(c3);
-
-        Crumb c4 = new Crumb(22, 18);
-        addItem(c4);
+        addItem(new Crumb(10, 12));
+        addItem(new Crumb(25, 12));
+        addItem(new Crumb(10, 20));
+        addItem(new Crumb(22, 18));
     }  
 
     private void generateCats() {
-        Cat cat1 = new Cat(12, 34);
-        mapCats.add(cat1);
+        Cat cat1 = new Cat(12, 34, this);
         addCharacter(cat1);
 
-        Cat cat2 = new Cat(36, 24);
-        mapCats.add(cat2);
+        Cat cat2 = new Cat(36, 24, this);
         addCharacter(cat2);
 
-        Cat cat3 = new Cat(43, 13);
-        mapCats.add(cat3);
+        Cat cat3 = new Cat(43, 13, this);
         addCharacter(cat3);
     }
 
@@ -150,7 +145,7 @@ public class Map{
     }
 
 
-    public static int isWall(int x, int y) {
+    public int isWall(int x, int y) {
         return walls[y][x];
     }
 
@@ -169,7 +164,7 @@ public class Map{
 
         if (!cheeseExist && timer >= 5000) {
             // spawn after its been despawned for 5s
-            c = new Cheese(0,0);
+            c = new Cheese(0,0, this);
             addItem(c);
             cheeseExist = true;
         }
@@ -197,7 +192,7 @@ public class Map{
     }
     
     // Note: not on UML Diagram
-    public Position[] getEnd() {
+    public ArrayList<Position> getEnd() {
         return end;
     }
 
@@ -205,51 +200,52 @@ public class Map{
         return player;
     }
 
-    public static ArrayList<Cat> getCats() {
-        return mapCats;
-    }
-
     public ArrayList<Entity> getObjectsArray() {
         return objects;
     }
 
     // Note: not on UML Diagram
-    public void moveCharacter(Position oldPos, Position newPos) {
-        MovingEntity temp = characters[oldPos.x][oldPos.y];
-        characters[oldPos.x][oldPos.y] = null;
-        characters[newPos.x][newPos.y] = temp;
+    public StaticEntity getItem(Position pos) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).pos.x == pos.x && items.get(i).pos.y == pos.y) {
+                return items.get(i);
+            }
+        }
+        return null;
     }
 
-    // Note: not on UML Diagram
-    public static StaticEntity getItem(Position pos) {
-        return items[pos.getX()][pos.getY()];
-    }
-
-    public static MovingEntity getCharacter(int x, int y){
-        return characters[x][y];
+    public MovingEntity getCharacter(Position pos){
+        for (int i = 0; i < characters.size(); i++) {
+            if (characters.get(i).pos.x == pos.x && characters.get(i).pos.y == pos.y) {
+                return characters.get(i);
+            }
+        }
+        return null;
     }
 
     public void addItem(StaticEntity item) {
-        items[item.getPos().getX()][item.getPos().getY()] = item;
+        items.add(item);
         objects.add(item);
     }
 
     public void addCharacter(MovingEntity charac) {
-        characters[charac.pos.x][charac.pos.y] = charac;
+        characters.add(charac);
         objects.add(charac);
-    }
+    } 
 
     public void removeItem(StaticEntity item) {
-        //System.out.println("BEFORE REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
-        
-        // Remove from items array:
-        //items[item.getPos().getX()][item.getPos().getY()] = null;
-        
-        //System.out.println("AFTER REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
         // Remove from objects ArrayList:
+        Position pos = item.getPos();
+
         for (int i = 1; i < objects.size(); i++) {
-            if (objects.get(i).getPos().getX() == item.getPos().getX() && objects.get(i).getPos().getY() == item.getPos().getY()) {
+            if (objects.get(i).pos.x == pos.x && objects.get(i).pos.y == pos.y) {
                 objects.remove(i);
+            }
+        }
+        // Remove from items array:
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).pos.x == pos.x && items.get(i).pos.y == pos.y) {
+                items.remove(i);
             }
         }
     }
@@ -270,12 +266,12 @@ public class Map{
 
         cheeseExist(false);
 
-        player.move(player.newPos);
-        //player.collectItem();
+        player.move();
 
         if (tick()){
-            for (int i = 0; i < 3; i++) {
-                mapCats.get(i).catchMouse(player.getPos());
+            for (int i = 1; i < characters.size(); i++) {
+                Cat cat = (Cat)characters.get(i);
+                cat.catchMouse(player.getPos());
             }
         }
 
