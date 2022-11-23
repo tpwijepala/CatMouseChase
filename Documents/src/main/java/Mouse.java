@@ -43,6 +43,7 @@ public class Mouse extends MovingEntity{
         }
     }
 
+    
     public void collectItem() {
         StaticEntity item = Map.getItem(getPos());
         if (item != null) {
@@ -62,6 +63,7 @@ public class Mouse extends MovingEntity{
             
         }
     }
+    
 
     public Score getMouseScore() {
         return playerScore;

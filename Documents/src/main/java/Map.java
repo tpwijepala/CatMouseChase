@@ -243,7 +243,7 @@ public class Map{
         //System.out.println("BEFORE REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
         
         // Remove from items array:
-        items[item.getPos().getX()][item.getPos().getY()] = null;
+        //items[item.getPos().getX()][item.getPos().getY()] = null;
         
         //System.out.println("AFTER REMOVE: " + items[item.getPos().getX()][item.getPos().getY()]);
         // Remove from objects ArrayList:

@@ -96,7 +96,6 @@ public class Game extends Canvas implements Runnable {
         drawBackground(g);
         if (State == STATE.MENU) {
             menu.draw(g);
-
         }
         if (State == STATE.GAME) {
             map.drawEntities(g);
@@ -107,9 +106,7 @@ public class Game extends Canvas implements Runnable {
         if (State == STATE.LOSE) {
             menu.lose(g);
         }
-        if (State == STATE.WIN) {
-            menu.win(g);
-        }
+        
         g.dispose();
         bs.show();
     }

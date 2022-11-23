@@ -131,9 +131,15 @@ public class Menu extends MouseAdapter {
         Point p = e.getPoint();
 
         if (Game.State == Game.STATE.MENU || Game.State == Game.STATE.WIN || Game.State == Game.STATE.LOSE) {
-            if (playButton.contains(p))
-                Game.State = Game.STATE.GAME;
+            if (playButton.contains(p)) {
+                
+                if (Game.State == Game.STATE.WIN || Game.State == Game.STATE.LOSE) {
+                    Game game = new Game();
+                    game.start();
+                }
 
+                Game.State = Game.STATE.GAME;
+            }
             else if (quitButton.contains(p))
                 System.exit(0);
 
