@@ -55,14 +55,12 @@ public class Mouse extends MovingEntity{
             
             playerScore.setScore(item.getPoints());
             map.removeItem(item);
-            System.out.print("item removed");
 
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
             }
         }
         else{
-            System.out.println("null");
         }
     }
     

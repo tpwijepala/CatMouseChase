@@ -7,7 +7,6 @@ import java.awt.Graphics;
  */
 class GameTimer {
 
-    private long delay;  //in nanoseconds; equates to 1 sec delay
     private long timerCount;
     private long startCount;
 
@@ -18,7 +17,6 @@ class GameTimer {
     public GameTimer() {
         this.startCount = System.currentTimeMillis();
         this.timerCount = 0; 
-        this.delay = 1000;   
     }
 
     //Restart the clock

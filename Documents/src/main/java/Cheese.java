@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.lang.Math;
 import javax.imageio.ImageIO;
 import java.io.File;
