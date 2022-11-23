@@ -1,13 +1,9 @@
 import java.util.ArrayList;
-// import java.util.Timer;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import javax.lang.model.type.NullType;
-
 import java.io.File;
 import java.io.IOException;
-//import javax.swing.*;
 
 /**
  * This class is used to create everything for the game
@@ -106,7 +102,7 @@ public class Map{
         generateCrumbs();
         generateCats();
         generateMouseTraps();
-        
+
         end = new ArrayList<Position>();
         for (int i = 0; i < endHeight; i++){
             end.add(new Position(endX, endY+i));
@@ -256,7 +252,6 @@ public class Map{
      * @param g - the canvas that gets drawn
      */
     public void drawEntities(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
 
         g.drawImage(map, 0,0, null);
         

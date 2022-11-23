@@ -1,8 +1,5 @@
 import java.awt.Font;
 import java.awt.Graphics;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * @author: Karina Kramer

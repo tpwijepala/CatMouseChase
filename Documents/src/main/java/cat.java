@@ -1,10 +1,7 @@
 import javax.imageio.ImageIO;
-import java.awt.Image;
-import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.lang.Math.*;
 
 /**
  * Author: Karina Kramer
