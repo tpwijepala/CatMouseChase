@@ -103,6 +103,7 @@ public class Map{
         generateCrumbs();
         generateCats();
         generateMouseTraps();
+        startTime = System.currentTimeMillis();
 
         end = new ArrayList<Position>();
         for (int i = 0; i < endHeight; i++){
@@ -163,6 +164,7 @@ public class Map{
             c = new Cheese(0,0, this);
             addItem(c);
             cheeseExists = true;
+            startTime = System.currentTimeMillis();
         }
 
         else if (cheeseExists && timer >= 12000){
