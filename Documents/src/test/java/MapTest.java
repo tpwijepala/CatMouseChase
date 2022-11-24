@@ -34,7 +34,14 @@ public class MapTest {
     public void testCheese(){}
 
     @Test
-    public void testTick(){}
+    public void testTick(){
+        while (!map.tick());
+        long time = System.currentTimeMillis();
+        assertTrue(map.tick() == false);
+        while (!map.tick());
+        time = System.currentTimeMillis() - time;
+        assertTrue(time >= 1000);
+    }
 
     @Test
     public void testItems(){
@@ -52,5 +59,6 @@ public class MapTest {
 
         map.addCharacter(new Cat(0, 5, map));
         assertTrue(map.getCharacter(new Position(0, 5)) != null);
+        assertTrue(map.getPlayer() == map.getCharacter(new Position(4,4)));
     }
 }

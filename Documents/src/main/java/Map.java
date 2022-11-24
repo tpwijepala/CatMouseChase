@@ -178,7 +178,7 @@ public class Map{
      * 
      * @return true or false depending whether 1000ms has passed
      */
-    private boolean tick() {
+    public boolean tick() {
         long time = System.currentTimeMillis();
         if (time >= tickTime + 1000) {
             tickTime = System.currentTimeMillis();
