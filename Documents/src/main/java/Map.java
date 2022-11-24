@@ -65,7 +65,7 @@ public class Map{
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
     int startX = 4, startY = 4;
-    int endX = 56, endY = 36;
+    int endX = 56, endY = 35; 
     int endHeight = 5;
     int crumbsCollect = 0;
 
@@ -91,12 +91,13 @@ public class Map{
      * creates player & generates intial objects
      */
 
-    public Map(){
-        try{
+    public Map() {
+        try {
             map = ImageIO.read(new File("src/main/resources/map.png"));
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        
         player = new Mouse(startX, startY, this);
         addCharacter(player);
         generateCrumbs();
@@ -135,7 +136,7 @@ public class Map{
         MouseTrap trap2 = new MouseTrap(38, 34);
         addItem(trap2);
 
-        MouseTrap trap3 = new MouseTrap(55,5);
+        MouseTrap trap3 = new MouseTrap(55, 5);
         addItem(trap3);
     }
 
@@ -144,11 +145,11 @@ public class Map{
         return walls[y][x];
     }
 
-     /**
-      * This method is used to spawn/despawn cheese after a given time
-      *
-      * @param cheeseDespawn - used to restart timer if item is collected
-      */
+    /**
+     * This method is used to spawn/despawn cheese after a given time
+     *
+     * @param cheeseDespawn - used to restart timer if item is collected
+     */
 
     public void cheeseExist(boolean cheeseCollected) {
         if (cheeseCollected) { // if cheese is collected
@@ -172,20 +173,20 @@ public class Map{
         }
     }
 
-
     /**
      * Method is used to determine whether a tick or '1000ms' has passed
+     * 
      * @return true or false depending whether 1000ms has passed
      */
-    private boolean tick(){
+    private boolean tick() {
         long time = System.currentTimeMillis();
-        if (time >= tickTime + 1000){
+        if (time >= tickTime + 1000) {
             tickTime = System.currentTimeMillis();
             return true;
         }
         return false;
     }
-    
+
     // Note: not on UML Diagram
     public ArrayList<Position> getEnd() {
         return end;
@@ -253,29 +254,27 @@ public class Map{
      */
     public void drawEntities(Graphics g) {
 
-        g.drawImage(map, 0,0, null);
-        
+        g.drawImage(map, 0, 0, null);
+
         tt.displayTime(g);
         player.getMouseScore().displayScore(g);
 
         cheeseExist(false);
 
-        player.move();
+        
 
         if (tick()){
+            player.move();
             for (int i = 1; i < characters.size(); i++) {
                 Cat cat = (Cat)characters.get(i);
-                cat.startMove(player.getPos());
+                cat.catchMouse(player.getPos());
             }
         }
 
-        for (int i = 0; i < objects.size(); i++){
+        for (int i = 0; i < objects.size(); i++) {
             objects.get(i).draw(g);
         }
 
-       
-
     }
-   
-}
 
+}

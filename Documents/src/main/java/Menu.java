@@ -1,3 +1,5 @@
+//package main.java;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,7 +17,8 @@ import java.awt.Point;
 public class Menu extends MouseAdapter {
 
     String font = "DialogInput";
-
+    Map map;
+    Game game;
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 150, 300, 50);
     private boolean pHighlight = false; // true if the mouse hovered over the Play button
 
@@ -131,9 +134,15 @@ public class Menu extends MouseAdapter {
         Point p = e.getPoint();
 
         if (Game.State == Game.STATE.MENU || Game.State == Game.STATE.WIN || Game.State == Game.STATE.LOSE) {
-            if (playButton.contains(p))
-                Game.State = Game.STATE.GAME;
+            if (playButton.contains(p)) {
+                
+                if (Game.State == Game.STATE.WIN || Game.State == Game.STATE.LOSE) {
+                    Game game = new Game();
+                    game.start();
+                }
 
+                Game.State = Game.STATE.GAME;
+            }
             else if (quitButton.contains(p))
                 System.exit(0);
 

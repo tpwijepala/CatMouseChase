@@ -28,8 +28,4 @@ public class Crumb extends StaticEntity{
         }
     }
 
-
-    public int getPoints() {
-        return points;
-    }
 }

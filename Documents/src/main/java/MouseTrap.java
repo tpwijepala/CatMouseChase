@@ -26,8 +26,4 @@ public class MouseTrap extends StaticEntity {
             e.printStackTrace();
         }
     }
-
-    public int getPoints() {
-        return points;
-    }
 }
