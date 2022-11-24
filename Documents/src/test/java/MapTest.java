@@ -31,7 +31,18 @@ public class MapTest {
     }
 
     @Test
-    public void testCheese(){}
+    public void testNaturalCheeseGen(){
+        long timeSpawn = System.currentTimeMillis();
+        map.cheeseExist(false);
+        while(!map.cheeseExists) {map.cheeseExist(false);};
+        timeSpawn = System.currentTimeMillis() - timeSpawn;
+        long timeDespawn = System.currentTimeMillis();
+        while(map.cheeseExists) {map.cheeseExist(false);};
+        timeDespawn = System.currentTimeMillis() - timeDespawn;
+        
+        assertTrue(timeSpawn >= 5000);
+        assertTrue(timeDespawn >= 12000);
+    }
 
     @Test
     public void testTick(){
