@@ -1,17 +1,14 @@
 
 public class MovingEntity extends Entity{
-
-    public MovingEntity(int x, int y) {
+    Map map;
+    public MovingEntity(int x, int y, Map m) {
         super(x, y);
+        map = m;
     }
 
     public void move(Position newPos) {
-        Map map = new Map();
-        
         if (checkValidMove(newPos)) {
-            map.moveCharacter(this.getPos(), newPos);
             this.setPos(newPos.getX(), newPos.getY());
-
         }
     }
 
@@ -23,7 +20,7 @@ public class MovingEntity extends Entity{
             return false;
         }
 
-        else if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
+        else if (map.isWall(newPos.getX(), newPos.getY()) == 1) {
             return false;
         }
 

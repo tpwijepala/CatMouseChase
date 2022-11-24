@@ -2,7 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class CheeseTest {
-    Cheese testCheese = new Cheese(5, 10);
+    Map map = new Map();
+    Cheese testCheese = new Cheese(5, 10, map);
 
     /**
      * Test that cheese is being generated on the screen.

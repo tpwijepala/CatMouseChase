@@ -1,7 +1,7 @@
+//package main.java;
 
+// import java.Map;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import javax.swing.JFrame;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
@@ -19,16 +19,20 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1450;
     public static final int HEIGHT = 1025;
     public static final int SCALE = 1;
-    public final String TITLE = "CAT AND MOUSE CHASE";
+    public final String TITLE = "PROJECT TEST";
 
     private boolean isPlaying = false;
+    private boolean programRunning = true;
     private Thread thread;
 
     // private BufferedImage image = new BufferedImage(WIDTH, HEIGHT,
     // BufferedImage.TYPE_INT_RGB);
 
     private Menu menu;
-    Map map = new Map();
+    Map map;
+    GameTimer gametimer;
+    Mouse mouse;
+    Score score;
 
     public enum STATE {
         MENU,
@@ -47,8 +51,8 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("WELCOME TO: CAT AND MOUSE CHASE", this);
-
+        new Window("276 Project", this);
+        map = new Map();
         this.addKeyListener(new UserInput(map.getPlayer()));
 
         menu = new Menu();
@@ -94,20 +98,22 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
 
         drawBackground(g);
+
         if (State == STATE.MENU) {
             menu.draw(g);
-
         }
         if (State == STATE.GAME) {
+            isPlaying = true;
             map.drawEntities(g);
-        }
-        if (State == STATE.WIN) {
-            menu.win(g);
+
         }
         if (State == STATE.LOSE) {
+            isPlaying = false;
+            // restart();
             menu.lose(g);
         }
         if (State == STATE.WIN) {
+            // restart();
             menu.win(g);
         }
         g.dispose();
@@ -121,6 +127,17 @@ public class Game extends Canvas implements Runnable {
         // black background
         g.setColor(Color.blue);
         g.fillRect(0, 0, 1450, 1025);
+
+    }
+
+    public void restart() {
+
+        map = new Map();
+        mouse = new Mouse(map.startX, map.startY, map);
+        //System.out.println(mouse.getMouseScore());
+        this.addKeyListener(new UserInput(map.getPlayer()));
+        score = new Score();
+        //map.generateCats();
 
     }
 
@@ -143,31 +160,40 @@ public class Game extends Canvas implements Runnable {
         double delta = 0;
         long timer = System.currentTimeMillis();
         int frames = 0;
-        while (isPlaying) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            if (delta >= 1) {
-
-                delta--;
+        do {
+            if (State == STATE.LOSE || State == STATE.WIN) {
+                restart();
                 draw();
-                frames++;
+            }
+            while (isPlaying) {
+
+                long now = System.nanoTime();
+                delta += (now - lastTime) / ns;
+                lastTime = now;
+                if (delta >= 1) {
+
+                    delta--;
+                    draw();
+                    frames++;
+                }
+
+                if (System.currentTimeMillis() - timer > 1000) {
+                    timer += 1000;
+                    // System.out.println("FPS: " + frames);
+                    frames = 0;
+                }
             }
 
-            if (System.currentTimeMillis() - timer > 1000) {
-                timer += 1000;
-                frames = 0;
-            }
-        }
-
+        } while (programRunning);
         stop();
+
     }
 
-    /*
-     * Main method, start of the game
-     */
+    /**
+    * Main method, start of the game
+    */
     public static void main(String[] args) {
-        System.out.println("Game loading...");
+
         Game game = new Game();
         game.start();
 
