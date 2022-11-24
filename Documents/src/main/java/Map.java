@@ -265,7 +265,7 @@ public class Map{
         if (tick()){
             for (int i = 1; i < characters.size(); i++) {
                 Cat cat = (Cat)characters.get(i);
-                cat.startMove(player.getPos());
+                cat.catchMouse(player.getPos());
             }
         }
 
