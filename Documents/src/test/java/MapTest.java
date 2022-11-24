@@ -45,6 +45,19 @@ public class MapTest {
     }
 
     @Test
+    public void testCheesePickUp(){
+        while(!map.cheeseExists) {map.cheeseExist(false);};
+        map.cheeseExist(true);
+        long timeSpawn = System.currentTimeMillis();
+        assertTrue(map.cheeseExists == false);
+        while(!map.cheeseExists) {map.cheeseExist(false);};
+        timeSpawn = System.currentTimeMillis() - timeSpawn;
+
+        assertTrue(timeSpawn >= 5000);
+        
+    }
+
+    @Test
     public void testTick(){
         while (!map.tick());
         long time = System.currentTimeMillis();
