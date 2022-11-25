@@ -45,7 +45,7 @@ public class Mouse extends MovingEntity {
         }
     }
 
-    private void collectItem() {
+    public void collectItem() {
         StaticEntity item = map.getItem(getPos());
         if (item != null) {
             if (item instanceof Cheese)

@@ -92,19 +92,12 @@ public class MouseTest {
 
     @Test
     public void collectCheese() {
-        Cheese c = new Cheese(1, 1, new Map());
-        c.pos.setX(1);
-        c.pos.setY(1);
+        Cheese c = new Cheese(1, 1, map);
         map.addItem(c);
-
-        map.player.pos = pos;
-        System.out.println(map.player.getMouseScore().getScore());
-        /*
+        map.player.pos = c.getPos();
         map.player.collectItem();
-        System.out.println(map.player.getMouseScore().getScore());
         // check score value
         assertTrue(Integer.parseInt(map.player.getMouseScore().getScore()) == 2);
-        */
         // check game state
         assertTrue(Game.State == Game.STATE.GAME);
     }
