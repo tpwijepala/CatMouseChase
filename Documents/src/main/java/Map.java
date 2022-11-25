@@ -142,6 +142,7 @@ public class Map {
         generateCrumbs();
         generateCats();
         generateMouseTraps();
+        startTime = System.currentTimeMillis();
 
         end = new ArrayList<Position>();
         for (int i = 0; i < endHeight; i++) {
@@ -204,6 +205,7 @@ public class Map {
             c = new Cheese(0, 0, this);
             addItem(c);
             cheeseExists = true;
+            startTime = System.currentTimeMillis();
         }
 
         else if (cheeseExists && timer >= 12000){
@@ -219,7 +221,7 @@ public class Map {
      * Method is used to determine whether a tick or '1000ms' has passed
      * @return true or false depending whether 1000ms has passed
      */
-    private boolean tick(){
+    public boolean tick() {
         long time = System.currentTimeMillis();
         if (time >= tickTime + 1000){
             tickTime = System.currentTimeMillis();
