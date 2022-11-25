@@ -134,10 +134,10 @@ public class Game extends Canvas implements Runnable {
 
         map = new Map();
         mouse = new Mouse(map.startX, map.startY, map);
-        //System.out.println(mouse.getMouseScore());
+        // System.out.println(mouse.getMouseScore());
         this.addKeyListener(new UserInput(map.getPlayer()));
         score = new Score();
-        //map.generateCats();
+        // map.generateCats();
 
     }
 
@@ -159,7 +159,7 @@ public class Game extends Canvas implements Runnable {
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
-        int frames = 0;
+
         do {
             if (State == STATE.LOSE || State == STATE.WIN) {
                 restart();
@@ -174,13 +174,12 @@ public class Game extends Canvas implements Runnable {
 
                     delta--;
                     draw();
-                    frames++;
+
                 }
 
                 if (System.currentTimeMillis() - timer > 1000) {
                     timer += 1000;
-                    // System.out.println("FPS: " + frames);
-                    frames = 0;
+
                 }
             }
 
@@ -190,8 +189,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-    * Main method, start of the game
-    */
+     * Main method, start of the game
+     */
     public static void main(String[] args) {
 
         Game game = new Game();
