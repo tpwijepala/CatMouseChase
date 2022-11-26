@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
  */
 class UserInput extends KeyAdapter {
     Mouse player;
-    Map gameMap = new Map();
+    //Map gameMap = new Map();
 
     /*
      * Sets the userinput to the player
