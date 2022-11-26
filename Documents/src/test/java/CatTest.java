@@ -96,13 +96,30 @@ public class CatTest {
 
     @Test
     public void CatMoveToPreviousPosition() {
-        //Mouse testMouse = new Mouse(14, 34, testMap);
+        //Put the mouse on the other side of a wall relative to the cat
+        Mouse testMouse = new Mouse(14, 34, testMap);
+        Position mouseNewPos = new Position(14, 33);
+        
+        testMouse.move(mouseNewPos);
+        testCat.catchMouse(testMouse.getPos());
+
+        mouseNewPos = new Position(14, 34);
+        testMouse.move(mouseNewPos);
+        testCat.catchMouse(testMouse.getPos());
+
+        assertFalse(testCat.getPos().getX() == 12);
+        assertFalse(testCat.getPos().getY() == 34);
+        //assertTrue(Game.State != Game.STATE.LOSE);  //returns false
 
     }
 
     @Test
     public void CatInNextCell() {
-        //Mouse testMouse = new Mouse(14, 34, testMap);
+        Cat testCat2 = new Cat(11, 34, testMap);
+        Position testCatNewPos = new Position(11, 34);
+
+        //assertFalse(testCat.checkValidMove(testCatNewPos)); //fix this
+        
     }
     
 
