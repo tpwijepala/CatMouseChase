@@ -49,7 +49,8 @@ class Cat extends MovingEntity {
         HashSet<Position> visitedPos = new HashSet<Position>();
         PositionStruct temp = new PositionStruct();
 
-        //If the move that the cat takes collides with mouse, end game
+       
+        //If the mouse moved on top of the cat first, end game
         if (getPos().getX() == mousePosition.getX() && getPos().getY() == mousePosition.getY()) {
             Game.State = Game.STATE.LOSE;
             return;
@@ -64,7 +65,10 @@ class Cat extends MovingEntity {
             int curPosValue;
             PositionStruct curPos = possibleMoves.remove(0);
 
-            if (visitedPos.contains(curPos.pos)) { continue; }
+            if (visitedPos.contains(curPos.pos)) { 
+                System.out.println("Previously occupied cell detected. X = " + curPos.pos.getX() + " Y = " + curPos.pos.getY());
+                continue; 
+            }
 
             visitedPos.add(curPos.pos);
 
@@ -91,6 +95,12 @@ class Cat extends MovingEntity {
         }
 
         move(bestMove.pos);
+
+        //If the move that the cat takes collides with mouse, end game
+        if (bestMove.pos.getX() == mousePosition.getX() && bestMove.pos.getY() == mousePosition.getY()) {
+            Game.State = Game.STATE.LOSE;
+            return;
+        }
 
         
     }
@@ -145,7 +155,7 @@ class Cat extends MovingEntity {
     //or contains a cat
     public boolean checkValidMove(Position newPos) {
 
-        if (newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 57 || newPos.getY() > 41) {
+        if (newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 57 || newPos.getY() > 40) {
             return false;
         }
 

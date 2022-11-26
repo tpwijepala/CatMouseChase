@@ -25,9 +25,6 @@ public class MovingEntity extends Entity{
             return false;
         }
 
-        //  TO-DO:
-        //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
-
         return true;
     }
 }
