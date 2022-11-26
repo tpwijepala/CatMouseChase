@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 public class MapTest {
     Map map;
@@ -84,5 +86,23 @@ public class MapTest {
         map.addCharacter(new Cat(0, 5, map));
         assertTrue(map.getCharacter(new Position(0, 5)) != null);
         assertTrue(map.getPlayer() == map.getCharacter(new Position(4,4)));
+    }
+
+    @Test
+    public void testDraw(){
+        Game game = new Game();
+        game.start();
+        Game.State = Game.STATE.GAME;
+
+        BufferStrategy bs = game.getBufferStrategy();
+        if (bs == null) {
+            game.createBufferStrategy(3);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+        map.drawEntities(g);
+
+        long time = System.currentTimeMillis();
+        while (System.currentTimeMillis()-time > 5000);
     }
 }
