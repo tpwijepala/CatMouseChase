@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
+import java.awt.Component;
 
 /*
  * This class encapsulates the Menu UI for the game
@@ -19,13 +20,19 @@ public class Menu extends MouseAdapter {
     String font = "DialogInput";
     Map map;
     Game game;
-    public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 150, 300, 50);
+    int playY = 150;
+    int helpY = 250;
+    int quitY = 350;
+    int buttonWidth = 300;
+    int heightWidth = 50;
+
+    public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, playY, buttonWidth, heightWidth);
     private boolean pHighlight = false; // true if the mouse hovered over the Play button
 
-    public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 250, 300, 50);
+    public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, helpY, buttonWidth, heightWidth);
     private boolean hHighlight = false;
 
-    public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, 350, 300, 50);
+    public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, quitY, buttonWidth, heightWidth);
     private boolean qHighlight = false;
 
     /*

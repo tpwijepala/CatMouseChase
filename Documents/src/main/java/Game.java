@@ -57,7 +57,6 @@ public class Game extends Canvas implements Runnable {
 
         menu = new Menu();
         this.addMouseListener(menu);
-        this.addMouseListener(menu);
 
     }
 
