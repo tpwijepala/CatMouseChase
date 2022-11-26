@@ -21,9 +21,9 @@ public class Game extends Canvas implements Runnable {
     public static final int SCALE = 1;
     public final String TITLE = "PROJECT TEST";
 
-    private boolean isPlaying = false;
+    public boolean isPlaying = false;
     private boolean programRunning = true;
-    private Thread thread;
+    public Thread thread;
 
     // private BufferedImage image = new BufferedImage(WIDTH, HEIGHT,
     // BufferedImage.TYPE_INT_RGB);
@@ -56,7 +56,6 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new UserInput(map.getPlayer()));
 
         menu = new Menu();
-        this.addMouseListener(menu);
         this.addMouseListener(menu);
 
     }
@@ -109,11 +108,11 @@ public class Game extends Canvas implements Runnable {
         }
         if (State == STATE.LOSE) {
             isPlaying = false;
-            // restart();
+
             menu.lose(g);
         }
         if (State == STATE.WIN) {
-            // restart();
+
             menu.win(g);
         }
         g.dispose();
@@ -134,10 +133,8 @@ public class Game extends Canvas implements Runnable {
 
         map = new Map();
         mouse = new Mouse(map.startX, map.startY, map);
-        // System.out.println(mouse.getMouseScore());
         this.addKeyListener(new UserInput(map.getPlayer()));
-        score = new Score();
-        // map.generateCats();
+        // score = new Score();
 
     }
 
