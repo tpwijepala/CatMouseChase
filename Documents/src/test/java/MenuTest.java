@@ -24,12 +24,7 @@ public class MenuTest {
         instance = new Game();
         menu = new Menu();
         Game.State = Game.STATE.MENU;
-        testRobot = null;
-        try {
-            testRobot = new Robot();
-        } catch (Exception failed) {
-            System.err.println("Failed instantiating Robot: " + failed);
-        }
+
     }
 
     /**
@@ -68,20 +63,19 @@ public class MenuTest {
         assertTrue(Game.State == Game.STATE.LOSE);
     }
 
-    /*
-     * @Test
-     * public void clickQuit() {
-     * int buttonY = menu.quitY;
-     * point = new Point(buttonX, buttonY);
-     * time = System.currentTimeMillis();
-     * 
-     * SwingUtilities.convertPointToScreen(point, instance);
-     * click = new MouseEvent(instance, MouseEvent.MOUSE_CLICKED, time, 0, buttonX,
-     * buttonY, point.x, point.y, 1,
-     * false,
-     * MouseEvent.BUTTON1);
-     * 
-     * instance.dispatchEvent(click);
-     * }
-     */
+    @Test
+    public void clickQuit() {
+        int buttonY = menu.quitY;
+        point = new Point(buttonX, buttonY);
+        time = System.currentTimeMillis();
+
+        SwingUtilities.convertPointToScreen(point, instance);
+        click = new MouseEvent(instance, MouseEvent.MOUSE_CLICKED, time, 0, buttonX,
+                buttonY, point.x, point.y, 1,
+                false,
+                MouseEvent.BUTTON1);
+        // instance.dispatchEvent(click);
+        // assertThat().isEqualTo(0);
+    }
+
 }
