@@ -134,7 +134,7 @@ public class Game extends Canvas implements Runnable {
         map = new Map();
         mouse = new Mouse(map.startX, map.startY, map);
         this.addKeyListener(new UserInput(map.getPlayer()));
-        this.addMouseListener(menu);
+        // this.addMouseListener(menu);
         // score = new Score();
 
     }
