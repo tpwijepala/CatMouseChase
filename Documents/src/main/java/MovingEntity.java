@@ -1,6 +1,7 @@
 
 public class MovingEntity extends Entity{
     Map map;
+    
     public MovingEntity(int x, int y, Map m) {
         super(x, y);
         map = m;

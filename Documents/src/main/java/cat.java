@@ -141,10 +141,10 @@ class Cat extends MovingEntity {
         return rating;
     }
 
-    /*
     //Check if next cell is outside map bounds, contains a barrier,
     //or contains a cat
     public boolean checkValidMove(Position newPos) {
+        System.out.println("INSIDE CAT CHECKVALIDMOVE");
         if (newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 57 || newPos.getY() > 41) {
             return false;
         }
@@ -153,9 +153,11 @@ class Cat extends MovingEntity {
             return false;
         }
 
-        else if ()
+        else if (map.getCharacter(newPos) instanceof Cat) {
+            return false;
+        }
 
         return true;
     }
-    */
+
 } 

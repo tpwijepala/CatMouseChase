@@ -304,8 +304,10 @@ public class Map {
 
         cheeseExist(false);
 
+        player.move();
+        
         if (tick()) {
-            player.move();
+            
             for (int i = 1; i < characters.size(); i++) {
                 Cat cat = (Cat) characters.get(i);
                 cat.catchMouse(player.getPos());
