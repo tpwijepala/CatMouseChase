@@ -1,8 +1,9 @@
 //package main.java;
 
-import java.awt.Color;import import ava.aw
-
-import ja
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -146,7 +147,7 @@ public class Menu extends MouseAdapter {
                 System.exit(0);
 
             else if (helpButton.contains(p))
-                Game.State = Game.STATE.LOSE;
+                Game.State = Game.STATE.WIN;
         }
 
     }

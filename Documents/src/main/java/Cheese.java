@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.lang.Math;
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -9,9 +8,7 @@ import java.io.IOException;
  * @version 1.0
  */
 public class Cheese extends StaticEntity {
-
-    final private int points = 2; // Placeholder value
-    Position pos;
+    Map map;
 
     /**
      * Instantiates this Cheese object and draws its image
@@ -20,17 +17,11 @@ public class Cheese extends StaticEntity {
      * @param x Row coordinate on map
      * @param y Column coordinate on map
      */
-
     public Cheese(int x, int y, Map m) {
         super(x, y);
         map = m;
         this.pos = generatePosition();
         points = 2;
-    }
-
-    public Cheese(int x, int y) {
-        super(x, y);
-        this.pos = generatePosition();
 
         try {
             picture = ImageIO.read(new File("src/main/resources/cheese.png"));
@@ -38,11 +29,6 @@ public class Cheese extends StaticEntity {
             e.printStackTrace();
         }
 
-    }
-
-    // Returns the number of points received for collecting cheese
-    public int getPoints() {
-        return points;
     }
 
     /**

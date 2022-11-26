@@ -60,7 +60,7 @@ public class MenuTest {
 
         instance.dispatchEvent(click);
 
-        assertTrue(Game.State == Game.STATE.LOSE);
+        assertTrue(Game.State == Game.STATE.WIN);
     }
 
     @Test

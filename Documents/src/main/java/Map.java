@@ -147,17 +147,18 @@ public class Map {
         ArrayList<Entity> objects = new ArrayList<Entity>();
 
         int startX = 4, startY = 4;
-        int endX = 56;
-        int[] endY = { 35, 36, 37, 38, 39 }; // This marks the finish line rather than a finish cell
-        static int crumbsCollect = 0;
+        int endX = 56, endY = 35;
+        int endHeight = 5;
+        int crumbsCollect = 0;
 
         final static int CELLWIDTH = 25;
 
-        boolean cheeseExist = false;
+        boolean cheeseExists = false;
         Cheese c;
         long startTime;
         long timer;
-        long tickTime = System.currentTimeMillis();
+        long tickTime1 = System.currentTimeMillis();
+        long tickTime2 = System.currentTimeMillis();
         Mouse player;
 
         private BufferedImage map;
@@ -178,14 +179,12 @@ public class Map {
                 } catch (IOException e) {
                         e.printStackTrace();
                 }
-                for (int i = 0; i < endY.length; i++) {
-                        end[i] = new Position(endX, endY[i]);
-                }
                 player = new Mouse(startX, startY, this);
                 addCharacter(player);
                 generateCrumbs();
                 generateCats();
                 generateMouseTraps();
+                startTime = System.currentTimeMillis();
 
                 end = new ArrayList<Position>();
                 for (int i = 0; i < endHeight; i++) {
@@ -195,17 +194,10 @@ public class Map {
 
         private void generateCrumbs() {
                 // 41 down, 58 across
-                Crumb c1 = new Crumb(10, 12);
-                addItem(c1);
-
-                Crumb c2 = new Crumb(25, 12);
-                addItem(c2);
-
-                Crumb c3 = new Crumb(10, 20);
-                addItem(c3);
-
-                Crumb c4 = new Crumb(22, 18);
-                addItem(c4);
+                addItem(new Crumb(10, 12));
+                addItem(new Crumb(25, 12));
+                addItem(new Crumb(10, 20));
+                addItem(new Crumb(22, 18));
         }
 
         private void generateCats() {
@@ -233,7 +225,7 @@ public class Map {
                 addItem(trap3);
         }
 
-        public static int isWall(int x, int y) {
+        public int isWall(int x, int y) {
                 return walls[y][x];
         }
 
@@ -246,28 +238,24 @@ public class Map {
         public void cheeseExist(boolean cheeseCollected) {
                 if (cheeseCollected) { // if cheese is collected
                         startTime = System.currentTimeMillis();
-                        cheeseExist = false;
+                        cheeseExists = false;
                 }
                 timer = System.currentTimeMillis() - startTime;
 
-                if (!cheeseExist && timer >= 5000) {
+                if (!cheeseExists && timer >= 5000) {
                         // spawn after its been despawned for 5s
                         c = new Cheese(0, 0, this);
                         addItem(c);
-                        cheeseExist = true;
-                }
-
-                else if (cheeseExist && timer >= 12000) {
-                        // if cheese uncollected for 12s
-                        this.removeItem(c);
-                        cheeseExist = false;
+                        cheeseExists = true;
                         startTime = System.currentTimeMillis();
                 }
-        }
 
-        // Note: not on UML Diagram
-        public Position[] getEnd() {
-                return end;
+                else if (cheeseExists && timer >= 12000) {
+                        // if cheese uncollected for 12s
+                        this.removeItem(c);
+                        cheeseExists = false;
+                        startTime = System.currentTimeMillis();
+                }
         }
 
         /**
@@ -275,35 +263,36 @@ public class Map {
          * 
          * @return true or false depending whether 1000ms has passed
          */
-        private boolean tick() {
+        public boolean tick() {
                 long time = System.currentTimeMillis();
-                if (time >= tickTime + 1000) {
-                        tickTime = System.currentTimeMillis();
+                if (time >= tickTime1 + 1000) {
+                        tickTime1 = System.currentTimeMillis();
                         return true;
                 }
                 return false;
+        }
+
+        // Use to slow down the cats
+        public boolean catTick() {
+                long time = System.currentTimeMillis();
+                if (time >= tickTime2 + 2000) {
+                        tickTime2 = System.currentTimeMillis();
+                        return true;
+                }
+                return false;
+        }
+
+        // Note: not on UML Diagram
+        public ArrayList<Position> getEnd() {
+                return end;
         }
 
         public Mouse getPlayer() {
                 return player;
         }
 
-        public static ArrayList<Cat> getCats() {
-                return mapCats;
-        }
-
         public ArrayList<Entity> getObjectsArray() {
                 return objects;
-        }
-
-        // Note: not on UML Diagram
-        public void moveCharacter(Position oldPos, Position newPos) {
-                // if (tick()) {
-                MovingEntity temp = characters[oldPos.x][oldPos.y];
-                characters[oldPos.x][oldPos.y] = null;
-                characters[newPos.x][newPos.y] = temp;
-                // }
-
         }
 
         // Note: not on UML Diagram
@@ -326,7 +315,7 @@ public class Map {
         }
 
         public void addItem(StaticEntity item) {
-                items[item.getPos().getX()][item.getPos().getY()] = item;
+                items.add(item);
                 objects.add(item);
         }
 
@@ -336,71 +325,53 @@ public class Map {
         }
 
         public void removeItem(StaticEntity item) {
-                // System.out.println("BEFORE REMOVE: " +
-                // items[item.getPos().getX()][item.getPos().getY()]);
-
-                // Remove from items array:
-                items[item.getPos().getX()][item.getPos().getY()] = null;
-
-                // System.out.println("AFTER REMOVE: " +
-                // items[item.getPos().getX()][item.getPos().getY()]);
                 // Remove from objects ArrayList:
+                Position pos = item.getPos();
+
                 for (int i = 1; i < objects.size(); i++) {
-                        if (objects.get(i).getPos().getX() == item.getPos().getX()
-                                        && objects.get(i).getPos().getY() == item.getPos().getY()) {
+                        if (objects.get(i).pos.x == pos.x && objects.get(i).pos.y == pos.y) {
                                 objects.remove(i);
+                        }
+                }
+                // Remove from items array:
+                for (int i = 0; i < items.size(); i++) {
+                        if (items.get(i).pos.x == pos.x && items.get(i).pos.y == pos.y) {
+                                items.remove(i);
                         }
                 }
         }
 
-    /**
-     * This method is used to draw map and objects
-     * also used to generate & move the objects
-     * 
-     * @param g - the canvas that gets drawn
-     */
-    public void drawEntities(Graphics g) {
+        /**
+         * This method is used to draw map and objects
+         * also used to generate & move the objects
+         * 
+         * @param g - the canvas that gets drawn
+         */
+        public void drawEntities(Graphics g) {
 
-        g.drawImage(map, 0, 0, null);
+                g.drawImage(map, 0, 0, null);
 
-        tt.displayTime(g);
-        player.getMouseScore().displayScore(g);
+                tt.displayTime(g);
+                player.getMouseScore().displayScore(g);
 
-        cheeseExist(false);
+                cheeseExist(false);
 
-        player.move(player.newPos);
-        //player.collectItem();
+                if (tick()) {
+                        player.move();
+                }
 
-        if (tick()){
-            for (int i = 0; i < 3; i++) {
-                mapCats.get(i).catchMouse(player.getPos());
-            }
+                if (catTick()) {
+
+                        for (int i = 1; i < characters.size(); i++) {
+                                Cat cat = (Cat) characters.get(i);
+                                cat.catchMouse(player.getPos());
+                        }
+                }
+
+                for (int i = 0; i < objects.size(); i++) {
+                        objects.get(i).draw(g);
+                }
+
         }
 
-        for (int i = 0; i < objects.size(); i++) {
-            objects.get(i).draw(g);
-      
-
-        
-                
-
-                        
-                                
-                        
-                
-                
-        
-
-        
-                
-                        
-                                
-                        
-                
-                
-        
-
-        
-                
-                
-        
+}
