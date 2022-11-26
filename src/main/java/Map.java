@@ -116,7 +116,8 @@ public class Map {
     Cheese c;
     long startTime;
     long timer;
-    long tickTime = System.currentTimeMillis();
+    long tickTime1 = System.currentTimeMillis();
+    long tickTime2 = System.currentTimeMillis();
     Mouse player;
 
     private BufferedImage map;
@@ -223,13 +224,23 @@ public class Map {
      */
     public boolean tick() {
         long time = System.currentTimeMillis();
-        if (time >= tickTime + 1000){
-            tickTime = System.currentTimeMillis();
+        if (time >= tickTime1 + 1000){
+            tickTime1 = System.currentTimeMillis();
             return true;
         }
         return false;
     }
     
+    //Use to slow down the cats
+    public boolean catTick() {
+        long time = System.currentTimeMillis();
+        if (time >= tickTime2 + 2000){
+            tickTime2 = System.currentTimeMillis();
+            return true;
+        }
+        return false;
+    }
+
     // Note: not on UML Diagram
     public ArrayList<Position> getEnd() {
         return end;
@@ -304,9 +315,9 @@ public class Map {
 
         cheeseExist(false);
 
-        player.move();
+        if (tick()) {player.move();}
         
-        if (tick()) {
+        if (catTick()) {
             
             for (int i = 1; i < characters.size(); i++) {
                 Cat cat = (Cat) characters.get(i);
