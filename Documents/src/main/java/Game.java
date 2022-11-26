@@ -1,12 +1,14 @@
+<<<<<<<<<Temporary merge branch 1
 //package main.java;
+=========>>>>>>>>>Temporary merge branch 2
 
-// import java.Map;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
+<<<<<<<<<Temporary merge branch 1
 /*
  * Class encapsulates all of Game
  * <p>
@@ -14,6 +16,10 @@ import java.awt.Color;
  * 
  * @author Ethan
  */
+=========
+
+>>>>>>>>>Temporary merge branch 2
+
 public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 1450;
@@ -51,8 +57,8 @@ public class Game extends Canvas implements Runnable {
         this.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         this.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        new Window("276 Project", this);
-        map = new Map();
+        new Window("WELCOME TO: CAT AND MOUSE CHASE", this);
+
         this.addKeyListener(new UserInput(map.getPlayer()));
 
         menu = new Menu();

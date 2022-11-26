@@ -5,7 +5,11 @@ public class Entity {
     Map map;
     Image picture;
 
-    public Entity(int x, int y){
+    /**
+     * @param x X-Coordinate
+     * @param y Y-Coordinate
+     */
+    public Entity(int x, int y) {
         pos = new Position(x, y);
     }
 
@@ -22,10 +26,14 @@ public class Entity {
         pos.setY(newY);
     }
 
+    /**
+     * Draws this entity onto the game's window
+     * 
+     * @param g Graphics object handling the game's UI
+     * @see Graphics
+     */
     public void draw(Graphics g) {
-        g.drawImage(picture, pos.getX()*25, pos.getY()*25, null);
+        g.drawImage(picture, pos.getX() * 25, pos.getY() * 25, null);
     }
 
 }
-
-
