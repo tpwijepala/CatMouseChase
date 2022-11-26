@@ -1,86 +1,79 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
-import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Represents a Mouse that is controlled by the player
  * @author Robert Wilson
  * @version 1.0
  */
-public class Mouse extends MovingEntity{
-
-    private Map map;
+public class Mouse extends MovingEntity {
+    // private Image picture; // mousePic can be declared const and given an initial
+    // value once a picture is found and included in files
+    // private Position mousePosition;
+    // Position pos;
+    Map map;
     private Score playerScore = new Score();
     Position newPos;
 
-    /**
-     * @param x X-Coordinate
-     * @param y Y-Coordinate
-     * @param m Map that will contain the mouse
-     */
     public Mouse(int x, int y, Map m) {
-        super(x,y);
+        super(x,y,m);
         map = m;
         newPos = pos;
-        try{
+        try {
             picture = ImageIO.read(new File("src/main/resources/mouse.png"));
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * @return Mouse's current position
-     */
     public Position getMousePosition() {
         return pos;
+    }
+
+    public void move(){
+        move(newPos);
+        collectItem();
+        checkFinish();
     }
 
     /**
      * Checks if this mouse meets the requirements to finish the game,
      * ending the game if met.
      */
-    public void checkFinish() {
-        Position[] end = map.getEnd();
-        //System.out.println("INSIDE checkFinish. X = " + getMousePosition().getX() + " Y = " + getMousePosition().getY());
-        if (getMousePosition().getX() == end[0].getX()) {
-            for (int i = 0; i < end.length; i++) {
-                if (getMousePosition().getY() == end[i].getY()) {
-                    //if (Map.crumbsCollect == 4) {
-                        //System.out.println("MOUSE WON");
-                        Game.State = Game.STATE.WIN;
-                    //}
+    private void checkFinish() {
+        ArrayList<Position> end = map.getEnd();
+        if (map.crumbsCollect >= 4) {
+            for (int i = 0; i < end.size(); i++){
+                if (getPos().getX() == end.get(i).getX() && getPos().getY() == end.get(i).getY()){
                     
+                    Game.State = Game.STATE.WIN;
                 }
             }
         }
     }
 
-    /**
-     * Checks if this mouse's position intersects an item's position.
-     * If an item is present, it is collected by this mouse,
-     * adjusting its score and removing the item from the map.
-     * If collecting the item drops this player's score below
-     * zero, the game ends.
-     * @see Score
-     */
     public void collectItem() {
-        StaticEntity item = Map.getItem(getPos());
+        StaticEntity item = map.getItem(getPos());
         if (item != null) {
-            playerScore.setScore(item.getPoints());
+            if (item instanceof Cheese)
+                map.cheeseExist(true);
+
+            if (item instanceof Crumb)
+                map.crumbsCollect++;
             
+            playerScore.setScore(item.getPoints());
+            map.removeItem(item);
+
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
             }
-
-            else {
-                map.removeItem(item);
-            }
-            
+        }
+        else{
         }
     }
+    
 
     /**
      * @return Mouse's current score
@@ -89,4 +82,7 @@ public class Mouse extends MovingEntity{
         return playerScore;
     }
 
+    public void setMouseScore() {
+        playerScore = new Score();
+    }
 }

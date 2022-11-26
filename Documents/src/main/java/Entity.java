@@ -1,9 +1,5 @@
 import java.awt.*;
 
-/**
- * @author Robert Wilson
- * @version 1.0
- */
 public class Entity {
     Position pos;
     Map map;
@@ -17,9 +13,6 @@ public class Entity {
         pos = new Position(x, y);
     }
 
-    /**
-     * @return entity's current position
-     */
     public Position getPos() {
         return pos;
     }

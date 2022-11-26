@@ -1,32 +1,15 @@
 
-/**
- * @author Robert Wilson
- * @version 1.0
- */
 public class MovingEntity extends Entity{
-
-    /**
-     * @param x X-Coordinate
-     * @param y Y-Coordinate
-     */
-    public MovingEntity(int x, int y) {
+    Map map;
+    
+    public MovingEntity(int x, int y, Map m) {
         super(x, y);
+        map = m;
     }
 
-    /**
-     * Moves this entity into a new position. If the move is valid,
-     * this entity's position is updated to its new location and its
-     * location within the map is updated.
-     * @param newPos Position this entity is moving to
-     * @see Map
-     */
     public void move(Position newPos) {
-        Map map = new Map();
-        
         if (checkValidMove(newPos)) {
-            map.moveCharacter(this.getPos(), newPos);
             this.setPos(newPos.getX(), newPos.getY());
-
         }
     }
 
@@ -40,12 +23,9 @@ public class MovingEntity extends Entity{
             return false;
         }
 
-        else if (Map.isWall(newPos.getX(), newPos.getY()) == 1) {
+        else if (map.isWall(newPos.getX(), newPos.getY()) == 1) {
             return false;
         }
-
-        //  TO-DO:
-        //    if newPos intersects a cat in characters array:  trigger catchMouse() and return false(?)
 
         return true;
     }

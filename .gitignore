@@ -2,5 +2,7 @@
 /shelf/
 /workspace.xml
 /.idea/*
+/out/*
+/Documents/target/*
 # CodeStream ignored files
 /../../CMPT_Projects\.idea/codestream.xml

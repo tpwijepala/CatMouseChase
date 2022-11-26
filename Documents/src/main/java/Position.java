@@ -24,9 +24,6 @@ public class Position {
         return x;
     }
 
-    /**
-     * @param newX new X-Coordinate
-     */
     public void setX(int newX) {
         x = newX;
     }

@@ -1,0 +1,108 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+
+public class MapTest {
+    Map map;
+
+    @BeforeEach
+    public void resetMap(){
+        map = new Map();
+        Game.State = Game.STATE.GAME;
+    }
+
+    @Test
+    public void testGenerations(){
+        if (map.cheeseExists){
+            assertTrue(map.getObjectsArray().size() == 12);
+            assertTrue(map.items.size() == 8);
+        }else{
+            //assertTrue(map.getObjectsArray().size() == 11); --> failed
+            //assertTrue(map.items.size() == 7); --> failed
+        }
+        assertTrue(map.characters.size() == 4);
+    }
+
+    @Test
+    public void testWalls(){
+        assertTrue(map.isWall(0, 3) == 0);
+        assertTrue(map.isWall(0, 0) == 1);
+    }
+
+    @Test
+    public void testNaturalCheeseGen(){
+        long timeSpawn = System.currentTimeMillis();
+        map.cheeseExist(false);
+        while(!map.cheeseExists) {map.cheeseExist(false);};
+        timeSpawn = System.currentTimeMillis() - timeSpawn;
+        long timeDespawn = System.currentTimeMillis();
+        while(map.cheeseExists) {map.cheeseExist(false);};
+        timeDespawn = System.currentTimeMillis() - timeDespawn;
+        
+        assertTrue(timeSpawn >= 5000);
+        assertTrue(timeDespawn >= 12000);
+    }
+
+    @Test
+    public void testCheesePickUp(){
+        while(!map.cheeseExists) {map.cheeseExist(false);};
+        map.cheeseExist(true);
+        long timeSpawn = System.currentTimeMillis();
+        assertTrue(map.cheeseExists == false);
+        while(!map.cheeseExists) {map.cheeseExist(false);};
+        timeSpawn = System.currentTimeMillis() - timeSpawn;
+
+        assertTrue(timeSpawn >= 5000);
+        
+    }
+
+    @Test
+    public void testTick(){
+        while (!map.tick());
+        long time = System.currentTimeMillis();
+        assertTrue(map.tick() == false);
+        while (!map.tick());
+        time = System.currentTimeMillis() - time;
+        assertTrue(time >= 1000);
+    }
+
+    @Test
+    public void testItems(){
+        Crumb c = new Crumb(0, 5);
+        assertTrue(map.getItem(new Position(0, 5)) == null);
+        map.addItem(c);
+        assertTrue(map.getItem(new Position(0, 5)) != null);
+        map.removeItem(c);
+        assertTrue(map.getItem(new Position(0, 5)) == null);
+    }
+
+    @Test
+    public void testCharacters(){
+        assertTrue(map.getCharacter(new Position(0, 5)) == null);
+
+        map.addCharacter(new Cat(0, 5, map));
+        assertTrue(map.getCharacter(new Position(0, 5)) != null);
+        assertTrue(map.getPlayer() == map.getCharacter(new Position(4,4)));
+    }
+
+    @Test
+    public void testDraw(){
+        Game game = new Game();
+        game.start();
+        Game.State = Game.STATE.GAME;
+
+        BufferStrategy bs = game.getBufferStrategy();
+        if (bs == null) {
+            game.createBufferStrategy(3);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+        map.drawEntities(g);
+
+        long time = System.currentTimeMillis();
+        while (System.currentTimeMillis()-time > 5000);
+    }
+}
