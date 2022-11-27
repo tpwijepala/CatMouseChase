@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 public class ScoreTest {
     Score testScore = new Score();
 
-    /**
-     * Test if score increments and decrements
-     * UNIT TEST
-     */
+    /*
+    * Test if score increments and decrements
+    * UNIT TEST
+    */
     @Test
     public void adjustScore() {
         testScore.setScore(1);
@@ -17,10 +17,10 @@ public class ScoreTest {
         assertEquals("0", testScore.getScore());
     }
 
-    /**
-     * Test if negative score detection works
-     * UNIT TEST
-     */
+    /*
+    * Test if negative score detection works
+    * UNIT TEST
+    */
     @Test
     public void checkNegativeScore() {
         //Set score to -1

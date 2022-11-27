@@ -14,6 +14,7 @@ public class MapTest {
         Game.State = Game.STATE.GAME;
     }
 
+    //UNIT TEST
     @Test
     public void testGenerations(){
         assertTrue(map.getObjectsArray().size() == 11);
@@ -22,12 +23,14 @@ public class MapTest {
         assertTrue(map.characters.size() == 4);
     }
 
+    //UNIT TEST
     @Test
     public void testWalls(){
         assertTrue(map.isWall(0, 3) == 0);
         assertTrue(map.isWall(0, 0) == 1);
     }
 
+    //UNIT TEST
     @Test
     public void testNaturalCheeseGen(){
         long timeSpawn = System.currentTimeMillis();
@@ -43,6 +46,7 @@ public class MapTest {
         assertTrue(timeDespawn >= 12000);
     }
 
+    //UNIT TEST
     @Test
     public void testCheesePickUp(){
         while(!map.cheeseExists) {map.cheeseExist(false);};
@@ -56,6 +60,7 @@ public class MapTest {
         
     }
 
+    //UNIT TEST
     @Test
     public void testTick(){
         while (!map.tick());
@@ -66,6 +71,7 @@ public class MapTest {
         assertTrue(time >= 1000);
     }
 
+    //UNIT TEST
     @Test
     public void testItems(){
         Crumb c = new Crumb(0, 5);
@@ -76,6 +82,7 @@ public class MapTest {
         assertTrue(map.getItem(new Position(0, 5)) == null);
     }
 
+    //UNIT TEST
     @Test
     public void testCharacters(){
         assertTrue(map.getCharacter(new Position(0, 5)) == null);

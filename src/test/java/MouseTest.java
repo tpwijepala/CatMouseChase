@@ -16,6 +16,7 @@ public class MouseTest {
         map.removeItem(new Crumb(1, 1));
     }
 
+    //UNIT TEST
     @Test
     public void checkAtFinishNotAllCrumbs() {
         map.crumbsCollect = 3;
@@ -25,6 +26,7 @@ public class MouseTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
+    //UNIT TEST
     @Test
     public  void checkAtFinishWithAllCrumbs() {
         map.crumbsCollect = 4;
@@ -34,6 +36,7 @@ public class MouseTest {
         assertTrue(Game.State == Game.STATE.WIN);
     }
 
+    //UNIT TEST
     @Test
     public void checkNotFinish() {
         map.player.newPos = new Position(map.endX, map.endY);
@@ -42,7 +45,7 @@ public class MouseTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
-
+    //UNIT TEST
     @Test
     public void noItemToCollect() {
         // make sure there is no item to collect
@@ -54,6 +57,7 @@ public class MouseTest {
         assertTrue(Integer.parseInt(map.player.getMouseScore().getScore()) == 0);
     }
 
+    //UNIT TEST
     @Test
     public void collectTrapToNotLose() {
         map.addItem(new MouseTrap(4, 4));
@@ -68,6 +72,7 @@ public class MouseTest {
         assertTrue(map.getItem(pos) == null);
     }
 
+    //UNIT TEST
     @Test
     public void collectTrapToLose() {
         map.addItem(new MouseTrap(4, 4));
@@ -79,6 +84,7 @@ public class MouseTest {
         assertTrue(Game.State == Game.STATE.LOSE);
     }
 
+    //UNIT TEST
     @Test
     public void collectCrumb() {
         map.addItem(new Crumb(4, 4));
@@ -90,6 +96,7 @@ public class MouseTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
+    //UNIT TEST
     @Test
     public void collectCheese() {
         Cheese c = new Cheese(1, 1, map);
