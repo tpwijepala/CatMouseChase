@@ -21,9 +21,9 @@ public class Crumb extends StaticEntity{
         super(x,y);
         points = 1;
 
-        try{
+        try {
             picture = ImageIO.read(new File("src/main/resources/crumbs.png"));
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

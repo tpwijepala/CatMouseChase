@@ -1,5 +1,5 @@
 
-public class MovingEntity extends Entity{
+public class MovingEntity extends Entity {
     Map map;
     
     public MovingEntity(int x, int y, Map m) {
@@ -15,6 +15,7 @@ public class MovingEntity extends Entity{
 
     /**
      * Checks if a wall is preventing movement into a new position.
+     * 
      * @param newPos Position the entity is moving to
      * @return boolean value of the move's validity
      */

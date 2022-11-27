@@ -109,7 +109,7 @@ public class Game extends Canvas implements Runnable {
             menu.lose(g);
         }
         if (State == STATE.WIN) {
-
+            isPlaying = false;
             menu.win(g);
         }
         g.dispose();
@@ -131,6 +131,7 @@ public class Game extends Canvas implements Runnable {
         map = new Map();
         mouse = new Mouse(map.startX, map.startY, map);
         this.addKeyListener(new UserInput(map.getPlayer()));
+        // this.addMouseListener(menu);
         // score = new Score();
 
     }

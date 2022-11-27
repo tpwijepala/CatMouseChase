@@ -8,7 +8,6 @@ public class CheeseTest {
     /**
      * Test that cheese is being generated on the screen.
      * UNIT TEST
-     * TODO: write unit tests for the methods called in the posAvail
      */
     @Test
     public void checkNewPositionBounds() {

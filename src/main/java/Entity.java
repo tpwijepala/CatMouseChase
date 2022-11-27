@@ -28,13 +28,12 @@ public class Entity {
 
     /**
      * Draws this entity onto the game's window
+     * 
      * @param g Graphics object handling the game's UI
      * @see Graphics
      */
     public void draw(Graphics g) {
-        g.drawImage(picture, pos.getX()*25, pos.getY()*25, null);
+        g.drawImage(picture, pos.getX() * 25, pos.getY() * 25, null);
     }
 
 }
-
-
