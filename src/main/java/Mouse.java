@@ -70,6 +70,7 @@ public class Mouse extends MovingEntity {
         return playerScore;
     }
 
+    
     public void setMouseScore() {
         playerScore = new Score();
     }

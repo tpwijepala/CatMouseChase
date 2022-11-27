@@ -65,11 +65,6 @@ class Cat extends MovingEntity {
             int curPosValue;
             PositionStruct curPos = possibleMoves.remove(0);
 
-            if (visitedPos.contains(curPos.pos)) { 
-                System.out.println("Previously occupied cell detected. X = " + curPos.pos.getX() + " Y = " + curPos.pos.getY());
-                continue; 
-            }
-
             visitedPos.add(curPos.pos);
 
             if (curPos.depth <= maxDepth){

@@ -106,29 +106,6 @@ public class CatTest {
     }
 
     @Test
-    public void CatMoveToPreviousPosition() {
-        //Put the mouse on the other side of a wall relative to the cat
-        testMouse.newPos = new Position(14, 34);
-        testMouse.move(testMouse.newPos);
-
-        testMouse.newPos = new Position(14, 33);
-        testMouse.move(testMouse.newPos);
-        
-        testCat.catchMouse(testMouse.getPos());
-        System.out.println("CAT MOVE TO PREVIOUS POSITION: Cat new X: " + testCat.getPos().getX() + " new Y: " + testCat.getPos().getY());
-        
-        testMouse.newPos = new Position(14, 34);
-        testMouse.move(testMouse.newPos);
-        testCat.catchMouse(testMouse.getPos());
-        System.out.println("CAT MOVE TO PREVIOUS POSITION: Cat new X: " + testCat.getPos().getX() + " new Y: " + testCat.getPos().getY());
-        
-        assertTrue(testCat.getPos().getX() == 12);
-        assertTrue(testCat.getPos().getY() == 34);
-        assertTrue(Game.State == Game.STATE.GAME);  
-
-    }
-
-    @Test
     public void CatInNextCell() {
         adjacentCat1.move(new Position(23, 27));
         adjacentCat2.move(new Position(24, 27));
@@ -140,16 +117,22 @@ public class CatTest {
     @Test
     public void CatAtEdgeOfMapX() {
         testCat.move(new Position(57, 36));
-
         assertFalse(testCat.checkValidMove(new Position(58, 36)));
+        assertTrue(Game.State == Game.STATE.GAME);
+
+        testCat.move(new Position(0, 4));
+        assertFalse(testCat.checkValidMove(new Position(-1, 4)));
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
     @Test
     public void CatAtEdgeOfMapY() {
         testCat.move(new Position(57, 40));
-
         assertFalse(testCat.checkValidMove(new Position(57, 41)));
+        assertTrue(Game.State == Game.STATE.GAME);
+
+        testCat.move(new Position(1, 0));
+        assertFalse(testCat.checkValidMove(new Position(1, -1)));
         assertTrue(Game.State == Game.STATE.GAME);
     }
 }
