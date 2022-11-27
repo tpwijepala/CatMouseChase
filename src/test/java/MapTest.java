@@ -68,7 +68,7 @@ public class MapTest {
         assertTrue(map.tick() == false);
         while (!map.tick());
         time = System.currentTimeMillis() - time;
-        assertTrue(time >= 1000);
+        assertTrue(time >= 250);
     }
 
     //UNIT TEST
