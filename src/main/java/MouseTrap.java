@@ -10,7 +10,6 @@ import java.io.IOException;
  */
 
 public class MouseTrap extends StaticEntity {
-
     /**
      * MouseTrap Constructuor
      * Used to initalize objects position & load img
@@ -24,7 +23,7 @@ public class MouseTrap extends StaticEntity {
         
         try{
             picture = ImageIO.read(new File("src/main/resources/trap.png"));
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

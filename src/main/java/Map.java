@@ -197,7 +197,6 @@ public class Map {
             startTime = System.currentTimeMillis();
             cheeseExists = false;
         }
-        timer = System.currentTimeMillis() - startTime;
 
         if (!cheeseExists && timer >= 5000) {
             // spawn after its been despawned for 5s

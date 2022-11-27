@@ -18,15 +18,27 @@ public class GameTest {
         game = new Game();
     }
 
+    /*
+     * Checks if the main game is running
+     */
     @Test
-    public void isRunning() {
+    public void isGameRunning() {
         game.start();
         assertTrue(game.isPlaying);
     }
 
     /*
+     * Checks if stop has succefully stopped the game loop from running
+     */
+    @Test
+    public void checkStop() {
+        game.thread = new Thread(game);
+        game.stop();
+        assertFalse(game.isPlaying);
+    }
+
+    /*
      * Check to see if restart has worked
-     * 
      */
     @Test
     public void checkRestart() {

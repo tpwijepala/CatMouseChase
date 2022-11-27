@@ -18,7 +18,7 @@ public class Mouse extends MovingEntity {
     Position newPos;
 
     public Mouse(int x, int y, Map m) {
-        super(x,y,m);
+        super(x, y, m);
         map = m;
         newPos = pos;
         try {
@@ -32,7 +32,7 @@ public class Mouse extends MovingEntity {
         return pos;
     }
 
-    public void move(){
+    public void move() {
         move(newPos);
         collectItem();
         checkFinish();
@@ -62,18 +62,16 @@ public class Mouse extends MovingEntity {
 
             if (item instanceof Crumb)
                 map.crumbsCollect++;
-            
+
             playerScore.setScore(item.getPoints());
             map.removeItem(item);
 
             if (playerScore.checkScoreBelowZero() == true) {
                 Game.State = Game.STATE.LOSE;
             }
-        }
-        else{
+        } else {
         }
     }
-    
 
     /**
      * @return Mouse's current score
