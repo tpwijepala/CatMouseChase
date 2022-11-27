@@ -183,7 +183,7 @@ public class Map {
      */
     public boolean tick() {
         long time = System.currentTimeMillis();
-        if (time >= tickTime + 1000){
+        if (time >= tickTime + 250){
             tickTime = System.currentTimeMillis();
             return true;
         }
@@ -192,7 +192,7 @@ public class Map {
 
     public boolean catTick() {
         long time = System.currentTimeMillis();
-        if (time >= catTickTime + 2000){
+        if (time >= catTickTime + 750){
             catTickTime = System.currentTimeMillis();
             return true;
         }
