@@ -25,6 +25,7 @@ public class Menu extends MouseAdapter {
     int quitY = 350;
     int buttonWidth = 300;
     int heightWidth = 50;
+    public static String message;
 
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, playY, buttonWidth, heightWidth);
     private boolean pHighlight = false; // true if the mouse hovered over the Play button
@@ -143,8 +144,10 @@ public class Menu extends MouseAdapter {
         if (Game.State == Game.STATE.MENU || Game.State == Game.STATE.WIN || Game.State == Game.STATE.LOSE) {
             if (playButton.contains(p)) {
                 Game.State = Game.STATE.GAME;
-            } else if (quitButton.contains(p))
+            } else if (quitButton.contains(p)) {
+                message = "Exiting..";
                 System.exit(0);
+            }
 
             else if (helpButton.contains(p))
                 Game.State = Game.STATE.WIN;

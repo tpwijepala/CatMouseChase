@@ -2,21 +2,27 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.Transient;
 import java.awt.Point;
-import javax.swing.JButton;
 import javax.swing.SwingUtilities;
-import java.awt.Robot;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.Rule;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+import org.junit.contrib.java.lang.system.Assertion;
 
 public class MenuTest {
     Menu menu;
     int buttonX = Game.WIDTH / 2 - 300 / 2;
-    Robot testRobot;
     MouseEvent press, release, click;
     Point point;
     long time;
     Game instance;
+
+    /*
+     * Using System Rules to catch System.Exit when it is called from
+     * https://stefanbirkner.github.io/system-rules/index.html
+     */
+    @Rule
+    public final ExpectedSystemExit exitRule = ExpectedSystemExit.none();
 
     @BeforeEach
     public void resetMenu() {
@@ -47,6 +53,9 @@ public class MenuTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
+    /*
+     * Test that help button has been clicked
+     */
     @Test
     public void clickHelp() {
         int buttonY = menu.helpY;
@@ -63,8 +72,13 @@ public class MenuTest {
         assertTrue(Game.State == Game.STATE.WIN);
     }
 
+    /*
+     * Test that checks if quit has been clicked **
+     */
     @Test
     public void clickQuit() {
+
+        exitRule.expectSystemExit();
         int buttonY = menu.quitY;
         point = new Point(buttonX, buttonY);
         time = System.currentTimeMillis();
@@ -74,8 +88,14 @@ public class MenuTest {
                 buttonY, point.x, point.y, 1,
                 false,
                 MouseEvent.BUTTON1);
+
+        exitRule.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
+                assertEquals("Exiting..", menu.message);
+            }
+        });
         // instance.dispatchEvent(click);
-        // assertThat().isEqualTo(0);
+
     }
 
 }
