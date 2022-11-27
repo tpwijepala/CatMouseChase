@@ -85,7 +85,7 @@ public class MouseTest {
         map.player.newPos = pos;
         map.player.move();
         // check score value
-        assertTrue(Integer.parseInt(map.player.getMouseScore().getScore()) == 1);
+        assertTrue(Integer.parseInt(map.player.getMouseScore().getScore()) == 1); 
         // check game state
         assertTrue(Game.State == Game.STATE.GAME);
     }

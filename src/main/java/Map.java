@@ -172,8 +172,6 @@ public class Map {
 
     private void generateMouseTraps() {
 
-        MouseTrap test = new MouseTrap(5, 5);
-        addItem(test);
         MouseTrap trap1 = new MouseTrap(23, 20);
         addItem(trap1);
 

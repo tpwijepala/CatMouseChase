@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Author: Karina Kramer
- * Version: 1.0
+ * @author Karina Kramer
+ * @version 1.0
  */
 class Cat extends MovingEntity {
     /**
@@ -128,7 +128,6 @@ class Cat extends MovingEntity {
         }
 
     }
-
     /**
      * Uses Manhattan distance to give each possible next move a
      * rating

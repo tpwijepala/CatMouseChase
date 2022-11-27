@@ -3,6 +3,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Represents a Mouse that is controlled by the player
+ * @author Robert Wilson
+ * @version 1.0
+ */
 public class Mouse extends MovingEntity {
     // private Image picture; // mousePic can be declared const and given an initial
     // value once a picture is found and included in files
@@ -33,6 +38,10 @@ public class Mouse extends MovingEntity {
         checkFinish();
     }
 
+    /**
+     * Checks if this mouse meets the requirements to finish the game,
+     * ending the game if met.
+     */
     private void checkFinish() {
         ArrayList<Position> end = map.getEnd();
         if (map.crumbsCollect >= 4) {
@@ -66,6 +75,9 @@ public class Mouse extends MovingEntity {
     }
     
 
+    /**
+     * @return Mouse's current score
+     */
     public Score getMouseScore() {
         return playerScore;
     }
