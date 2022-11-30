@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>cat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">project</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">cat.java</span></div><h1>cat.java</h1><pre class="source lang-java linenums">import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
+/**
+ * @author Karina Kramer
+ * @version 1.0
+ */
+class Cat extends MovingEntity {
+    /**
+     * Instantiates this cat's position and its image on
+     * the game map
+     * 
+     * @param x Row coordinate on map
+     * @param y Column coordinate on map
+     */
+    public Cat(int x, int y, Map m) {
+<span class="fc" id="L19">        super(x, y, m);</span>
+
+        try {
+<span class="fc" id="L22">            picture = ImageIO.read(new File(&quot;src/main/resources/cat.png&quot;));</span>
+<span class="pc" id="L23">        } catch (IOException e) {</span>
+<span class="nc" id="L24">            e.printStackTrace();</span>
+        }
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Triggers the cats on the map to begin moving towards
+     * the mouse by passing the mouse's current position into
+     * catchMouse
+     * &lt;p&gt;
+     * This method is called only when the user presses a valid
+     * input key for the first time
+     * 
+     * @param mousePos Mouse's current position after key press
+     */
+    /*
+     * public void startMove(Position mousePos) {
+     * catchMouse(mousePos);
+     * }
+     */
+
+    /**
+     * Contains all the data relevant to the current position
+     */
+<span class="fc" id="L47">    private class PositionStruct {</span>
+        public PositionStruct prevPos;
+        public Position pos;
+        public int depth;
+    }
+
+    /**
+     * Uses Breadth-First Search to move this cat to its
+     * next position that is closer to the mouse
+     * 
+     * @param mousePosition Mouse's current position on the board
+     */
+    public void catchMouse(Position mousePosition) {
+        // Acknowledgements: Thanks to Kevin Litvin for the idea and
+        // https://www.youtube.com/watch?v=KiCBXu4P-2Y for the explanation :)
+
+<span class="fc" id="L63">        int maxDepth = 3;</span>
+<span class="fc" id="L64">        int bestScore = -1;</span>
+<span class="fc" id="L65">        PositionStruct bestMove = null;</span>
+<span class="fc" id="L66">        ArrayList&lt;PositionStruct&gt; possibleMoves = new ArrayList&lt;PositionStruct&gt;();</span>
+<span class="fc" id="L67">        HashSet&lt;Position&gt; visitedPos = new HashSet&lt;Position&gt;();</span>
+<span class="fc" id="L68">        PositionStruct temp = new PositionStruct();</span>
+
+        // If the mouse moved on top of the cat first, end game
+<span class="fc bfc" id="L71" title="All 4 branches covered.">        if (getPos().getX() == mousePosition.getX() &amp;&amp; getPos().getY() == mousePosition.getY()) {</span>
+<span class="fc" id="L72">            Game.State = Game.STATE.LOSE;</span>
+<span class="fc" id="L73">            return;</span>
+        }
+
+<span class="fc" id="L76">        temp.prevPos = null;</span>
+<span class="fc" id="L77">        temp.pos = getPos();</span>
+<span class="fc" id="L78">        temp.depth = 0;</span>
+<span class="fc" id="L79">        possibleMoves.add(temp);</span>
+
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        while (possibleMoves.size() &gt; 0) {</span>
+            int curPosValue;
+<span class="fc" id="L83">            PositionStruct curPos = possibleMoves.remove(0);</span>
+
+<span class="fc" id="L85">            visitedPos.add(curPos.pos);</span>
+
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (curPos.depth &lt;= maxDepth) {</span>
+<span class="fc" id="L88">                getMovesFromPos(possibleMoves, curPos);</span>
+            }
+
+<span class="fc" id="L91">            curPosValue = rateNextMoveManhattan(mousePosition, curPos.pos);</span>
+
+            // This ensures that this cat moves at all times
+<span class="fc bfc" id="L94" title="All 6 branches covered.">            if (curPos.pos != getPos() &amp;&amp; (bestMove == null || bestScore &gt; curPosValue)) {</span>
+<span class="fc" id="L95">                bestScore = curPosValue;</span>
+<span class="fc" id="L96">                bestMove = curPos;</span>
+            }
+
+            // Stop search early if we hit mouse
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            if (bestScore == 0) {</span>
+<span class="fc" id="L101">                break;</span>
+            }
+        }
+
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        while (bestMove.depth != 1) {</span>
+<span class="fc" id="L106">            bestMove = bestMove.prevPos;</span>
+        }
+
+<span class="fc" id="L109">        move(bestMove.pos);</span>
+
+        // If the move that the cat takes collides with mouse, end game
+<span class="fc bfc" id="L112" title="All 4 branches covered.">        if (bestMove.pos.getX() == mousePosition.getX() &amp;&amp; bestMove.pos.getY() == mousePosition.getY()) {</span>
+<span class="fc" id="L113">            Game.State = Game.STATE.LOSE;</span>
+<span class="fc" id="L114">            return;</span>
+        }
+
+<span class="fc" id="L117">    }</span>
+
+    /**
+     * Scans the next cells in the north, south, east and west
+     * directions to determine which ones this cat can move to
+     * vs which ones are blocked and adds them to the list of
+     * possible moves
+     * 
+     * @param possibleMoves ArrayList containing possible positions to move to next
+     * @param curPos        Struct containing all relevant info pertaining to
+     *                      current position
+     */
+    private void getMovesFromPos(ArrayList&lt;PositionStruct&gt; possibleMoves, PositionStruct curPos) {
+<span class="fc" id="L130">        ArrayList&lt;Position&gt; adjacent = new ArrayList&lt;Position&gt;();</span>
+<span class="fc" id="L131">        adjacent.add(new Position(curPos.pos.getX() + 1, curPos.pos.getY()));</span>
+<span class="fc" id="L132">        adjacent.add(new Position(curPos.pos.getX() - 1, curPos.pos.getY()));</span>
+<span class="fc" id="L133">        adjacent.add(new Position(curPos.pos.getX(), curPos.pos.getY() + 1));</span>
+<span class="fc" id="L134">        adjacent.add(new Position(curPos.pos.getX(), curPos.pos.getY() - 1));</span>
+
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        for (Position pos : adjacent) {</span>
+<span class="fc" id="L137">            PositionStruct tempPos = new PositionStruct();</span>
+<span class="fc" id="L138">            tempPos.prevPos = curPos;</span>
+<span class="fc" id="L139">            tempPos.pos = pos;</span>
+<span class="fc" id="L140">            tempPos.depth = curPos.depth + 1;</span>
+
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            if (checkValidMove(tempPos.pos)) {</span>
+<span class="fc" id="L143">                possibleMoves.add(tempPos);</span>
+            }
+        }
+
+<span class="fc" id="L147">    }</span>
+
+    /**
+     * Uses Manhattan distance to give each possible next move a
+     * rating
+     * &lt;p&gt;
+     * Manhattan distance is calculated by the number of cells
+     * needed to reach the target moving only vertically and
+     * horizontally
+     * 
+     * @param mousePos      current Mouse position
+     * @param potentialMove a valid move the cat can take
+     * @return rating as an integer
+     */
+    private int rateNextMoveManhattan(Position mousePos, Position potentialMove) {
+<span class="fc" id="L162">        int rating = Math.abs(mousePos.getX() - potentialMove.getX())</span>
+<span class="fc" id="L163">                + Math.abs(mousePos.getY() - potentialMove.getY());</span>
+
+<span class="fc" id="L165">        return rating;</span>
+    }
+
+    // Check if next cell is outside map bounds, contains a barrier,
+    // or contains a cat
+    public boolean checkValidMove(Position newPos) {
+
+<span class="fc bfc" id="L172" title="All 8 branches covered.">        if (newPos.getX() &lt; 0 || newPos.getY() &lt; 0 || newPos.getX() &gt; 57 || newPos.getY() &gt; 40) {</span>
+<span class="fc" id="L173">            return false;</span>
+        }
+
+<span class="fc bfc" id="L176" title="All 2 branches covered.">        else if (map.isWall(newPos.getX(), newPos.getY()) == 1) {</span>
+<span class="fc" id="L177">            return false;</span>
+        }
+
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        else if (map.getCharacter(newPos) instanceof Cat) {</span>
+<span class="fc" id="L181">            return false;</span>
+        }
+
+<span class="fc" id="L184">        return true;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
