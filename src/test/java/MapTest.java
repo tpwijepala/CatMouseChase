@@ -16,13 +16,9 @@ public class MapTest {
 
     @Test
     public void testGenerations(){
-        if (map.cheeseExists){
-            assertTrue(map.getObjectsArray().size() == 12);
-            assertTrue(map.items.size() == 8);
-        }else{
-            //assertTrue(map.getObjectsArray().size() == 11); --> failed
-            //assertTrue(map.items.size() == 7); --> failed
-        }
+        assertTrue(map.getObjectsArray().size() == 11);
+        assertTrue(map.items.size() == 7);
+        
         assertTrue(map.characters.size() == 4);
     }
 
@@ -35,6 +31,7 @@ public class MapTest {
     @Test
     public void testNaturalCheeseGen(){
         long timeSpawn = System.currentTimeMillis();
+        map = new Map(); // reset start time
         map.cheeseExist(false);
         while(!map.cheeseExists) {map.cheeseExist(false);};
         timeSpawn = System.currentTimeMillis() - timeSpawn;
@@ -86,23 +83,5 @@ public class MapTest {
         map.addCharacter(new Cat(0, 5, map));
         assertTrue(map.getCharacter(new Position(0, 5)) != null);
         assertTrue(map.getPlayer() == map.getCharacter(new Position(4,4)));
-    }
-
-    @Test
-    public void testDraw(){
-        Game game = new Game();
-        game.start();
-        Game.State = Game.STATE.GAME;
-
-        BufferStrategy bs = game.getBufferStrategy();
-        if (bs == null) {
-            game.createBufferStrategy(3);
-            return;
-        }
-        Graphics g = bs.getDrawGraphics();
-        map.drawEntities(g);
-
-        long time = System.currentTimeMillis();
-        while (System.currentTimeMillis()-time > 5000);
     }
 }
