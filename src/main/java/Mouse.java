@@ -28,7 +28,7 @@ public class Mouse extends MovingEntity {
         }
     }
 
-    public void rotatePic(int side) {
+    public void rotateMouse(int side) {
         if (side == 0){
             try {
                 picture = ImageIO.read(new File("src/main/resources/mouseUp.png"));
