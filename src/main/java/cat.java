@@ -18,7 +18,7 @@ class Cat extends MovingEntity {
         super(x, y, m);
 
         try{
-            picture = ImageIO.read(new File("src/main/resources/cat.png"));
+            picture = ImageIO.read(new File("src/main/resources/catUP.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -31,6 +31,34 @@ class Cat extends MovingEntity {
         public PositionStruct prevPos;
         public Position pos;
         public int depth; 
+    }
+
+    private void rotateCat(Position newPos){
+        if (newPos.getX() - pos.getX() == 1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catRight.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }else if (newPos.getX() - pos.getX() == -1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catLeft.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+        }else if (newPos.getY() - pos.getY() == 1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catDown.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+        }else if (newPos.getY() - pos.getY() == -1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catUp.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+        }
     }
 
     /**
@@ -90,6 +118,7 @@ class Cat extends MovingEntity {
             bestMove = bestMove.prevPos;
         }
 
+        rotateCat(bestMove.pos);
         move(bestMove.pos);
 
         
