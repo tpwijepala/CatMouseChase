@@ -110,7 +110,6 @@ public class Map {
     }
 
     private void generateCrumbs() {
-        // 41 down, 58 across
         addItem(new Crumb(10,12));
         addItem(new Crumb(25, 12));
         addItem(new Crumb(10, 20));
@@ -118,26 +117,15 @@ public class Map {
     }
 
     private void generateCats() {
-        Cat cat1 = new Cat(12, 34, this);
-        addCharacter(cat1);
-
-        Cat cat2 = new Cat(36, 24, this);
-        addCharacter(cat2);
-
-        Cat cat3 = new Cat(43, 13, this);
-        addCharacter(cat3);
+        addCharacter(new Cat(12, 34, this));
+        addCharacter(new Cat(36, 24, this));
+        addCharacter(new Cat(43, 13, this));
     }
 
     private void generateMouseTraps() {
-
-        MouseTrap trap1 = new MouseTrap(23, 20);
-        addItem(trap1);
-
-        MouseTrap trap2 = new MouseTrap(38, 34);
-        addItem(trap2);
-
-        MouseTrap trap3 = new MouseTrap(55,5);
-        addItem(trap3);
+        addItem(new MouseTrap(23, 20));
+        addItem(new MouseTrap(38, 34));
+        addItem(new MouseTrap(55,5));
     }
 
     public int isWall(int x, int y) {
@@ -187,18 +175,22 @@ public class Map {
         return false;
     }
     
+
     // Note: not on UML Diagram
     public ArrayList<Position> getEnd() {
         return end;
     }
 
+
     public Mouse getPlayer() {
         return player;
     }
 
+
     public ArrayList<Entity> getObjectsArray() {
         return objects;
     }
+
 
     // Note: not on UML Diagram
     public StaticEntity getItem(Position pos) {
@@ -210,6 +202,7 @@ public class Map {
         return null;
     }
 
+
     public MovingEntity getCharacter(Position pos) {
         for (int i = 0; i < characters.size(); i++) {
             if (characters.get(i).pos.x == pos.x && characters.get(i).pos.y == pos.y) {
@@ -219,16 +212,19 @@ public class Map {
         return null;
     }
 
+
     public void addItem(StaticEntity item) {
         items.add(item);
         objects.add(item);
     }
+
 
     public void addCharacter(MovingEntity charac) {
         characters.add(charac);
         objects.add(charac);
     }
 
+    
     public void removeItem(StaticEntity item) {
         // Remove from objects ArrayList:
         Position pos = item.getPos();
