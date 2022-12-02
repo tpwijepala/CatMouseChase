@@ -32,7 +32,7 @@ public class Entity {
      * @see Graphics
      */
     public void draw(Graphics g) {
-        g.drawImage(picture, pos.getX()*25, pos.getY()*25, null);
+        g.drawImage(picture, pos.getX()*map.CELLWIDTH, pos.getY()*map.CELLWIDTH, null);
     }
 
 }

@@ -69,7 +69,7 @@ public class Map {
     int endHeight = 5;
     int crumbsCollect = 0;
 
-    final static int CELLWIDTH = 25;
+    final int CELLWIDTH = 25;
 
     boolean cheeseExists = false;
     Cheese c;
