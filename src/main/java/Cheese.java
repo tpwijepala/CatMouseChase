@@ -44,8 +44,8 @@ public class Cheese extends StaticEntity {
      * @see     Position
      */
     protected Position generatePosition(){
-        int maxXCells = 58;
-        int maxYCells = 41;
+        int maxXCells = Game.WIDTH/map.CELLWIDTH;
+        int maxYCells = Game.HEIGHT/map.CELLWIDTH;
         int x = 0 ,y = 0;
         boolean posAvail = false;
         while (!posAvail){
