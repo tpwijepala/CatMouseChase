@@ -13,11 +13,10 @@ public class Cheese extends StaticEntity {
      * Instantiates this Cheese object and draws its image
      * on the map
      * 
-     * @param x Row coordinate on map
-     * @param y Column coordinate on map
+     * @param m Map the cheese is a part of
      */
-    public Cheese(int x, int y, Map m) {
-        super(x, y);
+    public Cheese(Map m) {
+        super(0, 0);
         map = m;
         this.pos = generatePosition();
         points = 2;
