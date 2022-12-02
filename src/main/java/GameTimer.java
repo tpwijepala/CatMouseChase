@@ -32,10 +32,10 @@ class GameTimer {
     String displayTime() {
         setTime();
         long seconds = this.timerCount/1000;
-        long mins = seconds/60;
+        long minutes = seconds/60;
         seconds = seconds%60;
-        long hours = mins/60;
-        mins = mins%60;
+        long hours = minutes/60;
+        minutes = minutes%60;
 
         String sec;
         if (seconds < 10) {
@@ -45,11 +45,11 @@ class GameTimer {
             sec = Long.toString(seconds);
         }
         String min;
-        if (mins < 10) {
-            min = "0" + Long.toString(mins);
+        if (minutes < 10) {
+            min = "0" + Long.toString(minutes);
         }
         else {
-            min = Long.toString(mins);
+            min = Long.toString(minutes);
         }
         String hrs;
         if (hours < 10) {
