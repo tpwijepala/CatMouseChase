@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class Map {
 
-    private static final int[][] walls = {
+    private final int[][] walls = {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1 },
@@ -64,18 +64,18 @@ public class Map {
     ArrayList<MovingEntity> characters = new ArrayList<MovingEntity>();
     ArrayList<Entity> objects = new ArrayList<Entity>();
 
-    int startX = 4, startY = 4;
-    int endX = 56, endY = 35;
-    int endHeight = 5;
-    int crumbsCollect = 0;
+    int startX, startY;
+    int endX, endY;
+    int endHeight;
+    int crumbsCollect;
 
-    final int CELLWIDTH = 25;
+    final int CELLWIDTH;
 
-    boolean cheeseExists = false;
+    boolean cheeseExists;
     Cheese c;
     long startTime;
     long timer;
-    long tickTime = System.currentTimeMillis();
+    long tickTime;
     Mouse player;
 
     private BufferedImage map;
@@ -96,12 +96,21 @@ public class Map {
         }catch(IOException e){
             e.printStackTrace();
         }
+
+        tickTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
+
+        startX = 4; startY = 4;
+        endX = 56; endY = 35; endHeight = 5;
+        crumbsCollect = 0;
+        CELLWIDTH = 25;
+
+        cheeseExists = false;
         player = new Mouse(startX, startY, this);
         addCharacter(player);
         generateCrumbs();
         generateCats();
         generateMouseTraps();
-        startTime = System.currentTimeMillis();
 
         end = new ArrayList<Position>();
         for (int i = 0; i < endHeight; i++) {
