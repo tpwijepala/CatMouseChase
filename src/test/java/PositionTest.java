@@ -7,17 +7,19 @@ import org.junit.jupiter.api.Test;
 public class PositionTest {
     Position testPos = new Position(5, 13);
 
-    /**
-     * Test if the position string prints properly
-     */
+    /*
+    * Test if the position string prints properly
+    * UNIT TEST
+    */
     @Test
     public void printPosition() {
         assertEquals("(5, 13)", testPos.toString());
     }
 
-    /**
-     * Test the getters and setters
-     */
+    /*
+    * Test the getters and setters
+    * UNIT TEST
+    */
     @Test
     public void setNewPosition() {
         testPos.setX(10);

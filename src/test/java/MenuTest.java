@@ -35,6 +35,7 @@ public class MenuTest {
 
     /**
      * Test that play button has been clicked
+     * INTEGRATION TEST
      */
     @Test
     public void clickPlay() {
@@ -55,6 +56,7 @@ public class MenuTest {
 
     /*
      * Test that help button has been clicked
+     * INTEGRATION TEST
      */
     @Test
     public void clickHelp() {
@@ -74,6 +76,7 @@ public class MenuTest {
 
     /*
      * Test that checks if quit has been clicked **
+     * INTEGRATION TEST
      */
     @Test
     public void clickQuit() {

@@ -14,11 +14,11 @@ public class CatTest {
         Game.State = Game.STATE.GAME;
     }
 
-    /**
-     * Tests when Mouse is in the same position as Cat
-     * before Cat moves
-     */
-    
+    /*
+    * Tests when Mouse is in the same position as Cat
+    * before Cat moves
+    * UNIT TEST
+    */
     @Test
     public void MouseOnTop() {
         
@@ -32,9 +32,10 @@ public class CatTest {
         assertTrue(Game.State == Game.STATE.LOSE);
     }
 
-    /**
-     * Test when Mouse is far away
-     */
+    /*
+    * Test when Mouse is far away
+    * UNIT TEST
+    */
     @Test
     public void MouseFarAway() {
         
@@ -46,9 +47,10 @@ public class CatTest {
     }
     
 
-    /**
-     * Test mouse collision in Y position
-     */
+    /*
+    * Test mouse collision in Y position
+    * UNIT TEST
+    */
     @Test
     public void MouseNextCellUp() {
         testMouse.newPos = new Position(12, 33);
@@ -61,9 +63,10 @@ public class CatTest {
         assertTrue(Game.State == Game.STATE.LOSE);
     }
 
-    /**
-     * Test mouse collision in X position
-     */
+    /*
+    * Test mouse collision in X position
+    * UNIT TEST
+    */
     @Test
     public void MouseNextCellSide() {
         testMouse.newPos = new Position(11, 34);
@@ -76,9 +79,10 @@ public class CatTest {
         assertTrue(Game.State == Game.STATE.LOSE);
     }
 
-    /**
-     * Test Cat movement when Mouse is diagonally from it
-     */
+    /*
+    * Test Cat movement when Mouse is diagonally from it
+    * UNIT TEST
+    */
     @Test
     public void MouseDiagonal() {
         testMouse.newPos = new Position(11, 33);
@@ -89,10 +93,11 @@ public class CatTest {
     }
 
 
-    /**
-     * Test Cat movement when there is a wall between it
-     * and the mouse
-     */
+    /*
+    * Test Cat movement when there is a wall between it
+    * and the mouse
+    * UNIT TEST
+    */
     @Test
     public void MouseOtherSideOfWall() {
         testMouse.newPos = new Position(14, 34);
@@ -105,6 +110,11 @@ public class CatTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
+    /*
+    * One cat tries to move into the cell occupied by 
+    * another cat but move will be treated as invalid
+    * UNIT TEST
+    */
     @Test
     public void CatInNextCell() {
         adjacentCat1.move(new Position(23, 27));
@@ -114,6 +124,10 @@ public class CatTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
+    /*
+    * Test boundary condition on the bottom right corner
+    * UNIT TEST
+    */
     @Test
     public void CatAtEdgeOfMapX() {
         testCat.move(new Position(57, 36));
@@ -125,6 +139,10 @@ public class CatTest {
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
+    /*
+    * Test boundary condition on the top left corner
+    * UNIT TEST
+    */
     @Test
     public void CatAtEdgeOfMapY() {
         testCat.move(new Position(57, 40));

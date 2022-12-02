@@ -10,12 +10,14 @@ public class EntityTest {
         e = new Entity(1, 1);
     }
 
+    //UNIT TEST
     @Test
     public void getPosition() {
         assertTrue(e.getPos().getX() == 1);
         assertTrue(e.getPos().getY() == 1);
     }
 
+    //UNIT TEST
     @Test
     public void setPosNoChange() {
         e.setPos(e.getPos().getX(), e.getPos().getY());
@@ -24,6 +26,7 @@ public class EntityTest {
         assertTrue(e.getPos().getY() == 1);
     }
 
+    //UNIT TEST
     @Test
     public void setPosX() {
         e.setPos(5, e.getPos().getY());
@@ -32,6 +35,7 @@ public class EntityTest {
         assertTrue(e.getPos().getY() == 1);
     }
 
+    //UNIT TEST
     @Test
     public void setPosY() {
         e.setPos(e.getPos().getX(), 5);
@@ -40,6 +44,7 @@ public class EntityTest {
         assertTrue(e.getPos().getY() == 5);
     }
 
+    //UNIT TEST
     @Test
     public void setPosXAndY() {
         e.setPos(5, 5);

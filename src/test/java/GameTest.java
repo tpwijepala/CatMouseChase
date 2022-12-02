@@ -28,8 +28,9 @@ public class GameTest {
     }
 
     /*
-     * Checks if stop has succefully stopped the game loop from running
-     */
+    * Checks if stop has succefully stopped the game loop from running
+    * UNIT TEST
+    */
     @Test
     public void checkStop() {
         game.thread = new Thread(game);
@@ -38,8 +39,9 @@ public class GameTest {
     }
 
     /*
-     * Check to see if restart has worked
-     */
+    * Check to see if restart has worked
+    * INTEGRATION TEST
+    */
     @Test
     public void checkRestart() {
 

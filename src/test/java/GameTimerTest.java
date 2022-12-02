@@ -12,6 +12,7 @@ public class GameTimerTest {
         Game.State = Game.STATE.GAME;
     }
 
+    //UNIT TEST
     @Test
     public void timer(){
         GameTimer time = new GameTimer();

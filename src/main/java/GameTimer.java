@@ -36,7 +36,30 @@ class GameTimer {
         seconds = seconds%60;
         long hours = mins/60;
         mins = mins%60;
-        return (Long.toString(hours) + ":" + Long.toString(mins) + ":" + Long.toString(seconds));
+
+        String sec;
+        if (seconds < 10) {
+            sec = "0" + Long.toString(seconds);
+        }
+        else {
+            sec = Long.toString(seconds);
+        }
+        String min;
+        if (mins < 10) {
+            min = "0" + Long.toString(mins);
+        }
+        else {
+            min = Long.toString(mins);
+        }
+        String hrs;
+        if (hours < 10) {
+            hrs = "0" + Long.toString(hours);
+        }
+        else {
+            hrs = Long.toString(hours);
+        }
+
+        return (hrs + ":" + min + ":" + sec);
     }  
 
 
