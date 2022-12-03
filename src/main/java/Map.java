@@ -80,7 +80,7 @@ public class Map {
     Mouse player;
 
     private BufferedImage map;
-    GameTimer tt = new GameTimer();
+    GameTimer gameTime = new GameTimer();
 
     Position start = new Position(startX, startY);
     ArrayList<Position> end;
@@ -237,9 +237,9 @@ public class Map {
         objects.add(item);
     }
 
-    public void addCharacter(MovingEntity charac) {
-        characters.add(charac);
-        objects.add(charac);
+    public void addCharacter(MovingEntity character) {
+        characters.add(character);
+        objects.add(character);
     }
 
     public void removeItem(StaticEntity item) {
@@ -269,7 +269,7 @@ public class Map {
 
         g.drawImage(map, 0,0, null);
         
-        tt.displayTime(g);
+        gameTime.displayTime(g);
         player.getMouseScore().displayScore(g);
 
         cheeseExist(false);
