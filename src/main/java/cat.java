@@ -26,6 +26,28 @@ class Cat extends MovingEntity {
     }
 
     /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:src/main/java/cat.java
+=======
+     * Triggers the cats on the map to begin moving towards
+     * the mouse by passing the mouse's current position into
+     * catchMouse
+     * <p>
+     * This method is called only when the user presses a valid
+     * input key for the first time
+     * 
+     * @param mousePos Mouse's current position after key press
+     */
+    /*
+     * public void startMove(Position mousePos) {
+     * catchMouse(mousePos);
+     * }
+     */
+
+    /**
+>>>>>>> origin/developEthan:Documents/src/main/java/cat.java
+>>>>>>> origin/developRobert
      * Contains all the data relevant to the current position
      */
     private class PositionStruct {

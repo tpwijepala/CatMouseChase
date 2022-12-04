@@ -44,6 +44,6 @@ class Score {
      */
     void displayScore(Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 45));
-        g.drawString(getScore(), 850, 75);
+        g.drawString(getScore(), 875, 75);
     }
 }
