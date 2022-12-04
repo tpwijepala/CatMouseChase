@@ -101,11 +101,11 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-
         drawBackground(g);
-
         if (State == STATE.MENU) {
+
             menu.draw(g);
+
         }
         if (State == STATE.GAME) {
             isPlaying = true;
@@ -140,6 +140,7 @@ public class Game extends Canvas implements Runnable {
         map = new Map();
         mouse = new Mouse(map.startX, map.startY, map);
         this.addKeyListener(new UserInput(map.getPlayer()));
+        menu = new Menu();
         this.addMouseListener(menu);
         // score = new Score();
 
