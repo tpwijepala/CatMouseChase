@@ -22,6 +22,7 @@ public class Menu extends MouseAdapter {
     Map map;
     Game game;
     Image p1, p2, p3;
+    Image b1, b2;
     int playY = 150;
     int helpY = 250;
     int quitY = 350;
@@ -95,9 +96,11 @@ public class Menu extends MouseAdapter {
         Graphics2D g2d = (Graphics2D) g;
         try {
             p2 = ImageIO.read(new File("src/main/resources/win.png"));
+            b1 = ImageIO.read(new File("src/main/resources/win1.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        g.drawImage(b1, 0, 0, null);
         g.drawImage(p2, Game.WIDTH / 2 - 175, 0, null);
         Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
@@ -122,9 +125,11 @@ public class Menu extends MouseAdapter {
         Graphics2D g2d = (Graphics2D) g;
         try {
             p3 = ImageIO.read(new File("src/main/resources/lose.png"));
+            b2 = ImageIO.read(new File("src/main/resources/lose1.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        g.drawImage(b2, 0, 0, null);
         g.drawImage(p3, Game.WIDTH / 3 - 50, 0, null);
         Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
