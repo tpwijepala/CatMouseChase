@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 public class CheeseTest {
     Map map = new Map();
-    Cheese testCheese = new Cheese(5, 10, map);
+    Cheese testCheese = new Cheese(map);
 
     /*
     * Test that cheese is being generated on the screen.

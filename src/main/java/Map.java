@@ -150,7 +150,7 @@ public class Map {
      /**
       * This method is used to spawn/despawn cheese after a given time
       *
-      * @param cheeseDespawn - used to restart timer if item is collected
+      * @param cheeseCollected - used to restart timer if item is collected
       */
 
     public void cheeseExist(boolean cheeseCollected) {
@@ -162,7 +162,7 @@ public class Map {
 
         if (!cheeseExists && timer >= 5000) {
             // spawn after its been despawned for 5s
-            c = new Cheese(0, 0, this);
+            c = new Cheese(this);
             addItem(c);
             cheeseExists = true;
             startTime = System.currentTimeMillis();

@@ -99,7 +99,7 @@ public class MouseTest {
     //UNIT TEST
     @Test
     public void collectCheese() {
-        Cheese c = new Cheese(1, 1, map);
+        Cheese c = new Cheese(map);
         map.addItem(c);
         map.player.pos = c.getPos();
         map.player.collectItem();
