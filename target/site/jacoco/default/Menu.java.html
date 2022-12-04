@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Menu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">project</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Menu.java</span></div><h1>Menu.java</h1><pre class="source lang-java linenums">import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Point;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.awt.*;
+
+/*
+ * This class encapsulates the Menu UI for the game
+ * 
+ * @author Ethan
+ */
+<span class="nc" id="L19">public class Menu extends MouseAdapter {</span>
+
+<span class="nc" id="L21">    String font = &quot;DialogInput&quot;;</span>
+    Map map;
+    Game game;
+    Image p1, p2, p3;
+<span class="nc" id="L25">    int playY = 150;</span>
+<span class="nc" id="L26">    int helpY = 250;</span>
+<span class="nc" id="L27">    int quitY = 350;</span>
+<span class="nc" id="L28">    int buttonWidth = 300;</span>
+<span class="nc" id="L29">    int heightWidth = 50;</span>
+    public static String message;
+
+<span class="nc" id="L32">    public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, playY, buttonWidth, heightWidth);</span>
+<span class="nc" id="L33">    private boolean pHighlight = false; // true if the mouse hovered over the Play button</span>
+
+<span class="nc" id="L35">    public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, helpY, buttonWidth, heightWidth);</span>
+<span class="nc" id="L36">    private boolean hHighlight = false;</span>
+
+<span class="nc" id="L38">    public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, quitY, buttonWidth, heightWidth);</span>
+<span class="nc" id="L39">    private boolean qHighlight = false;</span>
+
+    /*
+     * Renders the main menu to the game screen
+     * 
+     * @param g Graphics library for customizing the menu
+     */
+    public void draw(Graphics g) {
+
+<span class="nc" id="L48">        Graphics2D g2d = (Graphics2D) g;</span>
+
+        // Font fnt0 = new Font(font, Font.BOLD, 50);
+        // g.setFont(fnt0);
+        // g.setColor(Color.white);
+
+        // g.drawString(&quot;276 Project&quot;, Game.WIDTH / 2 - 150, 100);
+        try {
+<span class="nc" id="L56">            p1 = ImageIO.read(new File(&quot;src/main/resources/title.png&quot;));</span>
+<span class="nc" id="L57">        } catch (IOException e) {</span>
+<span class="nc" id="L58">            e.printStackTrace();</span>
+        }
+
+<span class="nc" id="L61">        g.drawImage(p1, Game.WIDTH / 4 - 150, 0, null);</span>
+
+<span class="nc" id="L63">        Font fnt1 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L64">        g.setFont(fnt1);</span>
+<span class="nc" id="L65">        g.setColor(Color.black);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (pHighlight) {</span>
+<span class="nc" id="L67">            g.setColor(Color.white);</span>
+        }
+<span class="nc" id="L69">        g.drawString(&quot;Play&quot;, playButton.x + 100, playButton.y + 30);</span>
+
+<span class="nc" id="L71">        Font fnt2 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L72">        g.setFont(fnt2);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (hHighlight)</span>
+<span class="nc" id="L74">            g.setColor(Color.RED);</span>
+<span class="nc" id="L75">        g.drawString(&quot;Help&quot;, helpButton.x + 100, helpButton.y + 30);</span>
+
+<span class="nc" id="L77">        Font fnt3 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L78">        g.setFont(fnt3);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (qHighlight)</span>
+<span class="nc" id="L80">            g.setColor(Color.RED);</span>
+<span class="nc" id="L81">        g.drawString(&quot;Quit&quot;, quitButton.x + 100, quitButton.y + 30);</span>
+
+<span class="nc" id="L83">        g.setColor(Color.black);</span>
+<span class="nc" id="L84">        g2d.draw(playButton);</span>
+<span class="nc" id="L85">        g2d.draw(helpButton);</span>
+<span class="nc" id="L86">        g2d.draw(quitButton);</span>
+<span class="nc" id="L87">    }</span>
+
+    /*
+     * Renders the win screen at end of game
+     * 
+     * @param g Graphics library for customizing the menu
+     */
+    public void win(Graphics g) {
+<span class="nc" id="L95">        Graphics2D g2d = (Graphics2D) g;</span>
+        try {
+<span class="nc" id="L97">            p2 = ImageIO.read(new File(&quot;src/main/resources/win.png&quot;));</span>
+<span class="nc" id="L98">        } catch (IOException e) {</span>
+<span class="nc" id="L99">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L101">        g.drawImage(p2, Game.WIDTH / 2 - 175, 0, null);</span>
+<span class="nc" id="L102">        Font fnt1 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L103">        g.setFont(fnt1);</span>
+<span class="nc" id="L104">        g.setColor(Color.black);</span>
+<span class="nc" id="L105">        g.drawString(&quot;Play Again&quot;, playButton.x + 100, playButton.y + 30);</span>
+
+<span class="nc" id="L107">        Font fnt3 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L108">        g.setFont(fnt3);</span>
+<span class="nc" id="L109">        g.drawString(&quot;Quit&quot;, quitButton.x + 100, quitButton.y + 30);</span>
+
+<span class="nc" id="L111">        g.setColor(Color.black);</span>
+<span class="nc" id="L112">        g2d.draw(playButton);</span>
+<span class="nc" id="L113">        g2d.draw(quitButton);</span>
+<span class="nc" id="L114">    }</span>
+
+    /*
+     * Renders game over screen if you lose
+     * 
+     * @param g Graphics library for customizing the menu
+     */
+    public void lose(Graphics g) {
+<span class="nc" id="L122">        Graphics2D g2d = (Graphics2D) g;</span>
+        try {
+<span class="nc" id="L124">            p3 = ImageIO.read(new File(&quot;src/main/resources/lose.png&quot;));</span>
+<span class="nc" id="L125">        } catch (IOException e) {</span>
+<span class="nc" id="L126">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L128">        g.drawImage(p3, Game.WIDTH / 3 - 50, 0, null);</span>
+<span class="nc" id="L129">        Font fnt1 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L130">        g.setFont(fnt1);</span>
+<span class="nc" id="L131">        g.setColor(Color.black);</span>
+<span class="nc" id="L132">        g.drawString(&quot;Play Again?&quot;, playButton.x + 70, playButton.y + 30);</span>
+
+<span class="nc" id="L134">        Font fnt3 = new Font(font, Font.BOLD, 30);</span>
+<span class="nc" id="L135">        g.setFont(fnt3);</span>
+<span class="nc" id="L136">        g.drawString(&quot;Quit&quot;, quitButton.x + 100, quitButton.y + 30);</span>
+
+<span class="nc" id="L138">        g.setColor(Color.black);</span>
+<span class="nc" id="L139">        g2d.draw(playButton);</span>
+<span class="nc" id="L140">        g2d.draw(quitButton);</span>
+<span class="nc" id="L141">    }</span>
+
+    /*
+     * Allows mouse input, allows user to click the menu buttons
+     * 
+     * @param e MouseEvent, checks to see if a mouse click has happened
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+<span class="nc" id="L151">        Point p = e.getPoint();</span>
+
+<span class="nc bnc" id="L153" title="All 6 branches missed.">        if (Game.State == Game.STATE.MENU || Game.State == Game.STATE.WIN || Game.State == Game.STATE.LOSE) {</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (playButton.contains(p)) {</span>
+<span class="nc" id="L155">                Game.State = Game.STATE.GAME;</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            } else if (quitButton.contains(p)) {</span>
+<span class="nc" id="L157">                message = &quot;Exiting..&quot;;</span>
+<span class="nc" id="L158">                System.exit(0);</span>
+<span class="nc" id="L159">            }</span>
+
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            else if (helpButton.contains(p))</span>
+<span class="nc" id="L162">                Game.State = Game.STATE.WIN;</span>
+        }
+
+<span class="nc" id="L165">    }</span>
+
+    /*
+     * Checks if mouse is being moved and not being pressed,
+     * 
+     * @param e the mouse movement
+     */
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+<span class="nc" id="L175">        Point p = e.getPoint();</span>
+
+        // determine if mouse is hovering inside one of the buttons
+<span class="nc" id="L178">        pHighlight = playButton.contains(p);</span>
+<span class="nc" id="L179">        qHighlight = quitButton.contains(p);</span>
+<span class="nc" id="L180">        hHighlight = helpButton.contains(p);</span>
+
+<span class="nc" id="L182">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

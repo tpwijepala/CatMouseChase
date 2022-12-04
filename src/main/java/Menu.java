@@ -6,7 +6,10 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
-import java.awt.Component;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.awt.*;
 
 /*
  * This class encapsulates the Menu UI for the game
@@ -18,6 +21,7 @@ public class Menu extends MouseAdapter {
     String font = "DialogInput";
     Map map;
     Game game;
+    Image p1, p2, p3;
     int playY = 150;
     int helpY = 250;
     int quitY = 350;
@@ -43,11 +47,18 @@ public class Menu extends MouseAdapter {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        Font fnt0 = new Font(font, Font.BOLD, 50);
-        g.setFont(fnt0);
-        g.setColor(Color.white);
+        // Font fnt0 = new Font(font, Font.BOLD, 50);
+        // g.setFont(fnt0);
+        // g.setColor(Color.white);
 
-        g.drawString("276 Project", Game.WIDTH / 2 - 150, 100);
+        // g.drawString("276 Project", Game.WIDTH / 2 - 150, 100);
+        try {
+            p1 = ImageIO.read(new File("src/main/resources/title.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        g.drawImage(p1, Game.WIDTH / 4 - 150, 0, null);
 
         Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
@@ -69,7 +80,7 @@ public class Menu extends MouseAdapter {
             g.setColor(Color.RED);
         g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
 
-        g.setColor(Color.white);
+        g.setColor(Color.black);
         g2d.draw(playButton);
         g2d.draw(helpButton);
         g2d.draw(quitButton);
@@ -82,12 +93,12 @@ public class Menu extends MouseAdapter {
      */
     public void win(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-
-        Font fnt0 = new Font(font, Font.BOLD, 50);
-        g.setFont(fnt0);
-        g.setColor(Color.white);
-        g.drawString("YOU WIN!", Game.WIDTH / 2 - 100, 100);
-
+        try {
+            p2 = ImageIO.read(new File("src/main/resources/win.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g.drawImage(p2, Game.WIDTH / 2 - 175, 0, null);
         Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
         g.setColor(Color.black);
@@ -97,7 +108,7 @@ public class Menu extends MouseAdapter {
         g.setFont(fnt3);
         g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
 
-        g.setColor(Color.white);
+        g.setColor(Color.black);
         g2d.draw(playButton);
         g2d.draw(quitButton);
     }
@@ -109,12 +120,12 @@ public class Menu extends MouseAdapter {
      */
     public void lose(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-
-        Font fnt0 = new Font(font, Font.BOLD, 50);
-        g.setFont(fnt0);
-        g.setColor(Color.white);
-        g.drawString("GAME OVER!", Game.WIDTH / 2 - 100, 100);
-
+        try {
+            p3 = ImageIO.read(new File("src/main/resources/lose.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g.drawImage(p3, Game.WIDTH / 3 - 50, 0, null);
         Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
         g.setColor(Color.black);
@@ -124,7 +135,7 @@ public class Menu extends MouseAdapter {
         g.setFont(fnt3);
         g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
 
-        g.setColor(Color.white);
+        g.setColor(Color.black);
         g2d.draw(playButton);
         g2d.draw(quitButton);
     }
