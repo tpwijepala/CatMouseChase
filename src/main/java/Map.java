@@ -131,13 +131,20 @@ public class Map {
     private void generateCrumbs() {
         addItem(new Crumb(10,12));
         addItem(new Crumb(25, 12));
-        addItem(new Crumb(10, 20));
+        addItem(new Crumb(10, 22));
         addItem(new Crumb(22, 18));
+        addItem(new Crumb(6, 20));
+        addItem(new Crumb(18, 35));
+        addItem(new Crumb(33, 32));
+        addItem(new Crumb(29, 34));
+        addItem(new Crumb(30, 9));
+        addItem(new Crumb(39, 18));
+        addItem(new Crumb(53, 20));
     }
 
     private void generateCats() {
         addCharacter(new Cat(12, 34, this));
-        addCharacter(new Cat(36, 24, this));
+        addCharacter(new Cat(52, 24, this));
         addCharacter(new Cat(43, 13, this));
     }
 
@@ -145,6 +152,10 @@ public class Map {
         addItem(new MouseTrap(23, 20));
         addItem(new MouseTrap(38, 34));
         addItem(new MouseTrap(55,5));
+        addItem(new MouseTrap(4,22));
+        addItem(new MouseTrap(12,37));
+        addItem(new MouseTrap(26,34));
+        addItem(new MouseTrap(49,34));
     }
 
     public int isWall(int x, int y) {
