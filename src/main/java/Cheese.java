@@ -40,15 +40,15 @@ public class Cheese extends StaticEntity {
      * @return Position object
      * @see Position
      */
-    protected Position generatePosition() {
-        int maxX = 1450;
-        int maxY = 1025;
-        int x = 0, y = 0;
+    protected Position generatePosition(){
+        int maxXCells = Game.WIDTH/map.CELLWIDTH;
+        int maxYCells = Game.HEIGHT/map.CELLWIDTH;
+        int x = 0 ,y = 0;
         boolean posAvail = false;
-        while (!posAvail) {
-            x = (int) (Math.random() * maxX) / 25;
-            y = (int) (Math.random() * maxY) / 25;
-            if (map.isWall(x, y) == 0 && map.getItem(getPos()) == null && map.getCharacter(getPos()) == null) {
+        while (!posAvail){
+            x = (int)(Math.random() * maxXCells);
+            y = (int)(Math.random() * maxYCells);
+            if (map.isWall(x,y) == 0 && map.getItem(getPos()) == null && map.getCharacter(getPos()) == null){
                 posAvail = true;
             }
         }
