@@ -75,7 +75,7 @@ public class Mouse extends MovingEntity {
      */
     private void checkFinish() {
         ArrayList<Position> end = map.getEnd();
-        if (map.crumbsCollect >= 4) {
+        if (map.crumbsCollect >= 11) {
             for (int i = 0; i < end.size(); i++){
                 if (getPos().getX() == end.get(i).getX() && getPos().getY() == end.get(i).getY()){
                     
