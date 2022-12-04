@@ -32,11 +32,34 @@ class GameTimer {
     String displayTime() {
         setTime();
         long seconds = this.timerCount/1000;
-        long mins = seconds/60;
+        long minutes = seconds/60;
         seconds = seconds%60;
-        long hours = mins/60;
-        mins = mins%60;
-        return (Long.toString(hours) + ":" + Long.toString(mins) + ":" + Long.toString(seconds));
+        long hours = minutes/60;
+        minutes = minutes%60;
+
+        String sec;
+        if (seconds < 10) {
+            sec = "0" + Long.toString(seconds);
+        }
+        else {
+            sec = Long.toString(seconds);
+        }
+        String min;
+        if (minutes < 10) {
+            min = "0" + Long.toString(minutes);
+        }
+        else {
+            min = Long.toString(minutes);
+        }
+        String hrs;
+        if (hours < 10) {
+            hrs = "0" + Long.toString(hours);
+        }
+        else {
+            hrs = Long.toString(hours);
+        }
+
+        return (hrs + ":" + min + ":" + sec);
     }  
 
 
@@ -47,7 +70,7 @@ class GameTimer {
      */
     void displayTime(Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 45));
-        g.drawString(displayTime(), 475, 75);
+        g.drawString(displayTime(), 450, 75);
     }
 
 }
