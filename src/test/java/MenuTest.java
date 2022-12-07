@@ -51,6 +51,7 @@ public class MenuTest {
 
         instance.dispatchEvent(click);
 
+        assertTrue(Game.isPlaying);
         assertTrue(Game.State == Game.STATE.GAME);
     }
 

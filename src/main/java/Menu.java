@@ -154,6 +154,7 @@ public class Menu extends MouseAdapter {
                 Game.isPlaying = true;
             } else if (quitButton.contains(p)) {
                 message = "Exiting..";
+                Game.programRunning = false;
                 System.exit(0);
             }
 

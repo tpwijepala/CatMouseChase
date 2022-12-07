@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable {
     public final String TITLE = "PROJECT TEST";
 
     public static boolean isPlaying = false;
-    private boolean programRunning = true;
+    public static boolean programRunning = true;
     public Thread thread;
     Image background;
 
@@ -99,10 +99,9 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
         g.drawImage(background, 0, 0, null);
+
         if (State == STATE.MENU) {
-
             menu.drawMenu(g);
-
         }
         if (State == STATE.GAME) {
             isPlaying = true;
@@ -121,6 +120,9 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /*
+     * Reinitializes the game after called
+     */
     public void restart() {
 
         map = new Map();
@@ -151,6 +153,7 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
 
         do {
+            // if program is running do
             if (State == STATE.LOSE || State == STATE.WIN) {
                 restart();
                 draw();
