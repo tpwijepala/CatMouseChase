@@ -139,7 +139,6 @@ public class Map {
         addItem(new Crumb(29, 34));
         addItem(new Crumb(30, 9));
         addItem(new Crumb(39, 18));
-        //addItem(new Crumb(53, 20));
     }
 
     private void generateCats() {
