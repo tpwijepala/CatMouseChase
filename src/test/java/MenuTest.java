@@ -94,7 +94,7 @@ public class MenuTest {
 
         exitRule.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
-                assertEquals("Exiting..", menu.message);
+                assertEquals("Exiting..", Menu.message);
             }
         });
         // instance.dispatchEvent(click);

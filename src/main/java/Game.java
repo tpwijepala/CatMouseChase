@@ -104,7 +104,7 @@ public class Game extends Canvas implements Runnable {
         drawBackground(g);
         if (State == STATE.MENU) {
 
-            menu.draw(g);
+            menu.drawMenu(g);
 
         }
         if (State == STATE.GAME) {

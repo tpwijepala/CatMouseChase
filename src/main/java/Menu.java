@@ -31,20 +31,17 @@ public class Menu extends MouseAdapter {
     public static String message;
 
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, playY, buttonWidth, heightWidth);
-    private boolean pHighlight = false; // true if the mouse hovered over the Play button
 
     public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, helpY, buttonWidth, heightWidth);
-    private boolean hHighlight = false;
 
     public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, quitY, buttonWidth, heightWidth);
-    private boolean qHighlight = false;
 
     /*
      * Renders the main menu to the game screen
      * 
      * @param g Graphics library for customizing the menu
      */
-    public void draw(Graphics g) {
+    public void drawMenu(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
 
@@ -64,21 +61,17 @@ public class Menu extends MouseAdapter {
         Font fnt1 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt1);
         g.setColor(Color.black);
-        if (pHighlight) {
-            g.setColor(Color.white);
-        }
+
         g.drawString("Play", playButton.x + 100, playButton.y + 30);
 
         Font fnt2 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt2);
-        if (hHighlight)
-            g.setColor(Color.RED);
+
         g.drawString("Help", helpButton.x + 100, helpButton.y + 30);
 
         Font fnt3 = new Font(font, Font.BOLD, 30);
         g.setFont(fnt3);
-        if (qHighlight)
-            g.setColor(Color.RED);
+
         g.drawString("Quit", quitButton.x + 100, quitButton.y + 30);
 
         g.setColor(Color.black);
@@ -166,23 +159,6 @@ public class Menu extends MouseAdapter {
             else if (helpButton.contains(p))
                 Game.State = Game.STATE.WIN;
         }
-
-    }
-
-    /*
-     * Checks if mouse is being moved and not being pressed,
-     * 
-     * @param e the mouse movement
-     */
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-        Point p = e.getPoint();
-
-        // determine if mouse is hovering inside one of the buttons
-        pHighlight = playButton.contains(p);
-        qHighlight = quitButton.contains(p);
-        hHighlight = helpButton.contains(p);
 
     }
 
