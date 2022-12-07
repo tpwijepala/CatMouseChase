@@ -14,6 +14,7 @@ public class MovingEntityTest {
         map.player.pos = pos;
     }
 
+    //UNIT TEST
     @Test
     public void checkMoveNoChange() {
         map.player.move(pos);
@@ -22,6 +23,7 @@ public class MovingEntityTest {
         assertTrue(map.player.pos.getY() == 4);
     }
 
+    //UNIT TEST
     @Test
     public void checkMoveX() {
         map.player.move(new Position(5, 4));
@@ -30,6 +32,7 @@ public class MovingEntityTest {
         assertTrue(map.player.pos.getY() == 4);
     }
 
+    //UNIT TEST
     @Test
     public void checkMoveY() {
         map.player.move(new Position(4, 5));
@@ -38,6 +41,7 @@ public class MovingEntityTest {
         assertTrue(map.player.pos.getY() == 5);
     }
 
+    //UNIT TEST
     @Test
     public void checkMoveXAndY() {
         map.player.move(new Position(5, 5));
@@ -46,7 +50,7 @@ public class MovingEntityTest {
         assertTrue(map.player.pos.getY() == 5);
     }
 
-
+    //UNIT TEST
     @Test
     public void moveIntoWall() {
         // Position (0, 0) contains a wall
@@ -54,6 +58,7 @@ public class MovingEntityTest {
         assertFalse(map.player.checkValidMove(new Position(0, 0)));
     }
 
+    //UNIT TEST
     @Test
     public void moveOutOfBoundsHigh() {
         // Corner of map: (57, 41)
@@ -62,6 +67,7 @@ public class MovingEntityTest {
         assertFalse(map.player.checkValidMove(new Position(58, 42)));
     }
 
+    //UNIT TEST
     @Test
     public void moveOutOfBoundsLow() {
         // Corner of map: (0, 0)
@@ -70,6 +76,7 @@ public class MovingEntityTest {
         assertFalse(map.player.checkValidMove(new Position(-1, -1)));
     }
 
+    //UNIT TEST
     @Test
     public void moveValid() {
         // Position (5, 5) does not contain a wall

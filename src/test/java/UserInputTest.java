@@ -8,6 +8,7 @@ public class UserInputTest{
     
     /*
     * Only tests moving the mouse if user presses W,A,S,D
+    * INTEGRATION TEST
     */
     @Test
     public void acceptValidKeys() {
@@ -38,6 +39,7 @@ public class UserInputTest{
 
     /*
     * Only tests if the mouse stays stationary at an invalid input
+    * INTEGRATION TEST
     */
     @Test
     public void rejectInvalidKeys() {

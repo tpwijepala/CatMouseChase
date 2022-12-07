@@ -18,14 +18,16 @@ class Cat extends MovingEntity {
     public Cat(int x, int y, Map m) {
         super(x, y, m);
 
-        try {
-            picture = ImageIO.read(new File("src/main/resources/cat.png"));
-        } catch (IOException e) {
+        try{
+            picture = ImageIO.read(new File("src/main/resources/catUP.png"));
+        }catch(IOException e){
             e.printStackTrace();
         }
     }
 
     /**
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD:src/main/java/cat.java
 =======
      * Triggers the cats on the map to begin moving towards
@@ -45,12 +47,41 @@ class Cat extends MovingEntity {
 
     /**
 >>>>>>> origin/developEthan:Documents/src/main/java/cat.java
+>>>>>>> origin/developRobert
      * Contains all the data relevant to the current position
      */
     private class PositionStruct {
         public PositionStruct prevPos;
         public Position pos;
         public int depth;
+    }
+
+    private void rotateCat(Position newPos){
+        if (newPos.getX() - pos.getX() == 1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catRight.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }else if (newPos.getX() - pos.getX() == -1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catLeft.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+        }else if (newPos.getY() - pos.getY() == 1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catDown.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+        }else if (newPos.getY() - pos.getY() == -1){
+            try{
+                picture = ImageIO.read(new File("src/main/resources/catUp.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+        }
     }
 
     /**
@@ -110,6 +141,7 @@ class Cat extends MovingEntity {
             bestMove = bestMove.prevPos;
         }
 
+        rotateCat(bestMove.pos);
         move(bestMove.pos);
 
         //If the move that the cat takes collides with mouse, end game

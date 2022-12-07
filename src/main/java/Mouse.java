@@ -22,9 +22,40 @@ public class Mouse extends MovingEntity {
         map = m;
         newPos = pos;
         try {
-            picture = ImageIO.read(new File("src/main/resources/mouse.png"));
+            picture = ImageIO.read(new File("src/main/resources/mouseRight.png"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void rotateMouse(int side) {
+        if (side == 0){
+            try {
+                picture = ImageIO.read(new File("src/main/resources/mouseUp.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (side == 1){
+            try {
+                picture = ImageIO.read(new File("src/main/resources/mouseLeft.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (side == 2){
+            try {
+                picture = ImageIO.read(new File("src/main/resources/mouseDown.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (side == 3){
+            try {
+                picture = ImageIO.read(new File("src/main/resources/mouseRight.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -44,7 +75,7 @@ public class Mouse extends MovingEntity {
      */
     private void checkFinish() {
         ArrayList<Position> end = map.getEnd();
-        if (map.crumbsCollect >= 4) {
+        if (map.crumbsCollect >= 10) {
             for (int i = 0; i < end.size(); i++){
                 if (getPos().getX() == end.get(i).getX() && getPos().getY() == end.get(i).getY()){
                     

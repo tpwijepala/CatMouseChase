@@ -3,6 +3,10 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.awt.*;
 
 /*
  * Class encapsulates all of Game
@@ -21,7 +25,7 @@ public class Game extends Canvas implements Runnable {
     public boolean isPlaying = false;
     private boolean programRunning = true;
     public Thread thread;
-
+    Image picture;
     // private BufferedImage image = new BufferedImage(WIDTH, HEIGHT,
     // BufferedImage.TYPE_INT_RGB);
 
@@ -55,6 +59,11 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
         this.addMouseListener(menu);
 
+        try {
+            picture = ImageIO.read(new File("src/main/resources/menu.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -92,11 +101,11 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-
         drawBackground(g);
-
         if (State == STATE.MENU) {
+
             menu.draw(g);
+
         }
         if (State == STATE.GAME) {
             isPlaying = true;
@@ -121,9 +130,9 @@ public class Game extends Canvas implements Runnable {
      */
     private void drawBackground(Graphics g) {
         // black background
-        g.setColor(Color.blue);
-        g.fillRect(0, 0, 1450, 1025);
-
+        // g.setColor(Color.blue);
+        // g.fillRect(0, 0, 1450, 1025);
+        g.drawImage(picture, 0, 0, null);
     }
 
     public void restart() {
@@ -131,7 +140,8 @@ public class Game extends Canvas implements Runnable {
         map = new Map();
         mouse = new Mouse(map.startX, map.startY, map);
         this.addKeyListener(new UserInput(map.getPlayer()));
-        // this.addMouseListener(menu);
+        menu = new Menu();
+        this.addMouseListener(menu);
         // score = new Score();
 
     }
