@@ -22,18 +22,15 @@ public class Game extends Canvas implements Runnable {
     public static final int SCALE = 1;
     public final String TITLE = "PROJECT TEST";
 
-    public boolean isPlaying = false;
-    private boolean programRunning = true;
+    public static boolean isPlaying = false;
+    public static boolean programRunning = true;
     public Thread thread;
-    Image picture;
-    // private BufferedImage image = new BufferedImage(WIDTH, HEIGHT,
-    // BufferedImage.TYPE_INT_RGB);
+    Image background;
 
     private Menu menu;
     Map map;
-    GameTimer gametimer;
+
     Mouse mouse;
-    Score score;
 
     public enum STATE {
         MENU,
@@ -60,7 +57,7 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(menu);
 
         try {
-            picture = ImageIO.read(new File("src/main/resources/menu.png"));
+            background = ImageIO.read(new File("src/main/resources/menu.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,11 +98,10 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        drawBackground(g);
+        g.drawImage(background, 0, 0, null);
+
         if (State == STATE.MENU) {
-
-            menu.draw(g);
-
+            menu.drawMenu(g);
         }
         if (State == STATE.GAME) {
             isPlaying = true;
@@ -114,7 +110,6 @@ public class Game extends Canvas implements Runnable {
         }
         if (State == STATE.LOSE) {
             isPlaying = false;
-
             menu.lose(g);
         }
         if (State == STATE.WIN) {
@@ -126,15 +121,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Creates the background for game
+     * Reinitializes the game after called
      */
-    private void drawBackground(Graphics g) {
-        // black background
-        // g.setColor(Color.blue);
-        // g.fillRect(0, 0, 1450, 1025);
-        g.drawImage(picture, 0, 0, null);
-    }
-
     public void restart() {
 
         map = new Map();
@@ -142,7 +130,6 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new UserInput(map.getPlayer()));
         menu = new Menu();
         this.addMouseListener(menu);
-        // score = new Score();
 
     }
 
@@ -166,9 +153,11 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
 
         do {
+            // if program is running do
             if (State == STATE.LOSE || State == STATE.WIN) {
                 restart();
                 draw();
+
             }
             while (isPlaying) {
 

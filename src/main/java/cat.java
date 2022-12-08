@@ -25,37 +25,12 @@ class Cat extends MovingEntity {
         }
     }
 
+    
     /**
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:src/main/java/cat.java
-=======
-     * Triggers the cats on the map to begin moving towards
-     * the mouse by passing the mouse's current position into
-     * catchMouse
-     * <p>
-     * This method is called only when the user presses a valid
-     * input key for the first time
+     * Adjust this cat picture to reflect direction it moves in
      * 
-     * @param mousePos Mouse's current position after key press
+     * @param newPos    the next position this cat will move to
      */
-    /*
-     * public void startMove(Position mousePos) {
-     * catchMouse(mousePos);
-     * }
-     */
-
-    /**
->>>>>>> origin/developEthan:Documents/src/main/java/cat.java
->>>>>>> origin/developRobert
-     * Contains all the data relevant to the current position
-     */
-    private class PositionStruct {
-        public PositionStruct prevPos;
-        public Position pos;
-        public int depth;
-    }
-
     private void rotateCat(Position newPos){
         if (newPos.getX() - pos.getX() == 1){
             try{
@@ -85,6 +60,15 @@ class Cat extends MovingEntity {
     }
 
     /**
+     * Contains all the data relevant to the current position
+     */
+    private class PositionStruct {
+        public PositionStruct prevPos;
+        public Position pos;
+        public int depth;
+    }
+
+    /**
      * Uses Breadth-First Search to move this cat to its
      * next position that is closer to the mouse
      * 
@@ -103,10 +87,7 @@ class Cat extends MovingEntity {
 
        
         //If the mouse moved on top of the cat first, end game
-        if (getPos().getX() == mousePosition.getX() && getPos().getY() == mousePosition.getY()) {
-            Game.State = Game.STATE.LOSE;
-            return;
-        }
+        if (checkMouseCollision(mousePosition)) {return;}
 
         temp.prevPos = null;
         temp.pos = getPos();
@@ -145,12 +126,23 @@ class Cat extends MovingEntity {
         move(bestMove.pos);
 
         //If the move that the cat takes collides with mouse, end game
-        if (bestMove.pos.getX() == mousePosition.getX() && bestMove.pos.getY() == mousePosition.getY()) {
+        if (checkMouseCollision(mousePosition)) {return;}
+    }
+
+    /**
+     * Checks if this cat and the mouse share the same cell.
+     * If they do, end the game and the player loses.
+     * 
+     * @param mousePosition Mouse's current position
+     * @return  boolean
+     */
+    private boolean checkMouseCollision (Position mousePosition) {
+        if (getPos().getX() == mousePosition.getX() && getPos().getY() == mousePosition.getY()) {
             Game.State = Game.STATE.LOSE;
-            return;
+            return true;
         }
 
-        
+        return false;
     }
 
     /**
@@ -176,7 +168,7 @@ class Cat extends MovingEntity {
             tempPos.pos = pos;
             tempPos.depth = curPos.depth + 1;
 
-            if (checkValidMove(tempPos.pos)) {
+            if (checkValidMove(tempPos.pos) && !(map.getCharacter(tempPos.pos) instanceof Cat)) {
                 possibleMoves.add(tempPos);
             }
         }
@@ -199,25 +191,6 @@ class Cat extends MovingEntity {
                 + Math.abs(mousePos.getY() - potentialMove.getY());
 
         return rating;
-    }
-
-    //Check if next cell is outside map bounds, contains a barrier,
-    //or contains a cat
-    public boolean checkValidMove(Position newPos) {
-
-        if (newPos.getX() < 0 || newPos.getY() < 0 || newPos.getX() > 57 || newPos.getY() > 40) {
-            return false;
-        }
-
-        else if (map.isWall(newPos.getX(), newPos.getY()) == 1) {
-            return false;
-        }
-
-        else if (map.getCharacter(newPos) instanceof Cat) {
-            return false;
-        }
-        
-        return true;
     }
 
 } 

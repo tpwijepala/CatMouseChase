@@ -8,7 +8,7 @@ public class MovingEntity extends Entity {
 
     public void move(Position newPos) {
         if (checkValidMove(newPos)) {
-            this.setPos(newPos.getX(), newPos.getY());
+            pos.setPos(newPos.getX(), newPos.getY());
         }
     }
 

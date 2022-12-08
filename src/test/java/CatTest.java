@@ -6,7 +6,7 @@ public class CatTest {
     Map testMap = new Map();
     Mouse testMouse = testMap.getPlayer();
     Cat testCat = (Cat) testMap.getCharacter(new Position(12, 34));
-    Cat adjacentCat1 = (Cat) testMap.getCharacter(new Position(36, 24));
+    Cat adjacentCat1 = (Cat) testMap.getCharacter(new Position(52, 24));
     Cat adjacentCat2 = (Cat) testMap.getCharacter(new Position(43, 13));
 
     @BeforeEach
@@ -120,7 +120,9 @@ public class CatTest {
         adjacentCat1.move(new Position(23, 27));
         adjacentCat2.move(new Position(24, 27));
 
-        assertFalse(adjacentCat1.checkValidMove(new Position(24, 27)));
+        adjacentCat1.catchMouse(testMouse.getPos());
+
+        assertFalse(adjacentCat1.getPos() == adjacentCat2.getPos());
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
@@ -145,8 +147,8 @@ public class CatTest {
     */
     @Test
     public void CatAtEdgeOfMapY() {
-        testCat.move(new Position(57, 40));
-        assertFalse(testCat.checkValidMove(new Position(57, 41)));
+        testCat.move(new Position(57, 39));
+        assertFalse(testCat.checkValidMove(new Position(57, 40)));
         assertTrue(Game.State == Game.STATE.GAME);
 
         testCat.move(new Position(1, 0));
