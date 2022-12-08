@@ -20,7 +20,7 @@ public class EntityTest {
     //UNIT TEST
     @Test
     public void setPosNoChange() {
-        e.setPos(e.getPos().getX(), e.getPos().getY());
+        e.getPos().setPos(e.getPos().getX(), e.getPos().getY());
         // check position remains the same
         assertTrue(e.getPos().getX() == 1);
         assertTrue(e.getPos().getY() == 1);
@@ -29,7 +29,7 @@ public class EntityTest {
     //UNIT TEST
     @Test
     public void setPosX() {
-        e.setPos(5, e.getPos().getY());
+        e.getPos().setPos(5, e.getPos().getY());
         // check only X changed
         assertTrue(e.getPos().getX() == 5);
         assertTrue(e.getPos().getY() == 1);
@@ -38,7 +38,7 @@ public class EntityTest {
     //UNIT TEST
     @Test
     public void setPosY() {
-        e.setPos(e.getPos().getX(), 5);
+        e.getPos().setPos(e.getPos().getX(), 5);
         // check only Y changed
         assertTrue(e.getPos().getX() == 1);
         assertTrue(e.getPos().getY() == 5);
@@ -47,7 +47,7 @@ public class EntityTest {
     //UNIT TEST
     @Test
     public void setPosXAndY() {
-        e.setPos(5, 5);
+        e.getPos().setPos(5, 5);
         // check both X and Y changed
         assertTrue(e.pos.getX() == 5);
         assertTrue(e.pos.getY() == 5);

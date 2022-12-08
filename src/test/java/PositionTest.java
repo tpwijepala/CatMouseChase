@@ -8,15 +8,6 @@ public class PositionTest {
     Position testPos = new Position(5, 13);
 
     /*
-    * Test if the position string prints properly
-    * UNIT TEST
-    */
-    @Test
-    public void printPosition() {
-        assertEquals("(5, 13)", testPos.toString());
-    }
-
-    /*
     * Test the getters and setters
     * UNIT TEST
     */

@@ -43,9 +43,11 @@ public class Position {
     }
 
     /**
-     * @return The position's coordinates as an ordered pair
+     * @param newX new X-Coordinate
+     * @param newY new Y-Coordinate
      */
-    public String toString() {
-        return "(" + x + ", " + y + ")";
+    public void setPos(int newX, int newY) {
+        setX(newX);
+        setY(newY);
     }
 }

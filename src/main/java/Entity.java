@@ -18,15 +18,6 @@ public class Entity {
     }
 
     /**
-     * @param newX new X-Coordinate
-     * @param newY new Y-Coordinate
-     */
-    public void setPos(int newX, int newY) {
-        pos.setX(newX);
-        pos.setY(newY);
-    }
-
-    /**
      * Draws this entity onto the game's window
      * 
      * @param g Graphics object handling the game's UI
