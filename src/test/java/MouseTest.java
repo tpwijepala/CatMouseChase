@@ -29,7 +29,7 @@ public class MouseTest {
     //UNIT TEST
     @Test
     public  void checkAtFinishWithAllCrumbs() {
-        map.crumbsCollect = 4;
+        map.crumbsCollect = 18;
         map.player.newPos = new Position(map.endX, map.endY+2);
         map.player.move();
         // check game state
