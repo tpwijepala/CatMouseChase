@@ -17,8 +17,8 @@ public class MapTest {
     //UNIT TEST
     @Test
     public void testGenerations(){
-        assertTrue(map.getObjectsArray().size() == 22);
-        assertTrue(map.items.size() == 18);
+        assertTrue(map.getObjectsArray().size() == 21);
+        assertTrue(map.items.size() == 17);
         
         assertTrue(map.characters.size() == 4);
     }
