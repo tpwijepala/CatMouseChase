@@ -2,6 +2,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 /**
+ * Keeps track of the player's score
+ * 
  * @author: Karina Kramer
  * @version: 1.0
  */

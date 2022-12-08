@@ -11,10 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 
-/*
+/**
  * This class encapsulates the Menu UI for the game
  * 
- * @author Ethan
+ * @author Ethan Phan
  */
 public class Menu extends MouseAdapter {
 
@@ -36,7 +36,7 @@ public class Menu extends MouseAdapter {
 
     public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 - 300 / 2, quitY, buttonWidth, heightWidth);
 
-    /*
+    /**
      * Renders the main menu to the game screen
      * 
      * @param g Graphics library for customizing the menu
@@ -80,7 +80,7 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
-    /*
+    /**
      * Renders the win screen at end of game
      * 
      * @param g Graphics library for customizing the menu
@@ -109,7 +109,7 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
-    /*
+    /**
      * Renders game over screen if you lose
      * 
      * @param g Graphics library for customizing the menu
@@ -138,7 +138,7 @@ public class Menu extends MouseAdapter {
         g2d.draw(quitButton);
     }
 
-    /*
+    /**
      * Allows mouse input, allows user to click the menu buttons
      * 
      * @param e MouseEvent, checks to see if a mouse click has happened

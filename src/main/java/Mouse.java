@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Represents a Mouse that is controlled by the player
+ * 
  * @author Robert Wilson
  * @version 1.0
  */
@@ -28,6 +29,11 @@ public class Mouse extends MovingEntity {
         }
     }
 
+    /**
+     * Rotate the Mouse's picture depending on which direction it moves
+     * 
+     * @param side
+     */
     public void rotateMouse(int side) {
         if (side == 0){
             try {
@@ -85,6 +91,11 @@ public class Mouse extends MovingEntity {
         }
     }
 
+    /**
+     * Checks to see if space Mouse is currently on contains a Cheese, Crumb, or Mouse Trap
+     * <p>
+     * Checks the score after the points are adjusted to see if it dropped below 0.
+     */
     public void collectItem() {
         StaticEntity item = map.getItem(getPos());
         if (item != null) {
@@ -104,14 +115,10 @@ public class Mouse extends MovingEntity {
         }
     }
 
-    /**
-     * @return Mouse's current score
-     */
     public Score getMouseScore() {
         return playerScore;
     }
 
-    
     public void setMouseScore() {
         playerScore = new Score();
     }

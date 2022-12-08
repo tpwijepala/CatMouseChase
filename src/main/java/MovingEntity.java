@@ -1,4 +1,6 @@
-
+/**
+ * Controls common operations for Mouse and Cat objects
+ */
 public class MovingEntity extends Entity {
     
     public MovingEntity(int x, int y, Map m) {
@@ -13,7 +15,8 @@ public class MovingEntity extends Entity {
     }
 
     /**
-     * Checks if a wall is preventing movement into a new position.
+     * Checks if a wall is preventing movement into a new position 
+     * or if the anticipated move goes outside the Map's boundaries.
      * 
      * @param newPos Position the entity is moving to
      * @return boolean value of the move's validity

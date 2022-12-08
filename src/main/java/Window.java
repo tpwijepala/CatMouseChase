@@ -1,10 +1,9 @@
-
 import javax.swing.JFrame;
 
 /**
  * This class encapsulates all the settings for creating the Game window
  * 
- * @author Ethan
+ * @author Ethan Phan
  */
 public class Window {
 

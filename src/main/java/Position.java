@@ -1,4 +1,3 @@
-
 /**
  * Represents a location on the map using x and y coordinates
  * @author Robert Wilson
@@ -8,18 +7,11 @@ public class Position {
     protected int x;
     protected int y;
 
-    /**
-     * @param x X-Coordinate
-     * @param y Y-Coordinate
-     */
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    /**
-     * @return position's X-Coordinate
-     */
     public int getX() {
         return x;
     }
@@ -28,21 +20,17 @@ public class Position {
         x = newX;
     }
 
-    /**
-     * @return position's Y-Coordinate
-     */
     public int getY() {
         return y;
     }
 
-    /**
-     * @param newY new Y-Coordinate
-     */
     public void setY(int newY) {
         y = newY;
     }
 
     /**
+     * Used when both x and y coordinates change
+     * 
      * @param newX new X-Coordinate
      * @param newY new Y-Coordinate
      */

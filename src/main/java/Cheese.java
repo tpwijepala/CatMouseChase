@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * Creates Cheese objects and controls their spawning on the board
+ * 
  * @author Thimira Wijepala
  * @version 1.0
  */
 public class Cheese extends StaticEntity {
     Map map;
+
     /**
      * Instantiates this Cheese object and draws its image
      * on the map

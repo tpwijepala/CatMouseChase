@@ -2,6 +2,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 /**
+ * Sets up the clock for the game
+ * 
  * @author Thimira Wijepala
  * @version 1.0
  */
@@ -19,7 +21,9 @@ class GameTimer {
         this.timerCount = 0; 
     }
 
-    //Restart the clock
+    /**
+     * Restarts the clock
+     */
     void setTime() {
         this.timerCount = System.currentTimeMillis() - this.startCount;
     }
@@ -66,6 +70,7 @@ class GameTimer {
     /**
      * Prints the current time from {@link displayTime()} on the timer box
      * inside the GUI 
+     * 
      * @param g     Graphics object used to draw the time
      */
     void displayTime(Graphics g) {

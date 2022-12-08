@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.*;
 
 /**
+ * Controls the movement of the cat and its graphics
+ * 
  * @author Karina Kramer
- * @version 1.0
+ * @version 2.0
  */
 class Cat extends MovingEntity {
     /**
@@ -14,6 +16,7 @@ class Cat extends MovingEntity {
      * 
      * @param x Row coordinate on map
      * @param y Column coordinate on map
+     * @param m Map where cat is located on
      */
     public Cat(int x, int y, Map m) {
         super(x, y, m);

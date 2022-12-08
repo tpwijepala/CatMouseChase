@@ -12,7 +12,7 @@ import java.io.IOException;
 public class MouseTrap extends StaticEntity {
     /**
      * MouseTrap Constructuor
-     * Used to initalize objects position & load img
+     * Used to initalize objects position and load image
      * 
      * @param x - used to initalize x pos
      * @param y - used to initalize y pos

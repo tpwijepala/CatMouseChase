@@ -7,12 +7,11 @@ import java.io.IOException;
  * which can be picked up by Mouse to increase score.
  * 
  */
-
 public class Crumb extends StaticEntity{
 
     /**
      * Crumb Constructuor
-     * Used to initalize objects position & load img
+     * Used to initalize objects position and load image
      * 
      * @param x - used to initalize x pos
      * @param y - used to initalize y pos

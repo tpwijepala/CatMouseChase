@@ -1,13 +1,10 @@
-//package main.java;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-//import java.awt.Boolean;
 
-/*
+/**
  * Class encapsulates the input for movement
  * 
- * @author Robert, Thimira
+ * @author Robert Wilson, Thimira Wijepala
  */
 class UserInput extends KeyAdapter {
     Mouse player;
@@ -20,7 +17,7 @@ class UserInput extends KeyAdapter {
     }
 
     /*
-     * Moves the actor with input from keyboard
+     * Moves the actor with input from keyboard and rotates Mouse's picture
      */
     public void keyPressed(KeyEvent input) {
         int key = input.getKeyCode();

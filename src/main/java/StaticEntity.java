@@ -1,4 +1,3 @@
-
 /**
  *  This class is used to help maintain and
  *  create static Items that the Mouse collects

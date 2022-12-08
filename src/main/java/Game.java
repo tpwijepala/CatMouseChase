@@ -8,12 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 
-/*
+/**
  * Class encapsulates all of Game
  * <p>
  * Contains everything to run the game, render the graphics and manage objects
  * 
- * @author Ethan
+ * @author Ethan Phan
  */
 public class Game extends Canvas implements Runnable {
 
@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 
     public static STATE State = STATE.MENU;
 
-    /*
+    /**
      * Creates Game with specifications and initialization
      */
     public Game() {
@@ -63,7 +63,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    /*
+    /**
      * Creates a new thread and starts the game
      */
     public synchronized void start() {
@@ -74,7 +74,7 @@ public class Game extends Canvas implements Runnable {
         isPlaying = true;
     }
 
-    /*
+    /**
      * Stops the thread and stops the game
      */
     public void stop() {
@@ -88,7 +88,7 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    /*
+    /**
      * Renders the graphics by calling in the other classes
      */
     public void draw() {
@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
-    /*
+    /**
      * Reinitializes the game after called
      */
     public void restart() {
@@ -133,7 +133,7 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    /*
+    /**
      * Running game loop that allows the game to work
      */
     @Override

@@ -7,10 +7,10 @@ import java.io.IOException;
 
 /**
  * This class is used to create everything for the game
- * It creates & draws the Map
+ * It creates and draws the Map
  * It is also used for moving, spawning in and drawing new objects
  * It also keeps track of elapsed time
- * Map also stores and maintains the objects in Arrays & ArrayLists so that they
+ * Map also stores and maintains the objects in Arrays and ArrayLists so that they
  * can be accessed by other classes
  * 
  * @author Thimira Wijepala
@@ -46,9 +46,8 @@ public class Map {
     /**
      * Constructer of Map object
      * Loads map png to draw later
-     * creates player & generates intial objects
+     * Creates player and generates intial objects
      */
-
     public Map(){
         try{
             map = ImageIO.read(new File("src/main/resources/newMap.png"));
@@ -161,12 +160,11 @@ public class Map {
         return walls[y][x];
     }
 
-     /**
-      * This method is used to spawn/despawn cheese after a given time
-      *
-      * @param cheeseCollected - used to restart timer if item is collected
-      */
-
+    /**
+     * This method is used to spawn/despawn cheese after a given time
+     *
+     * @param cheeseCollected - used to restart timer if item is collected
+     */
     public void cheeseExist(boolean cheeseCollected) {
         if (cheeseCollected) { // if cheese is collected
             startTime = System.currentTimeMillis();
@@ -192,8 +190,9 @@ public class Map {
 
 
     /**
-     * Method is used to determine whether a tick or '1000ms' has passed
-     * @return true or false depending whether 1000ms has passed
+     * Determine whether a tick or '250ms' has passed
+     * 
+     * @return true or false depending whether 250ms has passed
      */
     public boolean tick() {
         long time = System.currentTimeMillis();
@@ -204,6 +203,13 @@ public class Map {
         return false;
     }
 
+    /**
+     * Controls timing of cat movement. 
+     * <p>
+     * Cat moves slower than mouse to let player win the game.
+     * 
+     * @return
+     */
     public boolean catTick() {
         long time = System.currentTimeMillis();
         if (time >= catTickTime + 750){
@@ -213,24 +219,25 @@ public class Map {
         return false;
     }
 
-    
     // Note: not on UML Diagram
     public ArrayList<Position> getEnd() {
         return end;
     }
 
-
     public Mouse getPlayer() {
         return player;
     }
-
 
     public ArrayList<Entity> getObjectsArray() {
         return objects;
     }
 
-
-    // Note: not on UML Diagram
+    /**
+     * Returns a Cheese, Crumb, or Mouse Trap object
+     * 
+     * @param pos   Position of item on board
+     * @return      StaticEntity whose instance can be checked as Cheese, Crumb, or Mouse Trap
+     */
     public StaticEntity getItem(Position pos) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).pos.x == pos.x && items.get(i).pos.y == pos.y) {
@@ -240,7 +247,12 @@ public class Map {
         return null;
     }
 
-
+    /**
+     * Returns the Mouse at the 0th index and Cats from index 1 onwards
+     * 
+     * @param pos   Position of character on board
+     * @return      MovingEntity whose instance can be checked as Mouse or Cat
+     */
     public MovingEntity getCharacter(Position pos) {
         for (int i = 0; i < characters.size(); i++) {
             if (characters.get(i).pos.x == pos.x && characters.get(i).pos.y == pos.y) {
@@ -249,7 +261,6 @@ public class Map {
         }
         return null;
     }
-
 
     public void addItem(StaticEntity item) {
         items.add(item);
@@ -261,7 +272,12 @@ public class Map {
         objects.add(character);
     }
 
-    
+    /**
+     * Searches for item in objects and items arrays.
+     * If found, deletes it from the ArrayList, indicating it was "collected"
+     * 
+     * @param item  Either a Cheese, Crumb, or Mouse Trap
+     */
     public void removeItem(StaticEntity item) {
         // Remove from objects ArrayList:
         Position pos = item.getPos();
@@ -281,7 +297,7 @@ public class Map {
 
     /**
      * This method is used to draw map and objects
-     * also used to generate & move the objects
+     * It is also used to generate and move the objects
      * 
      * @param g - the canvas that gets drawn
      */
@@ -307,8 +323,6 @@ public class Map {
         for (int i = 0; i < objects.size(); i++){
             objects.get(i).draw(g);
         }
-
-       
 
     }
    

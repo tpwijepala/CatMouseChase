@@ -1,11 +1,16 @@
 import java.awt.*;
 
+/**
+ * Parent Class for all Static and Moving Entities on Map
+ */
 public class Entity {
     Position pos;
     Map map;
     Image picture;
 
     /**
+     * Gives any entity, besides barriers, on the board a position
+     * 
      * @param x X-Coordinate
      * @param y Y-Coordinate
      */
