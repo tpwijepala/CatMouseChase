@@ -51,6 +51,7 @@ public class MenuTest {
 
         instance.dispatchEvent(click);
 
+        assertTrue(Game.isPlaying);
         assertTrue(Game.State == Game.STATE.GAME);
     }
 
@@ -94,7 +95,7 @@ public class MenuTest {
 
         exitRule.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
-                assertEquals("Exiting..", menu.message);
+                assertEquals("Exiting..", Menu.message);
             }
         });
         // instance.dispatchEvent(click);
