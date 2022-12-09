@@ -4,8 +4,8 @@ import java.awt.Graphics;
 /**
  * Keeps track of the player's score
  * 
- * @author: Karina Kramer
- * @version: 1.0
+ * @author Karina Kramer
+ * @version 1.0
  */
 class Score {
 
@@ -21,17 +21,17 @@ class Score {
     /**
      * Increments or decrements the score
      * 
-     * @param scoreChange       Number of points (can be positive or negative)
+     * @param scoreChange Number of points (can be positive or negative)
      */
-    void setScore(int scoreChange) {
+    public void setScore(int scoreChange) {
         playerScore += scoreChange;
     }
 
-    String getScore() {
+    public String getScore() {
         return Integer.toString(playerScore);
     }
 
-    Boolean checkScoreBelowZero() {
+    public Boolean checkScoreBelowZero() {
         if (playerScore < 0) {
             return true;
         }
@@ -42,9 +42,9 @@ class Score {
     /**
      * Display the player's current score in the GUI
      * 
-     * @param g     Graphics object used to draw this score
+     * @param g Graphics object used to draw this score
      */
-    void displayScore(Graphics g) {
+    public void displayScore(Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 45));
         g.drawString(getScore(), 875, 75);
     }

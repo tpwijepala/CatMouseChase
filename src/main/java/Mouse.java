@@ -75,7 +75,7 @@ public class Mouse extends MovingEntity {
         checkFinish();
     }
 
-    /**
+    /*
      * Checks if this mouse meets the requirements to finish the game,
      * ending the game if met.
      */

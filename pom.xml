@@ -97,6 +97,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.4.1</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -105,6 +106,27 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <sourceFileIncludes>
+            <include>Cat.java</include>
+            <include>Cheese.java</include>
+            <include>Crumb.java</include>
+            <include>Entity.java</include>
+            <include>Game.java</include>
+            <include>GameTimer.java</include>
+            <include>Map.java</include>
+            <include>Menu.java</include>
+            <include>Mouse.java</include>
+            <include>MouseTrap.java</include>
+            <include>MovingEntity.java</include>
+            <include>Position.java</include>
+            <include>Score.java</include>
+            <include>StaticEntity.java</include>
+            <include>UserInput.java</include>
+            <include>Window.java</include>
+          </sourceFileIncludes>
+          <sourcepath>${basedir}/src/main/java</sourcepath>
+        </configuration>
 		  </plugin>
       <!-- Include code coverage report -->
       <plugin>

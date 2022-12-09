@@ -24,7 +24,7 @@ class GameTimer {
     /**
      * Restarts the clock
      */
-    void setTime() {
+    public void setTime() {
         this.timerCount = System.currentTimeMillis() - this.startCount;
     }
 
@@ -33,7 +33,7 @@ class GameTimer {
      * 
      * @return      hours:mins:sec format as a string
      */
-    String displayTime() {
+    public String displayTime() {
         setTime();
         long seconds = this.timerCount/1000;
         long minutes = seconds/60;
@@ -73,7 +73,7 @@ class GameTimer {
      * 
      * @param g     Graphics object used to draw the time
      */
-    void displayTime(Graphics g) {
+    public void displayTime(Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 45));
         g.drawString(displayTime(), 450, 75);
     }

@@ -29,7 +29,7 @@ class Cat extends MovingEntity {
     }
 
     
-    /**
+    /*
      * Adjust this cat picture to reflect direction it moves in
      * 
      * @param newPos    the next position this cat will move to
@@ -62,7 +62,7 @@ class Cat extends MovingEntity {
         }
     }
 
-    /**
+    /*
      * Contains all the data relevant to the current position
      */
     private class PositionStruct {
@@ -132,7 +132,7 @@ class Cat extends MovingEntity {
         if (checkMouseCollision(mousePosition)) {return;}
     }
 
-    /**
+    /*
      * Checks if this cat and the mouse share the same cell.
      * If they do, end the game and the player loses.
      * 
@@ -148,7 +148,7 @@ class Cat extends MovingEntity {
         return false;
     }
 
-    /**
+    /*
      * Scans the next cells in the north, south, east and west
      * directions to determine which ones this cat can move to
      * vs which ones are blocked and adds them to the list of
@@ -177,7 +177,7 @@ class Cat extends MovingEntity {
         }
 
     }
-    /**
+    /*
      * Uses Manhattan distance to give each possible next move a
      * rating
      * <p>
