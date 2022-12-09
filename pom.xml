@@ -108,7 +108,7 @@
         </executions>
         <configuration>
           <sourceFileIncludes>
-            <include>Cat.java</include>
+            <include>cat.java</include>
             <include>Cheese.java</include>
             <include>Crumb.java</include>
             <include>Entity.java</include>
@@ -120,7 +120,7 @@
             <include>MouseTrap.java</include>
             <include>MovingEntity.java</include>
             <include>Position.java</include>
-            <include>Score.java</include>
+            <include>score.java</include>
             <include>StaticEntity.java</include>
             <include>UserInput.java</include>
             <include>Window.java</include>
