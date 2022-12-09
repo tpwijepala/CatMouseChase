@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 public class MouseTest {
     Map map;
     Position pos = new Position(4, 4);
+    int endX = 56;
+    int endY = 35;
 
     @BeforeEach
     public void resetMap() {
@@ -20,7 +22,7 @@ public class MouseTest {
     @Test
     public void checkAtFinishNotAllCrumbs() {
         map.crumbsCollect = 3;
-        map.player.newPos = new Position(map.endX, map.endY);
+        map.player.newPos = new Position(endX, endY);
         map.player.move();
         // check game state
         assertTrue(Game.State == Game.STATE.GAME);
@@ -30,7 +32,7 @@ public class MouseTest {
     @Test
     public  void checkAtFinishWithAllCrumbs() {
         map.crumbsCollect = 18;
-        map.player.newPos = new Position(map.endX, map.endY+2);
+        map.player.newPos = new Position(endX, endY+2);
         map.player.move();
         // check game state
         assertTrue(Game.State == Game.STATE.WIN);
@@ -39,7 +41,7 @@ public class MouseTest {
     //UNIT TEST
     @Test
     public void checkNotFinish() {
-        map.player.newPos = new Position(map.endX, map.endY);
+        map.player.newPos = new Position(endX, endY);
         map.player.move();
         // check game state
         assertTrue(Game.State == Game.STATE.GAME);

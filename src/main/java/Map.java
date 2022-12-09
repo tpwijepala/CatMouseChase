@@ -23,8 +23,8 @@ public class Map {
     private final int[][] walls; 
 
     int startX, startY;
-    int endX, endY;
-    int endHeight;
+    //int endX, endY;
+    //int endHeight;
     int crumbsCollect;
 
     static int CELLWIDTH;
@@ -60,7 +60,9 @@ public class Map {
         startTime = System.currentTimeMillis();
 
         startX = 4; startY = 4;
-        endX = 56; endY = 35; endHeight = 5;
+        int endX = 56;
+        int endY = 35;
+        int endHeight = 5;
         crumbsCollect = 0;
         CELLWIDTH = 25;
 
@@ -208,7 +210,7 @@ public class Map {
      * <p>
      * Cat moves slower than mouse to let player win the game.
      * 
-     * @return
+     * @return whether a cat's tick has occured
      */
     public boolean catTick() {
         long time = System.currentTimeMillis();
