@@ -23,8 +23,6 @@ public class Map {
     private final int[][] walls; 
 
     int startX, startY;
-    //int endX, endY;
-    //int endHeight;
     int crumbsCollect;
 
     static int CELLWIDTH;
